@@ -103,6 +103,7 @@
                                                         <hr>
                                                         <br>
                                                         <div class="row gx-2 gx-sm-3">
+                                                            <input type="hidden" id="clave_a" name="clave_a" value="<?=$clave_a?>">
                                                             <div class="col">
                                                                 <div class="form-group">
                                                                     <input style="font-size: 35px" type="text" id="codigo_registro" name="codigo_registro" class="form-control form-control-lg text-center" minlength="6" maxlength="6" autocomplete="off" autocapitalize="off" autofocus>
@@ -257,7 +258,7 @@
         var link_a = $(location).attr('href');
         var clave_a = link_a.substr(link_a.indexOf('codigo/')+7,link_a.length);
         
-        bloquearRegistro();
+        // bloquearRegistro();
 
         // mostrarDatos(clave_a);
 
@@ -362,17 +363,23 @@
         
         $("#codigo_registro").on('change',function(){
 
+            //id user
             codigo = $('#codigo_registro').val();
             $('#codigo_registro').val('');
+            //clave de aistencia
+            var  clave_a = $('#clave_a').val();
+            
             // $('#lista-reg > tbody').empty();
 
             console.log(codigo);
             console.log(clave_a);
+
+
         
             $.ajax({
-                url: "/RegistroAsistencia/registroAsistencia/"+codigo+'/'+clave_a,
+                url: "/RegistroAsistencia/registroAsistencia/",
                 type: "POST",
-                // data: formData,
+                data: {codigo,clave_a},
                 dataType: 'json',
                 beforeSend: function() {
                     console.log("Procesando....");
@@ -382,7 +389,7 @@
                     if (respuesta.status == 'success') {
                         // console.log(respuesta);
                         // console.log(respuesta.msg_insert);
-                        let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.segundo_nombre+' '+respuesta.datos.apellido_paterno +' '+respuesta.datos.apellido_materno;
+                        let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.apellidop+' '+respuesta.datos.apellidom;
                         $("#nombre_completo").html(nombre_completo);
                         $("#correo_user").html(respuesta.datos.email);
                         $("#telefono_user").html(respuesta.datos.telefono);
@@ -400,12 +407,12 @@
 
                         // console.log(respuesta.especialidades['0']);
                         // $("#especialidad_user").html(respuesta.especialidades['0'].nombre);
-                        for (let index = 0; index < respuesta.especialidades.length; index++) {
-                            const element = respuesta.especialidades[index];
-                            if (element.id_especialidad == respuesta.datos.especialidad) {
-                                $("#especialidad_user").html(element.nombre);
-                            }
-                        }
+                        // for (let index = 0; index < respuesta.especialidades.length; index++) {
+                        //     const element = respuesta.especialidades[index];
+                        //     if (element.id_especialidad == respuesta.datos.especialidad) {
+                        //         $("#especialidad_user").html(element.nombre);
+                        //     }
+                        // }
 
                         if(respuesta.msg_insert == 'success_find_assistant'){
                             Swal.fire({

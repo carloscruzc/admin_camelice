@@ -251,7 +251,7 @@
         var link_a = $(location).attr('href');
         var clave_a = link_a.substr(link_a.indexOf('codigo/')+7,link_a.length);
         
-        bloquearRegistro();
+        // bloquearRegistro();
 
         // mostrarDatos(clave_a);
 

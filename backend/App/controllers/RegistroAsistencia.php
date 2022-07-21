@@ -17,7 +17,7 @@ use \App\models\Asistentes as AsistentesDao;
 use \DateTime;
 use \DatetimeZone;
 
-class RegistroAsistencia
+class RegistroAsistencia extends Controller
 {
 
 
@@ -146,6 +146,7 @@ html;
 
 
         if ($flag == true) {
+            View::set('clave_a',$id);
             View::set('tabla', $tabla);
             View::set('nombre', $nombre);
             View::set('descripcion', $descripcion);
@@ -178,11 +179,17 @@ html;
         echo json_encode($delete_registrado);
     }
 
-    public function registroAsistencia($clave, $code){
+    public function registroAsistencia(){
         
+        $clave = $_POST['codigo'];//id_usuario
+        $code = $_POST['clave_a'];//clave asistencia
+
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
-        $especialidades = RegistroAsistenciaDao::getEspecialidades();
+        // var_dump($user_clave);
+        // $especialidades = RegistroAsistenciaDao::getEspecialidades();
         $asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
+
+
 
         $fecha = new DateTime('now', new DateTimeZone('America/Cancun'));
         $hora_actual = substr($fecha->format(DATE_RFC822), 15, 5);
@@ -211,17 +218,17 @@ html;
             $aqui = 4;
         }
             if ($user_clave) {
-                $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id'], $asistencia['id_asistencia'])[0];
+                $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['id_registrado'], $asistencia['id_asistencia'])[0];
                 if ($hay_asistente) {
                     $msg_insert = 'success_find_assistant';
                 } else {
                     $msg_insert = 'fail_not_found_assistant';
-                    $insert = RegistroAsistenciaDao::addRegister($asistencia['id_asistencia'], $user_clave['utilerias_asistentes_id'], $a_tiempo);
+                    $insert = RegistroAsistenciaDao::addRegister($asistencia['id_asistencia'], $user_clave['id_registrado'], $a_tiempo);
                 }
     
                 $data = [
                     'datos' => $user_clave,
-                    'especialidades' => $especialidades,
+                    // 'especialidades' => $especialidades,
                     'status' => 'success',
                     'msg_insert' => $msg_insert,
                     'hay_asistente' => $hay_asistente,
@@ -383,6 +390,8 @@ html;
         $datos_user = AsistentesDao::getRegistradoById($id_registrado)[0];
 
         $nombre_completo = mb_strtoupper($datos_user['nombre']) . "\n\n" . mb_strtoupper($datos_user['apellidop']);
+
+        $insertImpresionGafete = RegistroAsistenciaDao::insertImpGafete($id_registrado,$_SESSION['utilerias_administradores_id']);
         
         $pdf = new \FPDF($orientation = 'P', $unit = 'mm', array(390, 152));
         $pdf->AddPage();

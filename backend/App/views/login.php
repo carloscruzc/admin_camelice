@@ -18,7 +18,7 @@
             }
 
             .morado-musa-text{
-                color: rgb(98 56 246);
+                color: #344767;
             }
 
             .bg-musa-morado{
@@ -40,7 +40,7 @@
                             <div class="card card-plain mt-8">
                                 <div class="card-header pb-0 text-start">
                                     <h3 class="font-weight-bolder morado-musa-text">GRUPO LAHE</h3>
-                                    <h5 class="font-weight-bolder morado-musa-text">Administrador MUSA 2022</h5>
+                                    <h5 class="font-weight-bolder morado-musa-text">Administrador CAMELICE 2022</h5>
                                     <p class="mb-0">Introduce tus credenciales para iniciar sesión.</p>
                                 </div>
                                 <div class="card-body">

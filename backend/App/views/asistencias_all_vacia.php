@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="https://foromusa.com/assets/images/Musa0-01.png">
     <link rel="icon" type="image/png" href="https://foromusa.com/assets/images/Musa0-01.png">
     <title>
-        Asistencias - MUSA - GRUPO LAHE
+        Asistencias - CAMELICE - GRUPO LAHE
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 ">
                 <img src="../../../assets/img/favicon.png" style="width: 180px; height: 40px; margin-left: 5px; margin-right: 5px;">
-                Asistencia MUSA 2022
+                Asistencia CAMELICE 2022
             </a>
             <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
                 <ul class="navbar-nav navbar-nav-hover mx-auto">

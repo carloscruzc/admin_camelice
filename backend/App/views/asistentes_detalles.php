@@ -3,7 +3,7 @@
     Asistentes Detalles - <?php echo $detalles_registro['nombre'] . ' ';
                                                                                                         echo $detalles_registro['segundo_nombre'] . ' ';
                                                                                                         echo $detalles_registro['apellido_paterno'] . ' ';
-                                                                                                        echo $detalles_registro['apellido_materno']; ?> - MUSA - GRUPO LAHE
+                                                                                                        echo $detalles_registro['apellido_materno']; ?> - CAMELICE - GRUPO LAHE
 </title>
 <body class="g-sidenav-show  bg-gray-100">
     <?php echo $asideMenu;?>
@@ -166,10 +166,10 @@
                                         No. Asistente: <b><?php echo $id_asistente; ?></b>
                                     </p> -->
                                     <p class="text-sm mb-0">
-                                        Fecha de Alta: <b><?php echo $detalles_registro['fecha_alta']; ?></b>
+                                        Fecha de Alta: <b><?php echo $detalles_registro['fecha_registro']; ?></b>
                                     </p>
                                     <p class="text-sm">
-                                        Usuario: <b><?php echo $detalles['usuario']; ?></b>
+                                        Usuario: <b><?php echo $detalles['email']; ?></b>
                                     </p>
                                 </div>
                                 <!-- <a href="javascript:;" class="btn bg-gradient-secondary ms-auto mb-0">Invoice</a> -->
@@ -240,9 +240,8 @@
                                                 </div>
                                                 <div>
                                                     <span class="text-lg font-weight-bold mb-0 mt-2"><?php echo $detalles_registro['nombre'] . ' ';
-                                                                                                        echo $detalles_registro['segundo_nombre'] . ' ';
-                                                                                                        echo $detalles_registro['apellido_paterno'] . ' ';
-                                                                                                        echo $detalles_registro['apellido_materno']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
+                                                                                                        echo $detalles_registro['apellidop'] . ' ';
+                                                                                                        echo $detalles_registro['apellidom']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
                                                     <br> <br>
                                                     <p class="text-sm mb-3"></p>
                                                 </div>
@@ -253,244 +252,14 @@
                                             <form class="form-horizontal" action="" method="POST">
                                                 <button class="btn bg-gradient-primary mb-0" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
 
-                                                <input id="input-email" type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
+                                                <input id="input-email" type="text" class="form-control" value="<?php echo $detalles_registro['email']; ?>" readonly hidden>
 
                                             </form>
                                             <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
                                         </div>
                                     </div>
                                     <hr class="horizontal dark mt-4 mb-4">
-                                    <div class="row">
-
-                                        <div class="col-lg-12 col-md-12 col-12 mt-4 mt-md-0">
-                                            <h6 class="mb-3">Secciones</h6>
-                                            <!-- <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                                    <img class="w-10 me-3 mb-0" src="/img/users_conave/8mVMLa56xh.png" alt="logo">
-                                                    <img class="w-10 me-3 mb-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="logo">
-                                                    <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852</h6>
-                                                    <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="We do not store card details">
-                                                    <i class="fas fa-info" aria-hidden="true"></i>
-                                                    </button>
-                                                </div> -->
-                                            <!-- <h6 class="mb-3 mt-4">Billing Information</h6> -->
-                                            <div class="mt-2 nav-wrapper active position-relative end-0">
-                                                <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link mb-0 px-0 py-1  active" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="true">
-                                                            <span class="fa fa-syringe"></span>
-                                                            <span class="ms-1">Vacunación</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam3" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                            <span class="fa fa-virus"></span>
-                                                            <span class="ms-1">Covid</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                            <span class="fa fa-plane"></span>
-                                                            <span class="ms-1">Vuelos</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                            <span class="fa fa-ticket"></span>
-                                                            <span class="ms-1">Ticket Virtual</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam5" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                            <span class="fa fa-ticket"></span>
-                                                            <span class="ms-1">Impresión</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="tab-content" id="v-pills-tabContent">
-                                                <div class="tab-pane fade show position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
-                                                    <style>
-                                                        #main_ticket {
-                                                            /* margin-top: 20px; */
-                                                            text-align: center;
-                                                        }
-                                                    </style>
-                                                    <div>
-                                                        <?php echo $btn_genQr; ?>
-                                                        <?php echo $btn_clave; ?>
-                                                    </div>
-                                                    <ul class="list-group mt-3">
-                                                        <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg ">
-                                                            <h3><?php echo $msg_clave; ?></h3>
-                                                            <div class="row">
-                                                                <!-- <div class="col-md-2 col-12 text-center"> -->
-                                                                <!-- <div class="d-flex flex-column "> -->
-                                                                <!-- <h3 class="mb-3 text-sm">Su Código es: </h3> -->
-                                                                <img src="/qrs/<?php echo $clave_user; ?>.png" alt="" hidden>
-                                                                <input id="codigo-qr" type="text" value="/qrs/<?php echo $clave_user; ?>.png" hidden readonly>
-                                                                <!-- </div> -->
-                                                                <!-- </div> -->
-                                                                <input id="nombre-canvas" type="text" value="<?php echo $nombre; ?>" hidden readonly>
-                                                                <input id="apellidos-canvas" type="text" value="<?php echo $apellidos; ?>" hidden readonly>
-                                                                <div class="col-md-12 col-12 text-center">
-                                                                    <div id="main_ticket" hidden>
-                                                                        <canvas id="canvas_ticket" width="1220" height="457" name="ticket-<?php echo $clave_user; ?>" alt="ticket-<?php echo $clave_user; ?>" style="background: white; width: -webkit-fill-available;">
-                                                                            <img src="/img/boleto_musa.jpg" alt="">
-                                                                        </canvas> <!--  background-image: url('/img/ticket.jpg'); -->
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
-                                                    <div class="row mt-4">
-                                                        <div class="card mb-4">
-                                                            <div class="card-header pb-0">
-                                                                <h6></h6>
-                                                            </div>
-                                                            <div class="card-body px-0 pt-0 pb-2">
-                                                                <div class="table-responsive p-0">
-                                                                    <table id="table_aprobado" class="table align-items-center mb-0 table_rechazado">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Comprobante</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-
-                                                                            <!-- tabla ticket -->
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
-                                                    <div class="row mt-4">
-                                                        <div class="card mb-4">
-                                                            <div class="card-header pb-0">
-                                                                <h6></h6>
-                                                            </div>
-                                                            <div class="card-body px-0 pt-0 pb-2">
-                                                                <div class="table-responsive p-0">
-                                                                    <table id="table_aprobado" class="table align-items-center mb-0 table_rechazado">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Comprobante</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-
-                                                                            <?php echo $tabla_prueba_covid; ?>
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade position-relative height-350 border-radius-lg active show" id="cam4" role="tabpanel" aria-labelledby="cam4">
-                                                    <div class="row mt-4">
-                                                        <div class="card mb-4">
-                                                            <div class="card-header pb-0">
-                                                                <h6></h6>
-                                                            </div>
-                                                            <div class="card-body px-0 pt-0 pb-2">
-                                                                <div class="table-responsive p-0">
-                                                                    <table id="table_aprobado" class="table align-items-center mb-0 table_rechazado">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Comprobante</th>
-                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-
-                                                                            <?php echo $tabla_vacunacion; ?>
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade show position-relative height-350 border-radius-lg" id="cam5" role="tabpanel" aria-labelledby="cam2">
-                                                    <style>
-                                                        #main_ticket {
-                                                            /* margin-top: 20px; */
-                                                            text-align: center;
-                                                        }
-                                                    </style>
-
-                                                    <ul class="list-group mt-3">
-                                                        <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg ">
-                                                            <h3><?php echo $msg_clave; ?></h3>
-                                                            <div class="row">
-                                                                <a href='' target='_blank' style='display:none;' id='a_abrir_etiqueta'>abrir</a>
-                                                                
-                                                                <div class="col-12 col-md-6">
-                                                                    <div class="row">
-                                                                        <div class="col-12 col-md-10">
-                                                                            <h4>Gafete</h4>
-                                                                            <?php echo $btn_gafete; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-12 col-md-6">
-                                                                    <form action="" id="form_etiquetas">
-                                                                        <div class="row">
-                                                                            <input type="hidden" id="clave_ra" name="clave_ra" value="<?php echo $clave_ra; ?>">
-                                                                            <h4>Etiquetas</h4>
-                                                                            <!-- <div class="col-md-6">
-                                                                                <label>Número de Habitación</label>
-                                                                                
-                                                                            </div> -->
-
-                                                                            <div class="col-md-6">
-                                                                                <input type="number" value="0" hidden readonly id="no_habitacion" name="no_habitacion" class="form-control" />
-                                                                                <label>Número de etiquetas</label>
-                                                                                <input type="number" id="no_etiquetas" name="no_etiquetas" class="form-control" />
-                                                                            </div>
-
-                                                                            <div class="col-md-4 m-auto">
-                                                                                <button id="btn_imprimir_etiquetas" class="btn btn-info mt-4" type="submit">Imprimir Etiquetas</button>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                            </div>
-
-                                        </div> <!-- <div class="d-flex justify-conts-2 font-weight-bold">Mediana</span> -->
-                                    </div>
+                                    <!-- SECCION DETALLES -->
                                 </div>
                             </div>
                         </div>
@@ -524,36 +293,19 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
-                                        <label class="form-label">Segundo Nombre </label>
+                                        <label class="form-label">Apellido Paterno *</label>
                                         <div class="input-group">
-                                            <input id="segundo_nombre" name="segundo_nombre" maxlength="49" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Alec" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['segundo_nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="row">
-
-                                    <div class="col-12 col-lg-6">
-                                        <label class="form-label">Apellido Paterno *</label>
-                                        <div class="input-group">
-                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_paterno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div>
-
                                     <div class="col-12 col-lg-6">
                                         <label class="form-label">Apellido Materno *</label>
                                         <div class="input-group">
-                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_materno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellidom'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <label class="form-label mt-4">Fecha de Nacimiento * </label>
-                                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"  value="<?= $detalles_registro['fecha_nacimiento'] ?>">
                                     </div>
 
                                     <div class="col-lg-6 col-12">
@@ -568,14 +320,14 @@
                                     <div class="col-lg-12 col-12">
                                         <label class="form-label mt-4">Email Registrado y Verificado *</label>
                                         <div class="input-group">
-                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['usuario'] ?>" readonly>
+                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['email'] ?>" readonly>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
 
-                                    <?php echo $res_alimenticias; ?>
+                                    <!-- <?php echo $res_alimenticias; ?> -->
 
                                     <!-- <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias *</label>

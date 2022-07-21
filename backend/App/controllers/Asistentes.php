@@ -420,64 +420,64 @@ html;
 
         $all_ra = AsistentesDao::getAllRegistrosAcceso();
 
-        foreach ($all_ra as $key => $value) {
-            if ($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL') {
-                $clave_10 = $this->generateRandomString(10);
-                AsistentesDao::updateClaveRA($value['id_registro_acceso'], $clave_10);
-            }
-        }
+//         foreach ($all_ra as $key => $value) {
+//             if ($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL') {
+//                 $clave_10 = $this->generateRandomString(10);
+//                 AsistentesDao::updateClaveRA($value['id_registro_acceso'], $clave_10);
+//             }
+//         }
 
-        foreach ($all_ra as $key => $value) {
-            if ($value['ticket_virtual'] == '' || $value['ticket_virtual'] == NULL || $value['ticket_virtual'] == 'NULL') {
-                $clave_6 = $this->generateRandomString(6);
-                $this->generaterQr($all_ra['ticket_virtual']);
-                AsistentesDao::updateTicketVirtualRA($value['id_registro_acceso'], $clave_6);
-            }
-        }
+//         foreach ($all_ra as $key => $value) {
+//             if ($value['ticket_virtual'] == '' || $value['ticket_virtual'] == NULL || $value['ticket_virtual'] == 'NULL') {
+//                 $clave_6 = $this->generateRandomString(6);
+//                 $this->generaterQr($all_ra['ticket_virtual']);
+//                 AsistentesDao::updateTicketVirtualRA($value['id_registro_acceso'], $clave_6);
+//             }
+//         }
 
-        $email = AsistentesDao::getByClaveRA($id)[0]['usuario'];
-        $clave_user = AsistentesDao::getRegistroAccesoByClaveRA($id)[0];
-        $tv = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['ticket_virtual'];
-        $nombre = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['nombre'].' '.AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['segundo_nombre'];
-        $apellidos = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['apellido_paterno'].' '.AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['apellido_materno'];
-        if ($clave_user['ticket_virtual'] == '' || $clave_user['ticket_virtual'] == NULL || $clave_user['ticket_virtual'] == 'NULL') {
-            $msg_clave = 'No posee ningún código';
-            $btn_clave = '';
-            var_dump($clave_user['ticket_virtual']);
-            $btn_genQr = <<<html
-            <!--button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button-->
-html;
-        }
+//         $email = AsistentesDao::getByClaveRA($id)[0]['usuario'];
+//         $clave_user = AsistentesDao::getRegistroAccesoByClaveRA($id)[0];
+//         $tv = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['ticket_virtual'];
+//         $nombre = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['nombre'].' '.AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['segundo_nombre'];
+//         $apellidos = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['apellido_paterno'].' '.AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['apellido_materno'];
+//         if ($clave_user['ticket_virtual'] == '' || $clave_user['ticket_virtual'] == NULL || $clave_user['ticket_virtual'] == 'NULL') {
+//             $msg_clave = 'No posee ningún código';
+//             $btn_clave = '';
+//             var_dump($clave_user['ticket_virtual']);
+//             $btn_genQr = <<<html
+//             <!--button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button-->
+// html;
+//         }
 
-        $btn_gafete = "<a href='/RegistroAsistencia/abrirpdfGafete/{$clave_user['clave']}/{$clave_user['clave_ticket']}' target='_blank' id='a_abrir_gafete' class='btn btn-info' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-original-title='Imprimir Gafetes'><i class='fa fal fa-address-card' style='font-size: 18px;'> </i> Presione esté botón para descargar el gafete</a>";
+        $btn_gafete = "<a href='/RegistroAsistencia/abrirpdfGafete/{$id}/' target='_blank' id='a_abrir_gafete' class='btn btn-info' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-original-title='Imprimir Gafetes'><i class='fa fal fa-address-card' style='font-size: 18px;'> </i> Presione esté botón para descargar el gafete</a>";
         // $btn_etiquetas = "<a href='/RegistroAsistencia/abrirpdf/{$clave_user['clave']}' target='_blank' id='a_abrir_etiqueta' class='btn btn-info'>Imprimir etiquetas</a>";
-        $this->generaterQr($tv);
+        $this->generaterQr($id);
 
 
-        $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
-        $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
-        $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
-        $pickUpHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pickup", 1) == 0) ? "style=\"display:none;\"" : "";
-        $habitacionesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_habitaciones", 1) == 0) ? "style=\"display:none;\"" : "";
-        $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
-        $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
-        $aistenciasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistencias", 1) == 0) ? "style=\"display:none;\"" : "";
-        $vacunacionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 1) == 0) ? "style=\"display:none;\"" : "";
-        $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
-        $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
-        $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
+        // $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $pickUpHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pickup", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $habitacionesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_habitaciones", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $aistenciasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistencias", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $vacunacionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
+        // $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
 
-        View::set('permisoGlobalHidden', $permisoGlobalHidden);
-        View::set('asistentesHidden', $asistentesHidden);
-        View::set('vuelosHidden', $vuelosHidden);
-        View::set('pickUpHidden', $pickUpHidden);
-        View::set('habitacionesHidden', $habitacionesHidden);
-        View::set('cenasHidden', $cenasHidden);
-        View::set('aistenciasHidden', $aistenciasHidden);
-        View::set('vacunacionHidden', $vacunacionHidden);
-        View::set('pruebasHidden', $pruebasHidden);
-        View::set('configuracionHidden', $configuracionHidden);
-        View::set('utileriasHidden', $utileriasHidden);
+        // View::set('permisoGlobalHidden', $permisoGlobalHidden);
+        // View::set('asistentesHidden', $asistentesHidden);
+        // View::set('vuelosHidden', $vuelosHidden);
+        // View::set('pickUpHidden', $pickUpHidden);
+        // View::set('habitacionesHidden', $habitacionesHidden);
+        // View::set('cenasHidden', $cenasHidden);
+        // View::set('aistenciasHidden', $aistenciasHidden);
+        // View::set('vacunacionHidden', $vacunacionHidden);
+        // View::set('pruebasHidden', $pruebasHidden);
+        // View::set('configuracionHidden', $configuracionHidden);
+        // View::set('utileriasHidden', $utileriasHidden);
 
         View::set('id_asistente', $id);
         View::set('detalles', $detalles[0]);
@@ -498,8 +498,8 @@ html;
         View::set('detalles_registro', $detalles_registro[0]);
         View::set('header', $this->_contenedor->header($extraHeader));
         View::set('footer', $this->_contenedor->footer($extraFooter));
-        View::set('tabla_vacunacion', $this->getComprobanteVacunacionById($id));
-        View::set('tabla_prueba_covid', $this->getPruebasCovidById($id));
+        // View::set('tabla_vacunacion', $this->getComprobanteVacunacionById($id));
+        // View::set('tabla_prueba_covid', $this->getPruebasCovidById($id));
         View::render("asistentes_detalles");
     }
 
@@ -545,37 +545,18 @@ html;
 
             $id_registro = $_POST['id_registro'];
             $nombre = $_POST['nombre'];
-            $segundo_nombre = $_POST['segundo_nombre'];
             $apellido_paterno = $_POST['apellido_paterno'];
             $apellido_materno = $_POST['apellido_materno'];
             $fecha_nacimiento = $_POST['fecha_nacimiento'];
             $email = $_POST['email'];
             $telefono = $_POST['telefono'];
-            // $alergias = $_POST['select_alergico'];
-            // $alergias_otro = $_POST['alergias_otro'];
-            $alergia_medicamento = $_POST['confirm_alergia'];
-            if (isset($_POST['alergia_medicamento_cual'])) {
-                $alergia_medicamento_cual = $_POST['alergia_medicamento_cual'];
-            } else {
-                $alergia_medicamento_cual = '';
-            }
-            $alergia_medicamento_cual = $_POST['alergia_medicamento_cual'];
-            $restricciones_alimenticias = $_POST['restricciones_alimenticias'];
-            $restricciones_alimenticias_cual = $_POST['restricciones_alimenticias_cual'];
 
             $documento->_nombre = $nombre;
-            $documento->_segundo_nombre = $segundo_nombre;
             $documento->_apellido_paterno = $apellido_paterno;
             $documento->_apellido_materno = $apellido_materno;
             $documento->_fecha_nacimiento = $fecha_nacimiento;
             $documento->_email = $email;
             $documento->_telefono = $telefono;
-            // $documento->_alergias = $alergias;
-            // $documento->_alergias_otro = $alergias_otro;
-            // $documento->_alergia_medicamento = $alergia_medicamento;
-            // $documento->_alergia_medicamento_cual = $alergia_medicamento_cual;
-            $documento->_restricciones_alimenticias = $restricciones_alimenticias;
-            $documento->_restricciones_alimenticias_cual = $restricciones_alimenticias_cual;
 
             // var_dump($documento);
             $id = AsistentesDao::update($documento);
@@ -928,9 +909,9 @@ html;
                         </div>
                         <div class="d-flex flex-column justify-content-center text-black">
                     
-                            <a href="/Asistentes/Detalles/{$value['clave']}" target="_blank">
+                            <a href="/Asistentes/Detalles/{$value['id_registrado']}" target="_blank">
                                 <h6 class="mb-0 text-sm text-move text-black">
-                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus
+                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['apellidop']} {$value['apellidom']} $estatus
                                     </h6>
                                 </a>
                             <div class="d-flex flex-column justify-content-center">
@@ -957,7 +938,7 @@ html;
           </td>
           
           <td style="text-align:center; vertical-align:middle;">
-            <a href="/RegistroAsistencia/abrirpdfGafete/{$value['id_registrado']}" class="btn bg-pink btn-icon-only morado-musa-text" title="Imprimir Gafetes" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Gafetes" target="_blank"><i class="fas fa-print"> </i></a>     
+            <a href="/RegistroAsistencia/abrirpdfGafete/{$value['id_registrado']}" class="btn bg-pink-two btn-icon-only morado-musa-text" title="Imprimir Gafetes" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Gafetes" target="_blank"><i class="fas fa-print"> </i></a>     
 
             <a href="/Constancias/abrirConstancia/{$value['id_registrado']}" class="btn bg-pink btn-icon-only text-white" title="Imprimir Constancia Impresa" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Constancia Impresa" target="_blank"><i class="fas fa-print"> </i></a>
 

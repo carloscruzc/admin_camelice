@@ -123,7 +123,7 @@ sql;
     public static function getAllRegistrosAcceso(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT * FROM registros_acceso
+      SELECT * FROM registrados
 sql;
       return $mysqli->queryAll($query);
         
@@ -140,10 +140,8 @@ sql;
     public static function getByClaveRA($clave){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ua.utilerias_asistentes_id, ra.id_registro_acceso, ua.usuario, ua.contrasena, ua.politica, ua.status FROM utilerias_asistentes ua
-      INNER JOIN registros_acceso ra
-      ON ra.id_registro_acceso = ua.id_registro_acceso
-      WHERE ra.clave = '$clave'
+      SELECT ra.*, ra.id_registrado, ra.email FROM registrados ra
+      WHERE ra.id_registrado = '$clave'
 sql;
       return $mysqli->queryAll($query);
   }
@@ -151,10 +149,8 @@ sql;
     public static function getRegistroAccesoById($id){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ra.*, ra.ticket_virtual AS clave_ticket, CONCAT(ra.ticket_virtual,'.png') AS qr  FROM registros_acceso ra
-      INNER JOIN utilerias_asistentes ua
-      ON ra.id_registro_acceso = ua.id_registro_acceso
-      WHERE utilerias_asistentes_id = $id
+      SELECT ra.*, ra.ticket_virtual AS clave_ticket, CONCAT(ra.ticket_virtual,'.png') AS qr  FROM registro_acceso ra
+      WHERE ra.id_registrado = $id
 sql;
       return $mysqli->queryAll($query);
   }
@@ -206,10 +202,8 @@ sql;
     public static function getTotalByClaveRA($clave){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT * FROM utilerias_asistentes ua 
-      INNER JOIN registros_acceso ra 
-      ON ua.id_registro_acceso = ra.id_registro_acceso 
-      WHERE ra.clave = '$clave'
+      SELECT * FROM registrados ra
+      WHERE ra.id_registrado = '$clave'
 sql;
       return $mysqli->queryAll($query);
   }
@@ -239,22 +233,14 @@ sql;
     public static function update($data){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono, alergia = :restricciones_alimenticias, alergia_cual = :restricciones_alimenticias_cual WHERE email = :email;
+      UPDATE registrados SET nombre = :nombre, apellidom = :apellido_materno, apellidop = :apellido_paterno, telefono = :telefono, WHERE email = :email;
 sql;
       $parametros = array(
         
         ':nombre'=>$data->_nombre,
-        ':segundo_nombre'=>$data->_segundo_nombre,
         ':apellido_paterno'=>$data->_apellido_paterno,
         ':apellido_materno'=>$data->_apellido_materno,
-        ':fecha_nacimiento'=>$data->_fecha_nacimiento,
         ':telefono'=>$data->_telefono,
-        // ':alergias'=>$data->_alergias,
-        // ':alergias_otro'=>$data->_alergias_otro,
-        // ':alergia_medicamento'=>$data->_alergia_medicamento,
-        // ':alergia_medicamento_cual'=>$data->_alergia_medicamento_cual,
-        ':restricciones_alimenticias'=>$data->_restricciones_alimenticias,
-        ':restricciones_alimenticias_cual'=>$data->_restricciones_alimenticias_cual,
         ':email'=>$data->_email
         
       );
@@ -280,7 +266,7 @@ sql;
     public static function updateClaveRA($id,$clave){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE registros_acceso SET clave = '$clave' WHERE id_registro_acceso = '$id'
+      UPDATE registrados SET clave = '$clave' WHERE id_registro_acceso = '$id'
 sql;
 
       return $mysqli->update($query);

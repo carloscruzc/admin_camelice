@@ -1,6 +1,6 @@
 <?php echo $header;?>
 <title>
-    Asistentes - MUSA - GRUPO LAHE    
+    Asistentes - CAMELICE - GRUPO LAHE    
 </title>
 <body class="g-sidenav-show  bg-gray-100">
     <?php echo $asideMenu;?>
@@ -90,7 +90,7 @@
                         <div class="col-auto my-auto">
                             <div class="h-100">
                                 <h5 class="mb-1">
-                                    Invitados MUSA
+                                    Invitados CAMELICE
                                 </h5>
                                 <p class="mb-0 font-weight-bold text-sm">
                                 </p>
@@ -150,7 +150,7 @@
                                                 <input class="form-control mr-sm-2" style="font-size: 35px;" autofocus type="search" id="search" name="search" placeholder="Ej. Adrian Segura Becerra - XaS6cr" aria-label="Search">
                                             </div>
                                             <div class="col-12 col-md-12 mt-md-2">
-                                                <button class="btn max-btn-lg bg-gradient-pink-white text-gray my-2 my-sm-0" type="submit">Buscar</button>
+                                                <button class="btn max-btn-lg bg-gradient-pink-white my-2 my-sm-0" type="submit">Buscar</button>
                                             </div>
                                         </div>
                                        

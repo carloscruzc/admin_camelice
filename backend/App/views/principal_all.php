@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <title>
-    Principal - MUSA - GRUPO LAHE
+    Principal - CAMELICE - GRUPO LAHE
 </title>
 <body class="g-sidenav-show  bg-gray-100">
     <!-- <aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
@@ -307,7 +307,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="d-flex flex-column h-100">
-                                            <h4 class="m-4">¡Bienvenido a tu administrador equipo GRUPO LAHE!<br><strong>MUSA 2022</strong></h4>
+                                            <h4 class="m-4">¡Bienvenido a tu administrador equipo GRUPO LAHE!<br><strong>CAMELICE 2022</strong></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -331,19 +331,19 @@
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-12">
-                                    <a href="/ComprobantesVacunacion">
+                                    <a href="/Asistentes/">
                                         <div class="card up-card">
                                             <div class="row m-4">
                                                 <div class="col-3">
-                                                    <div class="bg-gradient-musa avatar avatar-l position-relative">
-                                                        <span class="fas fa-syringe m-3 text-white" style="font-size: x-large;"></span>
+                                                    <div class="bg-gradient-musa avatar avatar-l position-relative" >
+                                                        <span class="fas fa-users m-3 text-white" style="font-size: x-large;"></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-9 m-auto">
                                                     <div class="col-auto my-auto">
                                                         <div class="h-100">
                                                             <h5 class="mb-1">
-                                                                Comprobantes de Vacunación
+                                                                Asistentes
                                                             </h5>
                                                             <p class="mb-0 font-weight-bold text-sm">
                                                             </p>
@@ -363,51 +363,19 @@
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-12">
-                                    <a href="/Vuelos">
+                                    <a href="/Asistencias/">
                                         <div class="card up-card">
                                             <div class="row m-4">
                                                 <div class="col-3">
                                                     <div class="bg-gradient-musa avatar avatar-l position-relative" >
-                                                        <span class="fas fa-plane m-3 text-white" style="font-size: x-large;"></span>
+                                                        <span class="fas fa-bell m-3 text-white" style="font-size: x-large;"></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-9 m-auto">
                                                     <div class="col-auto my-auto">
                                                         <div class="h-100">
                                                             <h5 class="mb-1">
-                                                                Vuelos
-                                                            </h5>
-                                                            <p class="mb-0 font-weight-bold text-sm">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
-                    <div class="card card-plain">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-12">
-                                    <a href="/PruebasCovidUsuarios">
-                                        <div class="card up-card">
-                                            <div class="row m-4">
-                                                <div class="col-3">
-                                                    <div class="bg-gradient-musa avatar avatar-l position-relative" >
-                                                        <span class="fas fa-virus-slash m-3 text-white" style="font-size: x-large;"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-9 m-auto">
-                                                    <div class="col-auto my-auto">
-                                                        <div class="h-100">
-                                                            <h5 class="mb-1">
-                                                                Pruebas Covid (SARS-CoV-2) Usuarios ASOFARMA
+                                                                Asistencias
                                                             </h5>
                                                             <p class="mb-0 font-weight-bold text-sm">
                                                             </p>
@@ -440,8 +408,8 @@
                                                         <p class="mb-0 font-weight-bold text-sm">
                                                             Línea de Soporte
                                                             <br> <br>
-                                                            <a href="mailto:jvaldez_2610@hotmail.com">
-                                                                <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> jvaldez_2610@hotmail.com</h6>
+                                                            <a href="mailto:carlos.cruz@grupolahe.com">
+                                                                <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> carlos.cruz@grupolahe.com</h6>
                                                             </a>
                                                         </p>
                                                     </div>

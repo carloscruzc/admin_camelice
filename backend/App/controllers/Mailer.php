@@ -35,7 +35,7 @@ class Mailer
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($msg['email'], 'MUSA 2022 Asofarma');
+            $mail->setFrom($msg['email'], 'CAMELICE 2022 Asofarma');
             $mail->addAddress($msg['email'], $msg['name']);     //Add a recipient
 
 
@@ -147,7 +147,7 @@ class Mailer
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($msg['email'], 'MUSA 2022 Asofarma');
+            $mail->setFrom($msg['email'], 'CAMELICE 2022 Asofarma');
             $mail->addAddress($msg['email'], $msg['name']);     //Add a recipient
 
 
@@ -210,7 +210,7 @@ class Mailer
                 </p>
                 <br>
                 <p style="text-align: justify;">
-                    Le informamos que sus pases de abordar rumbo a la MUSA 2022, fueron cargados con éxito, usted puede consultarlos en su app móvil en la sección de Pases de Abordar que ya se encuentra activa o a través del siguiente link para consulta automática
+                    Le informamos que sus pases de abordar rumbo a la CAMELICE 2022, fueron cargados con éxito, usted puede consultarlos en su app móvil en la sección de Pases de Abordar que ya se encuentra activa o a través del siguiente link para consulta automática
                     <br> <br><a href="'.$msg['url'].'"></a>'.$msg['url'].'<br> <br>
                     Si usted necesita ayuda, comuníquese a la línea de soporte a través de WhatsApp en el siguiente enlace 
                     <br>
@@ -261,7 +261,7 @@ class Mailer
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($msg['email'], 'MUSA 2022 Asofarma');
+            $mail->setFrom($msg['email'], 'CAMELICE 2022 Asofarma');
             $mail->addAddress($msg['email'], $msg['name']);     //Add a recipient
 
 
@@ -392,7 +392,7 @@ class Mailer
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($pase['email'], 'MUSA 2022');
+            $mail->setFrom($pase['email'], 'CAMELICE 2022');
             $mail->addAddress($pase['email'], $pase['nombre']);     //Add a recipient
 
 

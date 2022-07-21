@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <title>
-    Comprobantes de Vacunación - MUSA - GRUPO LAHE
+    Comprobantes de Vacunación - CAMELICE - GRUPO LAHE
 </title>
 <body class="g-sidenav-show  bg-gray-100">
     <?php echo $asideMenu;?>

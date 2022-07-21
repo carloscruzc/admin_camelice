@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <title>
-    Pruebas Covid - MUSA - GRUPO LAHE
+    Pruebas Covid - CAMELICE - GRUPO LAHE
 </title>
 <body class="g-sidenav-show  bg-gray-100">
     <?php echo $asideMenu;?>

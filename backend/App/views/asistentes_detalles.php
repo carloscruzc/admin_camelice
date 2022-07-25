@@ -286,7 +286,7 @@
                             <div class="card-body pt-0">
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
-                                        <!-- <input type="text" id="id_registro" name="id_registro" value="<?= $userData['id_registro'] ?> "> -->
+                                        <input type="text" id="id_registrado" name="id_registrado" value="<?= $detalles_registro['id_registrado'] ?> " hidden>
                                         <label class="form-label">Nombre *</label>
                                         <div class="input-group">
                                             <input id="nombre" name="nombre" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
@@ -302,7 +302,7 @@
 
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
-                                        <label class="form-label">Apellido Materno *</label>
+                                        <label class="form-label mt-4">Apellido Materno *</label>
                                         <div class="input-group">
                                             <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellidom'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
@@ -389,64 +389,64 @@
 
         });
 
-        var app = (function() {
-            var canvas = document.getElementById('canvas_ticket');
-            context = canvas.getContext('2d');
+        // var app = (function() {
+        //     var canvas = document.getElementById('canvas_ticket');
+        //     context = canvas.getContext('2d');
 
-            var imgTicketFondo = new Image();
-            imgTicketFondo.src = '/img/boleto_musa.jpg';
+        //     var imgTicketFondo = new Image();
+        //     imgTicketFondo.src = '/img/boleto_musa.jpg';
 
-            imgTicketFondo.onload = function() {
-                context.drawImage(imgTicketFondo, 0, 0);
-            }
+        //     imgTicketFondo.onload = function() {
+        //         context.drawImage(imgTicketFondo, 0, 0);
+        //     }
 
-            // API
-            public = {};
+        //     // API
+        //     public = {};
 
-            // Public methods goes here...
+        //     // Public methods goes here...
 
-            public.loadPicture = function() {
+        //     public.loadPicture = function() {
 
-                // var imgTicketFondo = new Image();
-                // imgTicketFondo.src = '/img/boleto_musa.jpg';
+        //         // var imgTicketFondo = new Image();
+        //         // imgTicketFondo.src = '/img/boleto_musa.jpg';
 
-                // imgTicketFondo.onload = function() {
-                //     context.drawImage(imgTicketFondo, 0, 0);
-                // }
+        //         // imgTicketFondo.onload = function() {
+        //         //     context.drawImage(imgTicketFondo, 0, 0);
+        //         // }
 
-                context = canvas.getContext('2d');
+        //         context = canvas.getContext('2d');
 
-                var imgCodeQr = new Image();
-                imgCodeQr.src = $('#codigo-qr').val();
+        //         var imgCodeQr = new Image();
+        //         imgCodeQr.src = $('#codigo-qr').val();
 
-                imgCodeQr.onload = function() {
-                    context.drawImage(imgTicketFondo, 0, 0);
-                    context.drawImage(imgCodeQr, 870, 90);
+        //         imgCodeQr.onload = function() {
+        //             context.drawImage(imgTicketFondo, 0, 0);
+        //             context.drawImage(imgCodeQr, 870, 90);
                 
 
-                    var centerX = canvas.width/2;
-                    var centerY = canvas.height/2;
+        //             var centerX = canvas.width/2;
+        //             var centerY = canvas.height/2;
 
-                    context = canvas.getContext('2d');
+        //             context = canvas.getContext('2d');
 
-                    context.font="20pt Verdana";
-                    context.fillStyle = "black";
+        //             context.font="20pt Verdana";
+        //             context.fillStyle = "black";
 
-                    context.fillText($('#nombre-canvas').val(),280, centerY+80);
+        //             context.fillText($('#nombre-canvas').val(),280, centerY+80);
 
-                    context.font="20pt Verdana";
-                    context.fillStyle = "black";
+        //             context.font="20pt Verdana";
+        //             context.fillStyle = "black";
 
-                    context.fillText($('#apellidos-canvas').val(),280, centerY+110);
-                }
+        //             context.fillText($('#apellidos-canvas').val(),280, centerY+110);
+        //         }
 
-            };
+        //     };
 
-            return public;
-        }());
+        //     return public;
+        // }());
 
-        document.getElementById('main_ticket').removeAttribute('hidden');
-        app.loadPicture();
+        // document.getElementById('main_ticket').removeAttribute('hidden');
+        // app.loadPicture();
 
         // $('#show_ticket').on('click', function(event) {
         //     // alert('Mostrar Ticket');
@@ -530,9 +530,9 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function() {
+                beforeSend: function(error) {
+                    console.log(error);
                     console.log("Procesando....");
-
 
                 },
                 success: function(respuesta) {

@@ -233,7 +233,7 @@ sql;
     public static function update($data){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE registrados SET nombre = :nombre, apellidom = :apellido_materno, apellidop = :apellido_paterno, telefono = :telefono, WHERE email = :email;
+      UPDATE registrados SET nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, telefono = :telefono WHERE email = :email;
 sql;
       $parametros = array(
         

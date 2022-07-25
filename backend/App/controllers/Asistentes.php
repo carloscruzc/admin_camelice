@@ -543,18 +543,19 @@ html;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $id_registro = $_POST['id_registro'];
+            // $id_registrado = $_POST['id_registrado'];
             $nombre = $_POST['nombre'];
             $apellido_paterno = $_POST['apellido_paterno'];
             $apellido_materno = $_POST['apellido_materno'];
-            $fecha_nacimiento = $_POST['fecha_nacimiento'];
+            // $fecha_nacimiento = $_POST['fecha_nacimiento'];
             $email = $_POST['email'];
             $telefono = $_POST['telefono'];
 
+            // $documento->_id_registrado = $id_registrado;
             $documento->_nombre = $nombre;
             $documento->_apellido_paterno = $apellido_paterno;
             $documento->_apellido_materno = $apellido_materno;
-            $documento->_fecha_nacimiento = $fecha_nacimiento;
+            // $documento->_fecha_nacimiento = $fecha_nacimiento;
             $documento->_email = $email;
             $documento->_telefono = $telefono;
 

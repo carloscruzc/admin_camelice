@@ -242,6 +242,29 @@ sql;
       
   }
 
+  public static function getCategoria()
+    {
+        $mysqli = Database::getInstance();
+        $query = <<<sql
+      SELECT * FROM categorias WHERE id_categoria;
+sql;
+
+        return $mysqli->queryAll($query);
+        //$mysqli -> set_charset("utf8");
+    }
+
+    public static function getIdUsuarios($id)
+    {
+        $mysqli = Database::getInstance();
+        $query = <<<sql
+      SELECT * FROM registrados
+      WHERE id_registrado = '$id'
+sql;
+
+        return $mysqli->queryOne($query);
+        //$mysqli -> set_charset("utf8");
+    }
+
   public static function getCategoriaMas()
     {
         $mysqli = Database::getInstance();

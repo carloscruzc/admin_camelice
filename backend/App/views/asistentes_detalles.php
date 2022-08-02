@@ -317,11 +317,25 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12 col-12">
+                                    <div class="col-lg-4 col-4">
                                         <label class="form-label mt-4">Email Registrado y Verificado *</label>
                                         <div class="input-group">
                                             <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['email'] ?>" readonly>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-4 col-4">
+                                        <label class="form-label mt-4" for="id_categoria">Categoría <span class="required"></span></label>
+                                        <select class="multisteps-form__select form-control all_input_select" name="id_categoria" id="id_categoria">
+                                            <option value="" disabled>Seleccione una opción</option>
+                                            <?= $optionCate ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-4">
+                                        <label class="form-label mt-4" for="pais">País <span class="required">*</span></label>
+                                        <select class="multisteps-form__select form-control all_input_select" name="pais" id="pais" required>
+                                            <option value="" selected>Selecciona una Opción</option>
+                                            <?= $optionPais2 ?>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -516,8 +530,6 @@
         $("#update_detalles").on("submit", function(event) {
             event.preventDefault();
 
-            // alert("Hola");
-
             var formData = new FormData(document.getElementById("update_detalles"));
             for (var value of formData.values()) {
                 console.log(value);
@@ -530,31 +542,19 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function(error) {
-                    console.log(error);
+                beforeSend: function() {
                     console.log("Procesando....");
-
                 },
                 success: function(respuesta) {
-                    // alert("Successs");
-                    console.log(respuesta)
+                    console.log(respuesta);
+
                     if (respuesta == 'success') {
-                        Swal.fire({
-                            title: "!Se actualizaron tus datos correctamente!",
-                            html: '',
-                            icon:"success",
-                            timer: 1250,
-                        }).
+                        swal("!Se actualizaron tus datos correctamente!", "", "success").
                         then((value) => {
                             window.location.reload();
                         });
                     } else {
-                        Swal.fire({
-                            title: '!Usted No Actualizó Nada!',
-                            html: '',
-                            icon: 'warning',
-                            timer: 1000,
-                        }).
+                        swal("!Usted No Actualizó Nada!", "", "warning").
                         then((value) => {
                             //window.location.replace("/Asistentes")
                         });
@@ -567,6 +567,31 @@
             });
         });
 
+        $("#email").on("keyup", function() {
+            console.log($(this).val());
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/Asistentes/isUserValidate",
+                data: {
+                    usuario: $(this).val()
+                },
+                success: function(data) {
+                    console.log(data)
+                    if (data == "true") {
+                        //el usuario ya existe
+                        $("#btn_upload").css('display', 'none');
+                        $("#msg_email").css('color', 'red');
+                        $("#msg_email").html('Este correo ya se ha registrado');
+
+                    } else {
+                        $("#btn_upload").css('display', 'flex');
+                        $("#msg_email").css('color', 'red');
+                        $("#msg_email").html('');
+                    }
+                }
+            });
+        });
 
         $('input:radio[name="confirm_alergia"]').change(function() {
             if ($("#confirm_alergia_no").is(':checked')) {

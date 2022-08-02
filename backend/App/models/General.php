@@ -24,6 +24,17 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function getBecaUser($id){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT ra.codigo_beca, lab.nombrecompleto FROM registrados ra
+    INNER JOIN becas be ON be.usadopor = ra.id_registrado
+    INNER JOIN laboratorios lab ON lab.id_laboratorio = be.id_laboratorio
+    WHERE id_registrado = $id;
+sql;
+    return $mysqli->queryAll($query);
+  }
+
   public static function getAllColaboradoresByName($search){
     $mysqli = Database::getInstance();
     $query =<<<sql

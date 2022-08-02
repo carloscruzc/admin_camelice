@@ -27,7 +27,8 @@ sql;
   public static function getAllColaboradoresByName($search){
     $mysqli = Database::getInstance();
     $query =<<<sql
-    SELECT ra.id_registrado,ra.telefono, ra.nombre, ra.apellidop, ra.apellidom,ra.email as usuario,ra.status,ra.telefono
+    SELECT CONCAT (ra.nombre," ",ra.apellidop," ",apellidom) as nombre_completo, 
+    ra.id_registrado,ra.telefono, ra.nombre, ra.apellidop, ra.apellidom,ra.email as usuario,ra.status,ra.telefono
     FROM registrados ra
     WHERE CONCAT_WS(' ',ra.email,ra.nombre) LIKE '%$search%';
 sql;
@@ -43,7 +44,7 @@ sql;
   public static function getAsistentesFaltantes(){
     $mysqli = Database::getInstance();
     $query =<<<sql
-    SELECT * FROM registros_acceso WHERE id_registro_acceso NOT IN (SELECT id_registro_acceso FROM utilerias_asistentes);
+    SELECT *, CONCAT(nombre," ",apellidop," ",apellidom) as nombre_completo FROM registrados;
 sql;
 
     return $mysqli->queryAll($query);

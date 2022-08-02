@@ -66,14 +66,16 @@ class Contenedor extends Controller{
                         <span class="nav-link-text ms-1">Asistentes</span>
                     </a>
                 </li>
-                <li id="vuelos" class="nav-item" {$vuelosHidden};>
+
+                <!--<li id="vuelos" class="nav-item" {$vuelosHidden};>
                     <a href="/Vuelos/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-plane morado-musa-text"></span>
                         </div>
                         <span class="nav-link-text ms-1">Vuelos</span>
                     </a>
-                </li>
+                </li>-->
+                
                 <!--<li id="pickup" class="nav-item" {$pickUpHidden};>
                     <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -99,7 +101,8 @@ class Contenedor extends Controller{
                         <span class="nav-link-text ms-1">Asistencias</span>
                     </a>
                 </li>
-                <li id="salud" class="nav-item" {$vacunacionHidden};>
+
+                <!--<li id="salud" class="nav-item" {$vacunacionHidden};>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
                 </li>
@@ -118,7 +121,7 @@ class Contenedor extends Controller{
                         </div>
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                     </a>
-                </li>
+                </li>-->
 
                 <!-- <li id="pruebas_sitio" class="nav-item" {$pruebasHidden};>
                     <a href="/PruebasCovidEnSitio/" class="nav-link" aria-controls="basicExamples" role="button" aria-expanded="false">
@@ -129,7 +132,7 @@ class Contenedor extends Controller{
                     </a>
                 </li>-->
 
-                <li id="config" class="nav-item" {$permisos}>
+                <!--<li id="config" class="nav-item" {$permisos}>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
                 </li>
@@ -170,7 +173,7 @@ class Contenedor extends Controller{
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
 

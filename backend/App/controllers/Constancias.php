@@ -592,7 +592,7 @@ html;
         //FECHA
         $pdf->SetFont('Arial', '',10);
         $pdf->SetXY(13, 179.99);
-        $pdf->Multicell(275, 10, utf8_decode($fecha), 0, 'C');
+        // $pdf->Multicell(275, 10, utf8_decode($fecha), 0, 'C');
         $pdf->Output();
             
         }

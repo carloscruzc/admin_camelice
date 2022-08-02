@@ -173,7 +173,7 @@
                                                     <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Usuario</th>
                                                     <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th> -->
                                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Imprimir</th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><i style="font-size: 1rem;" class="fas fa-print"></i>   Imprimir</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

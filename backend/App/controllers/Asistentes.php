@@ -45,8 +45,17 @@ class Asistentes extends Controller
 html;
         }
 
+        $cate = AsistentesDao::getCategoriaMas();
+        $optionCate = '';
+        foreach($cate as $key => $value){
+            $optionCate .= <<<html
+                    <option value="{$value['id_categoria']}" data-costo="{$value['costo']}">{$value['categoria']}</option>
+html;
+        }
+
         View::set('asideMenu',$this->_contenedor->asideMenu());
         View::set('optionPais', $optionPais);
+        View::set('optionCate', $optionCate);
         // View::set('tabla_faltantes', $this->getAsistentesFaltantes());
         // View::set('tabla', $this->getAllColaboradoresAsignados());
         View::render("asistentes_all");
@@ -71,6 +80,14 @@ html;
                     <option value="{$value['id_pais']}">{$value['pais']}</option>
 html;
         }
+
+        $cate = AsistentesDao::getCategoriaMas();
+        $optionCate = '';
+        foreach($cate as $key => $value){
+            $optionCate .= <<<html
+                    <option value="{$value['id_categoria']}" data-costo="{$value['costo']}">{$value['categoria']}</option>
+html;
+        }
         // $all_ra = AsistentesDao::getAllRegistrosAcceso();
         // $this->setTicketVirtual($all_ra);
         // $this->setClaveRA($all_ra);
@@ -82,6 +99,7 @@ html;
         
         View::set('modal',$modal);
         View::set('optionPais', $optionPais);
+        View::set('optionCate', $optionCate);
         View::set('tabla', $this->getAllColaboradoresAsignadosByName($search));
         View::set('asideMenu',$this->_contenedor->asideMenu());    
         View::render("asistentes_all");
@@ -93,12 +111,17 @@ html;
 
     public function saveData()
     {
+        $nombre = $_POST['nombre'];
+        $apellidop = $_POST['apellidop'];
+        $apellidom = $_POST['apellidom'];
         $nombre_constancia = $_POST['nombre']." ". $_POST['apellidop'] . " ". $_POST['apellidom'];
 
+        $monto_congreso = AsistentesDao::getCostoCategoria(MasterDom::getData('categoria'))['costo'];
+
         $data = new \stdClass();            
-        $data->_nombre = MasterDom::getData('nombre');
-        $data->_apellidop = MasterDom::getData('apellidop');
-        $data->_apellidom = MasterDom::getData('apellidom');
+        $data->_nombre = $nombre;
+        $data->_apellidop = $apellidop;
+        $data->_apellidom = $apellidom;
         $data->_usuario = MasterDom::getData('usuario');
         $data->_title= MasterDom::getData('title');
         $data->_telefono = MasterDom::getData('telefono');
@@ -106,6 +129,8 @@ html;
         $data->_estado = MasterDom::getData('estado');
         $data->_nombreconstancia = $nombre_constancia;
         $data->_modalidad = MasterDom::getData('modalidad');
+        $data->_categoria = MasterDom::getData('categoria');
+        $data->_monto_congreso = $monto_congreso;
 
         $id = AsistentesDao::insert($data);
         if ($id >= 1) {
@@ -867,7 +892,7 @@ html;
                         
             // $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
             // $value['nombre'] = utf8_encode($value['nombre']);
-            $nombre_completo = $value['nombre_completo'];
+            $nombre_completo = html_entity_decode($value['nombre_completo']);
             $nombre_completo = mb_strtoupper($nombre_completo);
             if (empty($value['img']) || $value['img'] == null) {
                 $img_user = "/img/user.png";
@@ -955,8 +980,20 @@ html;
             // } else {
             //     $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fa-file-text-o" style="font-size: 13px;"></span> Comprobante Covid  (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
             // }
+            $clave_beca = '';
+            $clave_beca_2 = '';
+            foreach (GeneralDao::getBecaUser($value['id_registrado']) as $key => $value_beca) {
 
-
+                $clave_beca .= <<<html
+                <span class="badge badge-success" style="background-color: #239187; color:white "><strong>BECA #{$value_beca['codigo_beca']} </strong></span>
+html;
+                $clave_beca_2 .= <<<html
+                <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm text-black"><span class="fa fa-calendar" style="font-size: 13px"></span>Becado por: {$value_beca['nombrecompleto']}</h6> 
+                </div>
+html;
+                }
+            
 
             $html .= <<<html
             <tr>
@@ -969,13 +1006,14 @@ html;
                     
                             <a href="/Asistentes/Detalles/{$value['id_registrado']}" target="_blank">
                                 <h6 class="mb-0 text-sm text-move text-black">
-                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$nombre_completo} $estatus
+                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$nombre_completo} $estatus {$clave_beca}
                                     </h6>
                                 </a>
                             <div class="d-flex flex-column justify-content-center">
                                 <u><a  href="mailto:{$value['email']}"><h6 class="mb-0 text-sm text-black"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['usuario']}</h6></a></u>
                                 <u><a target="_blank" href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm text-morado-musa font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
                             </div>
+                            {$clave_beca_2}
                             <!--<p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="font-size: 13px;"></span> Número de empleado:  <span style="text-decoration: underline;">{$value['numero_empleado']}</span></p>-->
                             <hr>
                             <!--<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>-->

@@ -219,8 +219,8 @@ sql;
   public static function insert($data){
     $mysqli = Database::getInstance(1);
     $query=<<<sql
-    INSERT INTO registrados(email, nombre, apellidop, apellidom, prefijo, nombreconstancia, telefono, id_pais, id_estado, modalidad)
-    VALUES(:usuario, :nombre, :apellidop,:apellidom, :title, :nombreconstancia, :telefono, :pais, :estado, :modalidad);
+    INSERT INTO registrados(email, nombre, apellidop, apellidom, prefijo, nombreconstancia, telefono, id_pais, id_estado, modalidad, monto_congreso, id_categoria)
+    VALUES(:usuario, :nombre, :apellidop,:apellidom, :title, :nombreconstancia, :telefono, :pais, :estado, :modalidad, :monto_congreso, :categoria);
 sql;
 
         $parametros = array(
@@ -234,13 +234,35 @@ sql;
         ':estado'=>$data->_estado,
         ':nombreconstancia'=>$data->_nombreconstancia,
         ':modalidad'=>$data->_modalidad,
-        
-
+        ':monto_congreso'=>$data->_monto_congreso,
+        ':categoria'=>$data->_categoria,
         );
         $id = $mysqli->insert($query,$parametros);
         return $id;
       
   }
+
+  public static function getCategoriaMas()
+    {
+        $mysqli = Database::getInstance();
+        $query = <<<sql
+      SELECT * FROM categorias WHERE id_categoria != 1;
+sql;
+
+        return $mysqli->queryAll($query);
+        //$mysqli -> set_charset("utf8");
+    }
+    
+    public static function getCostoCategoria($id_categoria){
+      $mysqli = Database::getInstance();
+      $query =<<<sql
+      SELECT costo
+      FROM categorias WHERE
+      id_categoria = $id_categoria        
+sql;
+  
+      return $mysqli->queryOne($query);
+    }
 
     public static function insertTicket($clave){
       $mysqli = Database::getInstance(true);

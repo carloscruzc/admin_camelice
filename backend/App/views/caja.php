@@ -125,7 +125,7 @@
                                                 <div class="row m-2">
                                                     <h6>Correo: <span class="text-thin" id="correo_user"> _____</span></h6>
                                                     <h6>Teléfono: <span class="text-thin" id="telefono_user"> 00 0000 0000</span></h6>
-                                                    <input type="hidden" id="user_id" name="user_id">
+                                                    <input type="text" id="user_id" name="user_id">
                                                     <input type="hidden" id="precio_desbloquedo_por" name="precio_desbloquedo_por">
 
                                                     <a href="" id="generar_gafete" target="_blank" style="display: none;">gafete</a>
@@ -437,6 +437,7 @@
             $("#btn_pagar").on("click", function() {
                 var metodo_pago = $("#metodo_pago").val();
                 var user_id = $("#user_id").val();
+                // alert(user_id);
                 // var total_usd = $("#total_usd").text();
                 var total_pesos = $("#total_pesos").text();
                 var descripcion = $("#txt_descripcion").val();
@@ -585,9 +586,9 @@
                             console.log(value);
                             $('#list_concidencias')
                                 .append($('<option>', {
-                                        'data-value': value.user_id 
+                                        'data-value': value.id_registrado 
                                     })
-                                    .text(value.user_id+' - '+value.nombre + ' ' + value.apellidop + ' ' + value.apellidom + ' '+ value.usuario + ' ' + value.clave));
+                                    .text(value.id_registrado+' - '+value.nombre + ' ' + value.apellidop + ' ' + value.apellidom + ' '+ value.usuario + ' ' + value.clave));
 
                             // $('#list_concidencias').append('<li>'+value.nombre+'</li>');
 
@@ -661,14 +662,14 @@
                         } else{
                             // console.log(Object.keys(respuesta).length);
                             // crearTabla(respuesta);
-                           location.reload();
+                        //    location.reload();
                            console.log("refrescar");
                         }
                     },
                     error: function(respuesta) {
                         Swal.fire('No se encontro ningun registro para este codigo','','error');
                         setTimeout(function(){
-                            location.reload();
+                            // location.reload();
                         },1000)
                         console.log(respuesta);
                     }
@@ -681,11 +682,11 @@
             function crearChecks(respuesta) {
                 console.log(respuesta.datos_user)
                 $("#cont-cheks").html(respuesta.checks);
-                $("#user_id").val(respuesta.datos_user.user_id);
+                $("#user_id").val(respuesta.datos_user.id_registrado);
                 $("#nombre_completo").html(respuesta.nombre_completo);
                 $("#correo_user").html(respuesta.datos_user.usuario);
                 $("#telefono_user").html(respuesta.datos_user.telefono);
-                $("#imprimir_comprobante").attr('href','/Caja/print/'+respuesta.datos_user.user_id+'/'+respuesta.datos_user.clave);
+                $("#imprimir_comprobante").attr('href','/Caja/print/'+respuesta.datos_user.id_registrado+'/'+respuesta.datos_user.clave);
 
                 //modal facturacion
                 $("#business_name_iva").val(respuesta.datos_user.business_name_iva);
@@ -973,6 +974,8 @@
                 
 
                 $("#check_curso_" + id_producto).attr('data-precio',precio);
+
+                $("#numero_articulos"+id_producto).attr('data-precio',precio);
 
                 // if ($("#check_curso_" + id_producto).is(':checked')) {
 

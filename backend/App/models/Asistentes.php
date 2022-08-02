@@ -412,5 +412,18 @@ sql;
       return $mysqli->insert($query);
     }
 
+    public static function getDatauser($search){
+      $mysqli = Database::getInstance();
+      $query =<<<sql
+      SELECT *
+      FROM registrados WHERE
+      status = 1 AND    
+      CONCAT_WS(' ',email,nombre,apellidop,apellidom,id_registrado, clave,clave_socio) 
+      LIKE '%$search%'
+sql;
+      
+      return $mysqli->queryAll($query);
+    }
+
 
 }

@@ -37,17 +37,40 @@ class Asistentes extends Controller
 
     public function index()
     {
+        $paises = AsistentesDao::getPais();
+        $optionPais = '';
+        foreach($paises as $key => $value){
+            $optionPais .= <<<html
+                    <option value="{$value['id_pais']}">{$value['pais']}</option>
+html;
+        }
 
         View::set('asideMenu',$this->_contenedor->asideMenu());
+        View::set('optionPais', $optionPais);
         // View::set('tabla_faltantes', $this->getAsistentesFaltantes());
         // View::set('tabla', $this->getAllColaboradoresAsignados());
         View::render("asistentes_all");
     }
 
+    public function getEstadoPais(){
+        $pais = $_POST['pais'];
+
+        if (isset($pais)) {
+            $Paises = AsistentesDao::getStateByCountry($pais);
+
+            echo json_encode($Paises);
+        }
+    }
     //Metodo para reaslizar busqueda de usuarios, sin este metodo no podemos obtener informacion en la vista
     public function Usuario() {
         $search = $_POST['search'];       
-
+        $paises = AsistentesDao::getPais();
+        $optionPais = '';
+        foreach($paises as $key => $value){
+            $optionPais .= <<<html
+                    <option value="{$value['id_pais']}">{$value['pais']}</option>
+html;
+        }
         // $all_ra = AsistentesDao::getAllRegistrosAcceso();
         // $this->setTicketVirtual($all_ra);
         // $this->setClaveRA($all_ra);
@@ -57,10 +80,43 @@ class Asistentes extends Controller
             $modal .= $this->generarModal($value);
         }
         
-        View::set('modal',$modal);    
+        View::set('modal',$modal);
+        View::set('optionPais', $optionPais);
         View::set('tabla', $this->getAllColaboradoresAsignadosByName($search));
         View::set('asideMenu',$this->_contenedor->asideMenu());    
         View::render("asistentes_all");
+    }
+
+    public function isUserValidate(){
+        echo (count(AsistentesDao::getUserRegister($_POST['usuario']))>=1)? 'true' : 'false';
+    }
+
+    public function saveData()
+    {
+        $nombre_constancia = $_POST['nombre']." ". $_POST['apellidop'] . " ". $_POST['apellidom'];
+
+        $data = new \stdClass();            
+        $data->_nombre = MasterDom::getData('nombre');
+        $data->_apellidop = MasterDom::getData('apellidop');
+        $data->_apellidom = MasterDom::getData('apellidom');
+        $data->_usuario = MasterDom::getData('usuario');
+        $data->_title= MasterDom::getData('title');
+        $data->_telefono = MasterDom::getData('telefono');
+        $data->_pais = MasterDom::getData('pais');
+        $data->_estado = MasterDom::getData('estado');
+        $data->_nombreconstancia = $nombre_constancia;
+        $data->_modalidad = MasterDom::getData('modalidad');
+
+        $id = AsistentesDao::insert($data);
+        if ($id >= 1) {
+            echo "success";
+            // $this->alerta($id,'add');
+            //header('Location: /PickUp');
+        } else {
+            echo "error";
+            // header('Location: /PickUp');
+            //var_dump($id);
+        }
     }
 
     public function setTicketVirtual($asistentes){

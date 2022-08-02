@@ -216,9 +216,31 @@ sql;
       return $mysqli->queryAll($query);
   }
     
-    public static function insert($data){
+  public static function insert($data){
+    $mysqli = Database::getInstance(1);
+    $query=<<<sql
+    INSERT INTO registrados(email, nombre, apellidop, apellidom, prefijo, nombreconstancia, telefono, id_pais, id_estado, modalidad)
+    VALUES(:usuario, :nombre, :apellidop,:apellidom, :title, :nombreconstancia, :telefono, :pais, :estado, :modalidad);
+sql;
+
+        $parametros = array(
+        ':usuario'=>$data->_usuario,
+        ':nombre'=>$data->_nombre,
+        ':apellidop'=>$data->_apellidop,
+        ':apellidom'=>$data->_apellidom,
+        ':title'=>$data->_title,
+        ':telefono'=>$data->_telefono,
+        ':pais'=>$data->_pais,
+        ':estado'=>$data->_estado,
+        ':nombreconstancia'=>$data->_nombreconstancia,
+        ':modalidad'=>$data->_modalidad,
         
-    }
+
+        );
+        $id = $mysqli->insert($query,$parametros);
+        return $id;
+      
+  }
 
     public static function insertTicket($clave){
       $mysqli = Database::getInstance(true);
@@ -229,6 +251,32 @@ sql;
 
       return $mysqli->insert($query);
     }
+
+    public static function getPais(){       
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM paises
+  sql;
+      return $mysqli->queryAll($query);
+    }
+
+    public static function getStateByCountry($id_pais){
+      $mysqli = Database::getInstance(true);
+      $query =<<<sql
+      SELECT * FROM estados where id_pais = '$id_pais'
+  sql;
+    
+      return $mysqli->queryAll($query);
+    }
+
+    public static function getUserRegister($email){
+      $mysqli = Database::getInstance(true);
+      $query =<<<sql
+      SELECT * FROM registrados WHERE email = '$email'
+  sql;
+  
+      return $mysqli->queryAll($query);
+  }
 
     public static function update($data){
       $mysqli = Database::getInstance(true);

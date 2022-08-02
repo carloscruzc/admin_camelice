@@ -17,26 +17,26 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    public static function getProductosPendientesPagoAll($user_id){
+    public static function getProductosPendientesPagoAll($id_registrado){
         $mysqli = Database::getInstance();
         $query=<<<sql
         SELECT pp.*,'' as cantidad ,p.nombre, p.es_curso,p.es_servicio,p.es_congreso,p.precio_publico,p.tipo_moneda,ua.monto_congreso as amout_due,ua.clave_socio
         FROM pendiente_pago pp
         INNER JOIN productos p ON (pp.id_producto = p.id_producto)
-        INNER JOIN utilerias_administradores ua ON(pp.user_id = ua.user_id)
-        WHERE pp.user_id = $user_id AND pp.status = 0
+        INNER JOIN utilerias_administradores ua ON(pp.id_registrado = ua.id_registrado)
+        WHERE pp.id_registrado = $id_registrado AND pp.status = 0
 sql;
         return $mysqli->queryAll($query);
       }
 
-    public static function getProductosPendientesPagoTicketSitio($user_id){
+    public static function getProductosPendientesPagoTicketSitio($id_registrado){
         $mysqli = Database::getInstance();
         $query=<<<sql
         SELECT pp.*,'' as cantidad ,p.nombre, p.es_curso,p.es_servicio,p.es_congreso,p.precio_publico,p.tipo_moneda,ua.monto_congreso as amout_due,ua.clave_socio
         FROM pendiente_pago pp
         INNER JOIN productos p ON (pp.id_producto = p.id_producto)
-        INNER JOIN utilerias_administradores ua ON(pp.user_id = ua.user_id)
-        WHERE pp.user_id = $user_id AND pp.status = 0 GROUP BY pp.id_producto
+        INNER JOIN utilerias_administradores ua ON(pp.id_registrado = ua.id_registrado)
+        WHERE pp.id_registrado = $id_registrado AND pp.status = 0 GROUP BY pp.id_producto
 sql;
         return $mysqli->queryAll($query);
       }
@@ -53,11 +53,11 @@ sql;
 
         $mysqli = Database::getInstance();
         $query = <<<sql
-        INSERT INTO asigna_producto (user_id,id_producto,fecha_asignacion,status) VALUES(:user_id,:id_producto,NOW(),1)                        
+        INSERT INTO asigna_producto (id_registrado,id_producto,fecha_asignacion,status) VALUES(:id_registrado,:id_producto,NOW(),1)                        
 sql;
   
         $parametros = array(
-            ':user_id' => $data->_user_id,
+            ':id_registrado' => $data->_id_registrado,
             ':id_producto' => $data->_id_producto
         );
   
@@ -71,12 +71,12 @@ sql;
 
         $mysqli = Database::getInstance();
         $query = <<<sql
-        INSERT INTO pendiente_pago (id_producto,user_id,reference,clave,fecha,monto,tipo_pago,status,comprado_en) VALUES(:id_producto,:user_id,:reference,:clave,:fecha,:monto,:tipo_pago,1,2)                        
+        INSERT INTO pendiente_pago (id_producto,id_registrado,reference,clave,fecha,monto,tipo_pago,status,comprado_en) VALUES(:id_producto,:id_registrado,:reference,:clave,:fecha,:monto,:tipo_pago,1,2)                        
 sql;
   
         $parametros = array(            
             ':id_producto' => $data->_id_producto,
-            ':user_id' => $data->_user_id,
+            ':id_registrado' => $data->_id_registrado,
             ':reference' => $data->_reference,
             ':clave' => $data->_clave,
             ':fecha' => date('Y-m-d'),
@@ -95,11 +95,11 @@ sql;
 
         $mysqli = Database::getInstance();
         $query = <<<sql
-        INSERT INTO transaccion_compra (user_id,referencia_transaccion,productos,total_pesos,tipo_pago,fecha_transaccion,descripcion,utilerias_administradores_id) VALUES(:user_id,:referencia_transaccion,:productos,:total_pesos,:tipo_pago,NOW(),:descripcion,:utilerias_administradores_id)                        
+        INSERT INTO transaccion_compra (id_registrado,referencia_transaccion,productos,total_pesos,tipo_pago,fecha_transaccion,descripcion,utilerias_administradores_id) VALUES(:id_registrado,:referencia_transaccion,:productos,:total_pesos,:tipo_pago,NOW(),:descripcion,:utilerias_administradores_id)                        
 sql;
   
         $parametros = array(
-            ':user_id' => $data->_user_id,
+            ':id_registrado' => $data->_id_registrado,
             ':referencia_transaccion' => $data->_referencia_transaccion,
             ':productos' => $data->_productos,
         //     ':total_dolares' => $data->_total_dolares,
@@ -117,18 +117,18 @@ sql;
           
       }
 
-      public static function deletePendientesProductosByUser($user_id,$id_producto){
+      public static function deletePendientesProductosByUser($id_registrado,$id_producto){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        DELETE FROM pendiente_pago WHERE id_producto = $id_producto AND user_id = $user_id
+        DELETE FROM pendiente_pago WHERE id_producto = $id_producto AND id_registrado = $id_registrado
 sql;
           return $mysqli->delete($query);
       }
 
-      public static function getAsignaProductoByIdProductAndUser($user_id,$id_producto){
+      public static function getAsignaProductoByIdProductAndUser($id_registrado,$id_producto){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT * FROM asigna_producto WHERE user_id = $user_id and id_producto = $id_producto;
+        SELECT * FROM asigna_producto WHERE id_registrado = $id_registrado and id_producto = $id_producto;
 sql;
         return $mysqli->queryOne($query);
       }
@@ -141,10 +141,10 @@ sql;
         return $mysqli->queryOne($query);
       }
 
-      public static function getCountProductos($user_id,$id_producto){
+      public static function getCountProductos($id_registrado,$id_producto){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT count(*) as numero_productos FROM pendiente_pago WHERE user_id = $user_id and id_producto = $id_producto;
+        SELECT count(*) as numero_productos FROM pendiente_pago WHERE id_registrado = $id_registrado and id_producto = $id_producto;
 sql;
         return $mysqli->queryAll($query);
       }
@@ -158,18 +158,18 @@ sql;
         return $mysqli->queryOne($query);
       }
 
-      public static function getDataUser($user_id){
+      public static function getDataUser($id_registrado){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        SELECT * FROM utilerias_administradores WHERE user_id = '$user_id'
+        SELECT * FROM registrados WHERE id_registrado = '$id_registrado'
 sql;
         return $mysqli->queryOne($query);
       }
 
-      public static function getLastTransaccionByUser($user_id){
+      public static function getLastTransaccionByUser($id_registrado){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        SELECT * FROM transaccion_compra WHERE user_id = $user_id ORDER BY id_transaccion_compra DESC LIMIT 1
+        SELECT * FROM transaccion_compra WHERE id_registrado = $id_registrado ORDER BY id_transaccion_compra  DESC LIMIT 1
 sql;
         return $mysqli->queryOne($query);
       }
@@ -585,10 +585,10 @@ public static function getProductosPendComprados($id){
         $query=<<<sql
         SELECT pp.id_producto,pp.clave, pp.comprado_en,pp.status,ua.nombre,ua.clave_socio,aspro.status as estatus_compra,ua.monto_congreso as amout_due,pro.nombre as nombre_producto, pro.precio_publico, pro.tipo_moneda, pro.max_compra, pro.es_congreso, pro.es_servicio, pro.es_curso
         FROM pendiente_pago pp
-        INNER JOIN utilerias_administradores ua ON(ua.user_id = pp.user_id)
+        INNER JOIN registrados ua ON(ua.id_registrado = pp.id_registrado)
         INNER JOIN productos pro ON (pp.id_producto = pro.id_producto)
-        LEFT JOIN asigna_producto aspro ON(pp.user_id = aspro.user_id AND pp.id_producto = aspro.id_producto)
-        WHERE ua.user_id = $id GROUP BY id_producto;
+        LEFT JOIN asigna_producto aspro ON(pp.id_registrado = aspro.id_registrado AND pp.id_producto = aspro.id_producto)
+        WHERE ua.id_registrado = $id GROUP BY id_producto;
 sql;
         return $mysqli->queryAll($query);
       }
@@ -598,8 +598,8 @@ sql;
         $query=<<<sql
         SELECT p.id_producto, p.nombre as nombre_producto, p.precio_publico, p.tipo_moneda, p.max_compra, p.es_congreso, p.es_servicio, p.es_curso, ua.clave_socio, ua.monto_congreso as amout_due 
         FROM productos p
-        INNER JOIN utilerias_administradores ua
-        WHERE id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE user_id = $id) AND ua.user_id = $id;
+        INNER JOIN registrados ua
+        WHERE id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE id_registrado = $id) AND ua.id_registrado = $id;
 sql;
         return $mysqli->queryAll($query);
       }
@@ -607,7 +607,7 @@ sql;
       public static function getUserByPassword($usuario){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT * FROM utilerias_administradores_admin WHERE contrasena LIKE :password 
+        SELECT * FROM utilerias_administradores WHERE contrasena LIKE :password 
 sql;
         $params = array(
             ':password'=>$usuario->_password
@@ -616,18 +616,18 @@ sql;
         return $mysqli->queryOne($query,$params);
       }
 
-      public static function pendientesPagoByProductAndUser($user_id,$id_producto){
+      public static function pendientesPagoByProductAndUser($id_registrado,$id_producto){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT * FROM pendiente_pago WHERE user_id = $user_id and id_producto = $id_producto;
+        SELECT * FROM pendiente_pago WHERE id_registrado = $id_registrado and id_producto = $id_producto;
 sql;
         return $mysqli->queryOne($query);
       }
 
-      public static function updateStatusPendientePagoByUserAndId($user_id,$id_producto,$metodo_pago,$monto){
+      public static function updateStatusPendientePagoByUserAndId($id_registrado,$id_producto,$metodo_pago,$monto){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        UPDATE pendiente_pago SET status = 1, tipo_pago = '$metodo_pago', monto = $monto, comprado_en = 2  WHERE user_id = $user_id and id_producto = $id_producto
+        UPDATE pendiente_pago SET status = 1, tipo_pago = '$metodo_pago', monto = $monto, comprado_en = 2  WHERE id_registrado = $id_registrado and id_producto = $id_producto
 sql;
         return $mysqli->update($query);
       }
@@ -635,11 +635,11 @@ sql;
       public static function UpdateFiscalData($usuario){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        UPDATE utilerias_administradores SET business_name_iva = :business_name_iva, code_iva = :code_iva, email_receipt_iva = :email_receipt_iva, direccion = :direccion, postal_code_iva = :postal_code_iva WHERE user_id = :user_id
+        UPDATE utilerias_administradores SET business_name_iva = :business_name_iva, code_iva = :code_iva, email_receipt_iva = :email_receipt_iva, direccion = :direccion, postal_code_iva = :postal_code_iva WHERE id_registrado = :id_registrado
 sql;
 
         $params = array(
-            ':user_id'=>$usuario->_user_id,
+            ':id_registrado'=>$usuario->_id_registrado,
             ':business_name_iva' => $usuario->_business_name_iva,
             ':code_iva' => $usuario->_code_iva,
             ':email_receipt_iva' => $usuario->_email_receipt_iva,

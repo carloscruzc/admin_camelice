@@ -448,7 +448,7 @@ html;
                     if(!$getProducto){
                         
                         $data = new \stdClass();
-                        $data->_user_id = $user_id;
+                        $data->_id_registrado = $user_id;
                         $data->_id_producto = $value['id_product'];             
                         
 
@@ -465,7 +465,7 @@ html;
                 for($i = 0; $i < $value['cantidad'];$i++){
                 //insertar
                     $data_pendiente = new \stdClass();
-                    $data_pendiente->_user_id = $user_id;
+                    $data_pendiente->_id_registrado = $user_id;
                     $data_pendiente->_id_producto = $value['id_product']; 
                     $data_pendiente->_reference = $referencia; 
                     $data_pendiente->_clave = $clave;
@@ -481,7 +481,7 @@ html;
                         // if(!$getProducto){
                             
                             $data = new \stdClass();
-                            $data->_user_id = $user_id;
+                            $data->_id_registrado = $user_id;
                             $data->_id_producto = $value['id_product'];             
                             
 
@@ -506,7 +506,7 @@ html;
             
              //guarar en transaccion
              $dataTransaccion = new \stdClass();
-             $dataTransaccion->_user_id = $user_id;
+             $dataTransaccion->_id_registrado = $user_id;
              $dataTransaccion->_referencia_transaccion = $referencia;
              $dataTransaccion->_productos = $productos_transaccion;
             //  $dataTransaccion->_total_dolares = $total_usd;
@@ -635,7 +635,7 @@ html;
         // $this->generaterQr($clave);        
 
         $datos_user = CajaDao::getDataUser($user_id);
-        $user_id = $datos_user['user_id'];        
+        $user_id = $datos_user['id_registrado'];        
 
 
         $productos = CajaDao::getLastTransaccionByUser($user_id);

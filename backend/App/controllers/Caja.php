@@ -433,7 +433,9 @@ html;
 
         foreach($pendientes_pago as $key => $value){
             
-            $productos_transaccion .= $value['nombre_producto'].' -  $'.$value['precio'].','; 
+            // $productos_transaccion .= $value['nombre_producto'].' -  $'.$value['precio'].','; 
+
+            $productos_transaccion .= 'Cant. '.$value['cantidad'].' - '.$value['nombre_producto'].' -  $'.$value['precio'].',';
             
             $existePendiente = CajaDao::pendientesPagoByProductAndUser($user_id,$value['id_product']);
 
@@ -678,23 +680,36 @@ html;
             // $count_productos = $total_productos['numero_productos'];
 
             $pro_precio = explode("-",$value);
-            $solo_precio = explode("$",$pro_precio[1]);
-            // var_dump($pro_precio);
+            $cantidad = $pro_precio[0];
+            $solo_precio = explode("$",$pro_precio[2]); //precio unitario producto
+            $cantidad = explode(".",$pro_precio[0]);
+            $solo_cantidad = $cantidad[1]; //cantidad de compra
+ 
             // echo number_format($solo_precio[1],2);
-            // exit;
-
 
             //Nombre Curso
             $pdf->SetXY(22, $espace);
             $pdf->SetFont('Arial', 'B', 8);  
             $pdf->SetTextColor(0, 0, 0);
-            $pdf->Multicell(100, 4, utf8_decode($pro_precio[0]) , 0, 'C');
+            $pdf->Multicell(100, 4, utf8_decode($pro_precio[1]) , 0, 'C');
 
             //Costo
             $pdf->SetXY(115, $espace);
             $pdf->SetFont('Arial', 'B', 8);  
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Multicell(100, 4, number_format($solo_precio[1],2) ." MXN", 0, 'C');
+
+            //Cantidad
+            $pdf->SetXY(18, $espace);
+            $pdf->SetFont('Arial', 'B', 8);  
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Multicell(20, 4, $solo_cantidad , 0, 'C');
+
+            //Total
+            $pdf->SetXY(138, $espace);
+            $pdf->SetFont('Arial', 'B', 8);  
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Multicell(100, 4, number_format(($solo_precio[1]*$solo_cantidad),2)." MXN" , 0, 'C');
 
             $espace = $espace + 6;
         }

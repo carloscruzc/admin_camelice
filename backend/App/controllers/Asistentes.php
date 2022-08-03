@@ -111,6 +111,14 @@ html;
 
     public function saveData()
     {
+        $date = date('Y-m-d');
+        $str_nombre = mb_str_split($_POST['nombre']);
+        $str_apellidop = mb_str_split($_POST['apellidop']);
+
+        $fecha = explode('-',$date);
+
+        $referencia = $str_nombre[0].$str_nombre[1].$str_apellidop[0].$str_apellidop[1].$fecha[0].$fecha[1].$fecha[2];
+
         $nombre = $_POST['nombre'];
         $apellidop = $_POST['apellidop'];
         $apellidom = $_POST['apellidom'];
@@ -130,6 +138,7 @@ html;
         $data->_nombreconstancia = $nombre_constancia;
         $data->_modalidad = MasterDom::getData('modalidad');
         $data->_categoria = MasterDom::getData('categoria');
+        $data->_referencia = $referencia;
         $data->_monto_congreso = $monto_congreso;
 
         $id = AsistentesDao::insert($data);

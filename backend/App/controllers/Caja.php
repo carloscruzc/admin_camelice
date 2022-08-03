@@ -413,6 +413,8 @@ html;
         $user_id = $_POST['user_id'];
         $metodo_pago = $_POST['metodo_pago'];
         $total_pesos = $_POST['total_pesos'];
+        $num_operacion = $_POST['num_operacion'];
+
         $pendientes_pago = json_decode($_POST['array'],true);
 
         if(isset($_POST['descripcion'])){
@@ -515,6 +517,7 @@ html;
              $dataTransaccion->_total_pesos = $total_pesos;
              $dataTransaccion->_tipo_pago = $metodo_pago;
              $dataTransaccion->_descripcion = $descripcion;
+             $dataTransaccion->_num_operacion = $num_operacion;
              $dataTransaccion->_utilerias_administradores_id  = $_SESSION['utilerias_administradores_id'];
 
              $insertTransaccion = CajaDao::insertTransaccion($dataTransaccion);
@@ -637,7 +640,7 @@ html;
         // $this->generaterQr($clave);        
 
         $datos_user = CajaDao::getDataUser($user_id);
-        $user_id = $datos_user['id_registrado'];        
+        $user_id = $datos_user['id_registrado'];       
 
 
         $productos = CajaDao::getLastTransaccionByUser($user_id);
@@ -646,6 +649,7 @@ html;
         $fecha = $productos['fecha_transaccion'];
         $tipo_pago = $productos['tipo_pago'];
         $id_transaccion = $productos['id_transaccion_compra'];
+        $num_operacion = $productos['num_operacion'];
 
 
         if(strlen($id_transaccion) == 1){
@@ -657,7 +661,6 @@ html;
         }else{
             $ini_folio = '';
         }
-
         
         $nombre_completo = $datos_user['nombre'] . " " . $datos_user['apellidop'] . "\n " . $datos_user['apellidom'];
 
@@ -667,18 +670,14 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('plantillas/orden.png', 0, 0, 210, 300);
-        
-        // $pdf->SetFont('Arial', 'B', 25);
-        // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
+        $pdf->Image('plantillas/orden.jpeg', 0, 0, 210, 300);
+ 
 
         //$pdf->Image('1.png', 1, 0, 190, 190);
         $pdf->SetFont('Arial', 'B', 5);    //Letra Arial, negrita (Bold), tam. 20
-        //$nombre = utf8_decode("Jonathan Valdez Martinez");
-        //$num_linea =utf8_decode("Línea: 39");
-        //$num_linea2 =utf8_decode("Línea: 39");
+  
 
-        $espace = 105;
+        $espace = 142;
         $total = array();
         $pro = explode(",",$productos['productos']);
 
@@ -704,7 +703,7 @@ html;
             $pdf->Multicell(100, 4, utf8_decode($pro_precio[1]) , 0, 'C');
 
             //Costo
-            $pdf->SetXY(115, $espace);
+            $pdf->SetXY(103, $espace);
             $pdf->SetFont('Arial', 'B', 8);  
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Multicell(100, 4, number_format($solo_precio[1],2) ." MXN", 0, 'C');
@@ -727,57 +726,70 @@ html;
         $tipo_cambio = CajaDao::getTipoCambio()['tipo_cambio'];
         
 
+        if(!empty($num_operacion)){
+
+            //num operacion
+            $pdf->SetXY(100, 60);
+            $pdf->SetFont('Arial', 'B', 13);  
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Multicell(98, 10, utf8_decode('Número de Transacción : ').$num_operacion, 0, 'C');
+        }
+        
+
         //folio
-        $pdf->SetXY(5, 50);
+        $pdf->SetXY(5, 75);
         $pdf->SetFont('Arial', 'B', 13);  
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, $ini_folio.$id_transaccion, 0, 'C');
 
         //fecha
-        $pdf->SetXY(120,65);
+        $pdf->SetXY(10,110);
         $pdf->SetFont('Arial', 'B', 13);  
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, $fecha, 0, 'C');
 
         //Nombre
-        $pdf->SetXY(120,20);
+        $pdf->SetXY(120,85);
         $pdf->SetFont('Arial', 'B', 10);  
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
 
         //Nombre empresa
-        $pdf->SetXY(120,35);
+        $pdf->SetXY(120,100);
         $pdf->SetFont('Arial', 'B', 10);  
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, utf8_decode($datos_user['business_name_iva']), 0, 'C');
 
         //RFC
-        $pdf->SetXY(120,40);
+        $pdf->SetXY(120,105);
         $pdf->SetFont('Arial', 'B', 10);  
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, utf8_decode($datos_user['code_iva']), 0, 'C');
 
         //RFC
-        $pdf->SetXY(120,45);
+        $pdf->SetXY(120,110);
         $pdf->SetFont('Arial', 'B', 10);  
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, utf8_decode($datos_user['email_receipt_iva']), 0, 'C');
 
         
 
-      
+        $letras = new EnLetras();
+        $TotalLetra=$productos['total_pesos'];
+        $total_en_letras = $letras->ValorEnLetras($TotalLetra, 'MXN');
 
-        //total dolares
-        // $pdf->SetXY(125, 199);
-        // $pdf->SetFont('Arial', 'B', 13);  
-        // $pdf->SetTextColor(0, 0, 0);
-        // $pdf->Multicell(100, 10, number_format($productos['total_dolares']).' USD', 0, 'C');
 
         //total pesos
-        $pdf->SetXY(138, 265);
+        $pdf->SetXY(138, 255);
         $pdf->SetFont('Arial', 'B', 13);  
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+
+        //total pesos letra
+        $pdf->SetXY(10, 247);
+        $pdf->SetFont('Arial', 'B', 13);  
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, $total_en_letras, 0, 'C');
 
         //tipo pago
         // $pdf->SetXY(125, 265);

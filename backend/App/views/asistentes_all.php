@@ -272,8 +272,12 @@
                                     <option value="" selected>Selecciona una Opción</option>
                                     <option value="DR.">DR.</option>
                                     <option value="DRA.">DRA.</option>
+                                    <option value="ENF.">ENF.</option>
+                                    <option value="L.E.">L.E.</option>
+                                    <option value="LIC.">LIC.</option>
                                     <option value="SR.">SR.</option>
                                     <option value="SRA.">SRA.</option>
+                                    <option value="">(VACÍO)</option>
                                 </select>
                             </div>
 
@@ -314,10 +318,10 @@
                                 </select>
                             </div>
 
-                            <!-- <div class="form-group col-md-12">
+                            <div class="form-group col-md-12">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="motivo">Motivo <span class="required">*</span></label>
                                 <textarea id="motivo" name="motivo" class="form-control"></textarea>
-                            </div> -->
+                            </div>
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>

@@ -312,7 +312,7 @@ html;
 
     public function UpdateFiscalData(){
 
-        $user_id = $_POST["modal_user_id"];
+        $id_registrado = $_POST["modal_user_id"];
         $business_name_iva = $_POST['business_name_iva'];
         $code_iva = $_POST['code_iva'];
         $email_receipt_iva = $_POST['email_receipt_iva'];
@@ -320,7 +320,7 @@ html;
         $postal_code_iva = $_POST['postal_code_iva'];
 
         $data = new \stdClass();
-        $data->_user_id = $user_id;
+        $data->_id_registrado = $id_registrado;
         $data->_business_name_iva = $business_name_iva;    
         $data->_code_iva = $code_iva;   
         $data->_email_receipt_iva = $email_receipt_iva;

@@ -315,7 +315,9 @@
 
                         <div class="col-md-4 col-sm-12">
                             <label>CP Fiscal * </label>
-                            <input class="multisteps-form__input form-control" type="text" id="postal_code_iva" name="postal_code_iva" placeholder="" >                            
+                            <input class="multisteps-form__input form-control" id="postal_code_iva" name="postal_code_iva"
+                            type="number" min="-99999" maxlength="5" placeholder="Código postal" class="form-control ameg-shadow-box-two" required
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">                            
                         </div>
 
 

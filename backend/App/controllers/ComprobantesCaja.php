@@ -391,7 +391,7 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('plantillas/orden.jpeg', 0, 0, 210, 300);
+        $pdf->Image('plantillas/orden_ori.jpeg', 0, 0, 210, 300);
  
 
         //$pdf->Image('1.png', 1, 0, 190, 190);
@@ -420,25 +420,25 @@ html;
             //Nombre Curso
             $pdf->SetXY(22, $espace);
             $pdf->SetFont('Arial', 'B', 8);  
-            $pdf->SetTextColor(0, 0, 0);
+            $pdf->SetTextColor(94, 94, 94); 
             $pdf->Multicell(100, 4, utf8_decode($pro_precio[1]) , 0, 'C');
 
             //Costo
             $pdf->SetXY(103, $espace);
             $pdf->SetFont('Arial', 'B', 8);  
-            $pdf->SetTextColor(0, 0, 0);
+            $pdf->SetTextColor(94, 94, 94);
             $pdf->Multicell(100, 4, number_format($solo_precio[1],2) ." MXN", 0, 'C');
 
             //Cantidad
             $pdf->SetXY(18, $espace);
             $pdf->SetFont('Arial', 'B', 8);  
-            $pdf->SetTextColor(0, 0, 0);
+            $pdf->SetTextColor(94, 94, 94);
             $pdf->Multicell(20, 4, $solo_cantidad , 0, 'C');
 
             //Total
             $pdf->SetXY(138, $espace);
             $pdf->SetFont('Arial', 'B', 8);  
-            $pdf->SetTextColor(0, 0, 0);
+            $pdf->SetTextColor(94, 94, 94);
             $pdf->Multicell(100, 4, number_format(($solo_precio[1]*$solo_cantidad),2)." MXN" , 0, 'C');
 
             $espace = $espace + 6;
@@ -451,7 +451,7 @@ html;
           //num operacion
           $pdf->SetXY(100, 60);
           $pdf->SetFont('Arial', 'B', 13);  
-          $pdf->SetTextColor(0, 0, 0);
+          $pdf->SetTextColor(94, 94, 94);
           $pdf->Multicell(98, 10, utf8_decode('Número de Transacción : ').$num_operacion, 0, 'C');
       }
         
@@ -459,20 +459,20 @@ html;
         //folio
         $pdf->SetXY(5, 75);
         $pdf->SetFont('Arial', 'B', 13);  
-        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetTextColor(94, 94, 94);
         $pdf->Multicell(100, 10, $ini_folio.$id_transaccion, 0, 'C');
 
         //fecha
         $pdf->SetXY(10,110);
         $pdf->SetFont('Arial', 'B', 13);  
-        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetTextColor(94, 94, 94);
         $pdf->Multicell(100, 10, $fecha, 0, 'C');
 
         //Nombre
         $pdf->SetXY(120,85);
-        $pdf->SetFont('Arial', 'B', 10);  
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+        $pdf->SetFont('Arial', 'B', 9);  
+        $pdf->SetTextColor(94, 94, 94);
+        $pdf->Multicell(114, 6, utf8_decode($nombre_completo), 0, 'C');
 
         //Nombre empresa
         $pdf->SetXY(120,100);
@@ -508,7 +508,7 @@ html;
         //total pesos letra
         $pdf->SetXY(10, 247);
         $pdf->SetFont('Arial', 'B', 13);  
-        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetTextColor(94, 94, 94);
         $pdf->Multicell(100, 10, $total_en_letras, 0, 'C');
 
         //tipo pago

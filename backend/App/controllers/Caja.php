@@ -736,47 +736,59 @@ html;
         }
         
 
-        //folio
-        $pdf->SetXY(5, 75);
-        $pdf->SetFont('Arial', 'B', 13);  
-        $pdf->SetTextColor(94, 94, 94);
-        $pdf->Multicell(100, 10, $ini_folio.$id_transaccion, 0, 'C');
-
-        //fecha
-        $pdf->SetXY(10,110);
-        $pdf->SetFont('Arial', 'B', 13);  
-        $pdf->SetTextColor(94, 94, 94);
-        $pdf->Multicell(100, 10, $fecha, 0, 'C');
-
-        //Nombre
-        $pdf->SetXY(120,85);
-        $pdf->SetFont('Arial', 'B', 10);  
-        $pdf->SetTextColor(94, 94, 94);
-        $pdf->Multicell(114, 6, utf8_decode($nombre_completo), 0, 'C');
-
-        //Nombre empresa
-        $pdf->SetXY(120,100);
-        $pdf->SetFont('Arial', 'B', 10);  
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode($datos_user['business_name_iva']), 0, 'C');
-
-        //RFC
-        $pdf->SetXY(120,105);
-        $pdf->SetFont('Arial', 'B', 10);  
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode($datos_user['code_iva']), 0, 'C');
-
-        //RFC
-        $pdf->SetXY(120,110);
-        $pdf->SetFont('Arial', 'B', 10);  
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode($datos_user['email_receipt_iva']), 0, 'C');
+         //folio
+         $pdf->SetXY(5, 75);
+         $pdf->SetFont('Arial', 'B', 13);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(100, 10, $ini_folio.$id_transaccion, 0, 'C');
+ 
+         //fecha
+         $pdf->SetXY(10,110);
+         $pdf->SetFont('Arial', 'B', 13);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(100, 10, $fecha, 0, 'C');
+ 
+         //Nombre
+         $pdf->SetXY(120,85);
+         $pdf->SetFont('Arial', 'B', 9);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(114, 6, utf8_decode($nombre_completo), 0, 'C');
+ 
+         //correo
+         $pdf->SetXY(120,95);
+         $pdf->SetFont('Arial', 'B', 10);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(114, 10, utf8_decode($datos_user['direccion_fiscal']), 0, 'C');
+ 
+         //Nombre empresa
+         $pdf->SetXY(120,100);
+         $pdf->SetFont('Arial', 'B', 10);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(114, 10, utf8_decode($datos_user['razon_social']), 0, 'C');
+ 
+         //RFC
+         $pdf->SetXY(120,105);
+         $pdf->SetFont('Arial', 'B', 10);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(114, 10, utf8_decode($datos_user['rfc']), 0, 'C');
+ 
+         //correo
+         $pdf->SetXY(120,110);
+         $pdf->SetFont('Arial', 'B', 10);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(114, 10, utf8_decode($datos_user['email_fac']), 0, 'C');
+ 
+         //correo
+         $pdf->SetXY(120,115);
+         $pdf->SetFont('Arial', 'B', 10);  
+         $pdf->SetTextColor(94, 94, 94);
+         $pdf->Multicell(114, 10, utf8_decode($datos_user['cp_fiscal']), 0, 'C');
 
         
 
         $letras = new EnLetras();
         $TotalLetra=$productos['total_pesos'];
-        $total_en_letras = $letras->ValorEnLetras($TotalLetra, 'MXN');
+        $total_en_letras = $letras->ValorEnLetras($TotalLetra, 'pesos 00/100 M.N.');
 
 
         //total pesos

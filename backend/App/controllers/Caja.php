@@ -642,12 +642,22 @@ html;
 
         $productos = CajaDao::getLastTransaccionByUser($user_id);
 
-   
-
-        
         $reference = $productos['referencia_transaccion'];
         $fecha = $productos['fecha_transaccion'];
         $tipo_pago = $productos['tipo_pago'];
+        $id_transaccion = $productos['id_transaccion_compra'];
+
+
+        if(strlen($id_transaccion) == 1){
+            $ini_folio = '000';
+        }elseif(strlen($id_transaccion) == 2){
+            $ini_folio = '00';
+        }elseif(strlen($id_transaccion) == 3){
+            $ini_folio = '0';
+        }else{
+            $ini_folio = '';
+        }
+
         
         $nombre_completo = $datos_user['nombre'] . " " . $datos_user['apellidop'] . "\n " . $datos_user['apellidom'];
 
@@ -721,7 +731,7 @@ html;
         $pdf->SetXY(5, 50);
         $pdf->SetFont('Arial', 'B', 13);  
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, $datos_user['clave'], 0, 'C');
+        $pdf->Multicell(100, 10, $ini_folio.$id_transaccion, 0, 'C');
 
         //fecha
         $pdf->SetXY(120,65);

@@ -25,7 +25,7 @@ sql;
       $query=<<<sql
       SELECT ua.id_registrado,ua.nombre,ua.apellidop,ua.apellidom,ua.codigo_beca,ua.clave_socio,ig.fecha_descarga
       FROM registrados ua
-      INNER JOIN impresion_constancia ig on(ua.id_registrado = ig.id_registrado);
+      INNER JOIN impresion_constancia ig ON (ua.id_registrado = ig.user_id);
 sql;
       return $mysqli->queryAll($query);
         

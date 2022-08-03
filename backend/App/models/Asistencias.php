@@ -58,4 +58,13 @@ sql;
 sql;
       return $mysqli->queryOne($query);
     }
+
+    public static function getProductos(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM productos
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
 } 

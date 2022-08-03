@@ -102,6 +102,15 @@ class Contenedor extends Controller{
                     </a>
                 </li>
 
+                <li id="estadisticas" class="nav-item" >
+                    <a href="/Estadisticas/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fas fa-chart-bar morado-musa-text"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Estadísticas</span>
+                    </a>
+                </li>
+
                 <!--<li id="salud" class="nav-item" {$vacunacionHidden};>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>

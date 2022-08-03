@@ -559,7 +559,9 @@ html;
                     <option value="0" disabled selected>Seleccione una opción</option>
 html;
         }else{
-        $optionSeleccione = '';
+            $optionSeleccione .= <<<html
+                    <option value="0">Ninguna</option>
+html;
         }
         
         
@@ -677,7 +679,7 @@ html;
             if($id_categoria != 0){
                 $monto_congreso = AsistentesDao::getCostoCategoria($id_categoria)['costo'];
             }else{
-                
+
             }
            
 

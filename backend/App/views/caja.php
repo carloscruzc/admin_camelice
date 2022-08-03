@@ -595,7 +595,7 @@
                                 .append($('<option>', {
                                         'data-value': value.id_registrado 
                                     })
-                                    .text(value.id_registrado+' - '+value.nombre + ' ' + value.apellidop + ' ' + value.apellidom + ' '+ value.usuario + ' ' + value.clave));
+                                    .text(value.id_registrado+' - '+value.nombre + ' ' + value.apellidop + ' ' + value.apellidom + ' '+ value.email + ' ' + value.clave));
 
                             // $('#list_concidencias').append('<li>'+value.nombre+'</li>');
 

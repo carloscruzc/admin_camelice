@@ -568,7 +568,13 @@ html;
             $optionSeleccione .= <<<html
                     <option value="0" disabled selected>Seleccione una opción</option>
 html;
-        }else{
+        }else if($usuario['id_categoria'] == 1){
+            $optionCate = '';
+            $optionSeleccione .= <<<html
+                    <option value="1" selected>USUARIO BECADO</option>
+html;
+        }
+        else{
             $optionSeleccione .= <<<html
                     <option value="0">Ninguna</option>
 html;
@@ -688,6 +694,8 @@ html;
 
             if($id_categoria != 0){
                 $monto_congreso = AsistentesDao::getCostoCategoria($id_categoria)['costo'];
+            }else if($id_categoria == 1){
+                $monto_congreso = 0;
             }else{
 
             }

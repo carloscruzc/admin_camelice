@@ -163,7 +163,7 @@
                             <div class="col-12">
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
-                                        <h6>Registro de Impresión de Gafetes</h6>
+                                        <h5>Registro de Impresión de Gafetes</h5>
                                         <!-- <p style="font-size: 12px">
                                         <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
                                         <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)
@@ -216,7 +216,7 @@
                             <div class="col-12">
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
-                                        <h6>Registro de Impresión de Constancias</h6>
+                                        <h5>Registro de Impresión de Constancias</h5>
                                         <!-- <p style="font-size: 12px">
                                         <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
                                         <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)
@@ -254,7 +254,7 @@
                             <div class="col-12">
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
-                                        <h6>Reporte de Caja</h6>
+                                        <h5>Reporte de Caja</h5>
                                         <!-- <p style="font-size: 12px">
                                         <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
                                         <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)
@@ -320,7 +320,7 @@
                             <div class="col-12">
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
-                                        <h6>Registro de Socios Activos</h6>
+                                        <h5>Registro de Socios Activos</h5>
                                         <!-- <p style="font-size: 12px">
                                         <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
                                         <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)

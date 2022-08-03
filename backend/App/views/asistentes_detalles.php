@@ -295,7 +295,7 @@
                                     <div class="col-12 col-lg-6">
                                         <label class="form-label">Apellido Paterno *</label>
                                         <div class="input-group">
-                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div>
                                 </div>
@@ -304,26 +304,51 @@
                                     <div class="col-12 col-lg-6">
                                         <label class="form-label mt-4">Apellido Materno *</label>
                                         <div class="input-group">
-                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellidom'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellidom'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6 col-12">
                                         <label class="form-label mt-4">Número de Telefono *</label>
                                         <div class="input-group">
-                                            <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>" required>
+                                            <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12 col-12">
+                                    <div class="col-lg-6 col-12">
                                         <label class="form-label mt-4">Email Registrado y Verificado *</label>
                                         <div class="input-group">
-                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['email'] ?>" readonly>
+                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['email'] ?>">
                                         </div>
+                                        <span id="msg_email" style="font-size: 0.75rem; font-weight: 700;margin-bottom: 0.5rem;"></span>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <label class="form-label mt-4" for="id_categoria">Categoría <span class="required"></span></label>
+                                        <select class="multisteps-form__select form-control all_input_select" name="id_categoria" id="id_categoria">
+                                            <?= $optionSeleccione ?>
+                                            <?= $optionCate ?>
+                                        </select>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <label class="form-label mt-4" for="pais">País <span class="required">*</span></label>
+                                        <select class="multisteps-form__select form-control all_input_select" name="pais" id="pais" required>
+                                            <option value="" selected>Selecciona una Opción</option>
+                                            <?= $optionPais2 ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <label class="form-label mt-4" for="pais">Modalidad <span class="required">*</span></label>
+                                        <select class="multisteps-form__select form-control all_input_select" name="modalidad" id="modalidad" required>
+                                            <?= $optionModalidad ?>
+                                            <option value="Presencial">Presencial</option>
+                                            <option value="Virtual">Virtual</option>
+                                        </select>
+                                    </div>
+                                </div>   
 
                                 <div class="row">
 
@@ -346,7 +371,7 @@
 
                                 <div class="row">
                                     <div class="button-row d-flex mt-4 col-12">
-                                        <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
+                                        <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" id="btn_upload" title="Actualizar">Actualizar</button>
                                         <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
                                     </div>
                                 </div>
@@ -516,8 +541,6 @@
         $("#update_detalles").on("submit", function(event) {
             event.preventDefault();
 
-            // alert("Hola");
-
             var formData = new FormData(document.getElementById("update_detalles"));
             for (var value of formData.values()) {
                 console.log(value);
@@ -530,31 +553,19 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function(error) {
-                    console.log(error);
+                beforeSend: function() {
                     console.log("Procesando....");
-
                 },
                 success: function(respuesta) {
-                    // alert("Successs");
-                    console.log(respuesta)
+                    console.log(respuesta);
+
                     if (respuesta == 'success') {
-                        Swal.fire({
-                            title: "!Se actualizaron tus datos correctamente!",
-                            html: '',
-                            icon:"success",
-                            timer: 1250,
-                        }).
+                        swal("!Se actualizaron tus datos correctamente!", "", "success").
                         then((value) => {
                             window.location.reload();
                         });
                     } else {
-                        Swal.fire({
-                            title: '!Usted No Actualizó Nada!',
-                            html: '',
-                            icon: 'warning',
-                            timer: 1000,
-                        }).
+                        swal("!Usted No Actualizó Nada!", "", "warning").
                         then((value) => {
                             //window.location.replace("/Asistentes")
                         });
@@ -567,6 +578,31 @@
             });
         });
 
+        $("#email").on("keyup", function() {
+            console.log($(this).val());
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/Asistentes/isUserValidate",
+                data: {
+                    usuario: $(this).val()
+                },
+                success: function(data) {
+                    console.log(data)
+                    if (data == "true") {
+                        //el usuario ya existe
+                        $("#btn_upload").css('display', 'none');
+                        $("#msg_email").css('color', 'red');
+                        $("#msg_email").html('Este correo ya se ha registrado');
+
+                    } else {
+                        $("#btn_upload").css('display', 'flex');
+                        $("#msg_email").css('color', 'red');
+                        $("#msg_email").html('');
+                    }
+                }
+            });
+        });
 
         $('input:radio[name="confirm_alergia"]').change(function() {
             if ($("#confirm_alergia_no").is(':checked')) {

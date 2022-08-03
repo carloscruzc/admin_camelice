@@ -530,6 +530,42 @@ html;
 // html;
 //         }
 
+        $usuario = AsistentesDao::getIdUsuarios($id);
+        $pais = AsistentesDao::getPais($id);
+        $cate = AsistentesDao::getCategoriaMas();
+        $optionCate = '';
+        foreach($cate as $key => $value){
+            $selectedStatus = ($value['id_categoria'] == $usuario['id_categoria']) ? 'selected' : '';
+            $optionCate .= <<<html
+                    <option value="{$value['id_categoria']}" $selectedStatus>{$value['categoria']}</option>
+html;
+        }
+
+        $optionPais2 = '';
+        foreach($pais as $key => $value){
+            $selectedpais = ($value['id_pais'] == $usuario['id_pais']) ? 'selected' : '';
+            $optionPais2 .= <<<html
+                    <option value="{$value['id_pais']}" $selectedpais>{$value['pais']}</option>
+html;
+        }
+
+        $optionModalidad = '';
+        $optionModalidad .= <<<html
+                    <option value="{$usuario['modalidad']}" selected>Actual: {$usuario['modalidad']}</option>
+html;
+        $optionSeleccione = '';
+        if($usuario['id_categoria'] == 0){
+            $optionSeleccione .= <<<html
+                    <option value="0" disabled selected>Seleccione una opción</option>
+html;
+        }else{
+            $optionSeleccione .= <<<html
+                    <option value="0">Ninguna</option>
+html;
+        }
+        
+        
+
         $btn_gafete = "<a href='/RegistroAsistencia/abrirpdfGafete/{$id}/' target='_blank' id='a_abrir_gafete' class='btn btn-info' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-original-title='Imprimir Gafetes'><i class='fa fal fa-address-card' style='font-size: 18px;'> </i> Presione esté botón para descargar el gafete</a>";
         // $btn_etiquetas = "<a href='/RegistroAsistencia/abrirpdf/{$clave_user['clave']}' target='_blank' id='a_abrir_etiqueta' class='btn btn-info'>Imprimir etiquetas</a>";
         $this->generaterQr($id);
@@ -559,7 +595,10 @@ html;
         // View::set('pruebasHidden', $pruebasHidden);
         // View::set('configuracionHidden', $configuracionHidden);
         // View::set('utileriasHidden', $utileriasHidden);
-
+        View::set('optionCate', $optionCate);
+        View::set('optionPais2', $optionPais2);
+        View::set('optionModalidad',$optionModalidad);
+        View::set('optionSeleccione',$optionSeleccione);
         View::set('id_asistente', $id);
         View::set('detalles', $detalles[0]);
         View::set('img_asistente', $img_asistente);
@@ -624,21 +663,38 @@ html;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // $id_registrado = $_POST['id_registrado'];
+            $id_registrado = $_POST['id_registrado'];
+            // $id_registro = $_POST['user_id_asis'];
             $nombre = $_POST['nombre'];
             $apellido_paterno = $_POST['apellido_paterno'];
             $apellido_materno = $_POST['apellido_materno'];
-            // $fecha_nacimiento = $_POST['fecha_nacimiento'];
             $email = $_POST['email'];
             $telefono = $_POST['telefono'];
+            // $clave_socio = $_POST['clave_socio'];
+            $id_categoria = $_POST['id_categoria'];
+            $pais = $_POST['pais'];
+            $estado = $_POST['estado'];
+            $modalidad = $_POST['modalidad'];
 
-            // $documento->_id_registrado = $id_registrado;
+            if($id_categoria != 0){
+                $monto_congreso = AsistentesDao::getCostoCategoria($id_categoria)['costo'];
+            }else{
+
+            }
+           
+
+            $documento->_id = $id_registrado;
             $documento->_nombre = $nombre;
             $documento->_apellido_paterno = $apellido_paterno;
             $documento->_apellido_materno = $apellido_materno;
-            // $documento->_fecha_nacimiento = $fecha_nacimiento;
             $documento->_email = $email;
             $documento->_telefono = $telefono;
+            // $documento->_clave_socio = $clave_socio;
+            $documento->_id_categoria = $id_categoria;
+            $documento->_monto_congreso = $monto_congreso;
+            $documento->_pais = $pais;
+            // $documento->_estado = $estado;
+            $documento->_modalidad = $modalidad;
 
             // var_dump($documento);
             $id = AsistentesDao::update($documento);

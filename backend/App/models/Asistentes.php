@@ -242,6 +242,29 @@ sql;
       
   }
 
+  public static function getCategoria()
+    {
+        $mysqli = Database::getInstance();
+        $query = <<<sql
+      SELECT * FROM categorias WHERE id_categoria;
+sql;
+
+        return $mysqli->queryAll($query);
+        //$mysqli -> set_charset("utf8");
+    }
+
+    public static function getIdUsuarios($id)
+    {
+        $mysqli = Database::getInstance();
+        $query = <<<sql
+      SELECT * FROM registrados
+      WHERE id_registrado = '$id'
+sql;
+
+        return $mysqli->queryOne($query);
+        //$mysqli -> set_charset("utf8");
+    }
+
   public static function getCategoriaMas()
     {
         $mysqli = Database::getInstance();
@@ -303,7 +326,11 @@ sql;
     public static function update($data){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE registrados SET nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, telefono = :telefono WHERE email = :email;
+      UPDATE registrados SET 
+      nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, 
+      telefono = :telefono, email = :email, id_categoria = :id_categoria, monto_congreso = :monto_congreso,
+      id_pais = :pais, modalidad = :modalidad
+      WHERE email = :email;
 sql;
       $parametros = array(
         
@@ -311,8 +338,11 @@ sql;
         ':apellido_paterno'=>$data->_apellido_paterno,
         ':apellido_materno'=>$data->_apellido_materno,
         ':telefono'=>$data->_telefono,
-        ':email'=>$data->_email
-        
+        ':email'=>$data->_email,
+        ':id_categoria'=>$data->_id_categoria,
+        ':monto_congreso'=>$data->_monto_congreso,
+        ':pais'=>$data->_pais,
+        ':modalidad'=>$data->_modalidad
       );
 
       $accion = new \stdClass();

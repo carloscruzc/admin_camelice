@@ -130,7 +130,7 @@
                                                 <div class="row m-2">
                                                     <h6>Correo: <span class="text-thin" id="correo_user"> _____</span></h6>
                                                     <h6>Teléfono: <span class="text-thin" id="telefono_user"> 00 0000 0000</span></h6>
-                                                    <input type="text" id="user_id" name="user_id">
+                                                    <input type="hidden" id="user_id" name="user_id">
                                                     <input type="hidden" id="precio_desbloquedo_por" name="precio_desbloquedo_por">
 
                                                     <a href="" id="generar_gafete" target="_blank" style="display: none;">gafete</a>
@@ -229,6 +229,11 @@
                                                                     <div class="form-group">
                                                                         <label>Ingrese el monto *</label>
                                                                         <input type="number" class="form-control" id="txt_pago" name="txt_pago" min="0" step="0.01">
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label>Número de Transacción </label>
+                                                                        <input type="text" class="form-control" id="num_operacion" name="num_operacion">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -448,6 +453,8 @@
                 // var total_usd = $("#total_usd").text();
                 var total_pesos = $("#total_pesos").text();
                 var descripcion = $("#txt_descripcion").val();
+                var num_operacion = $("#num_operacion").val();
+
                 console.log(user_id);
 
                 if (metodo_pago != '') {
@@ -470,7 +477,8 @@
                                     user_id,
                                     metodo_pago,
                                     total_pesos,
-                                    descripcion
+                                    descripcion,
+                                    num_operacion
                                 },
                                 // dataType: 'json',
                                 beforeSend: function() {
@@ -691,7 +699,7 @@
                 $("#cont-cheks").html(respuesta.checks);
                 $("#user_id").val(respuesta.datos_user.id_registrado);
                 $("#nombre_completo").html(respuesta.nombre_completo);
-                $("#correo_user").html(respuesta.datos_user.usuario);
+                $("#correo_user").html(respuesta.datos_user.email);
                 $("#telefono_user").html(respuesta.datos_user.telefono);
                 $("#imprimir_comprobante").attr('href','/Caja/print/'+respuesta.datos_user.id_registrado+'/'+respuesta.datos_user.clave);
 

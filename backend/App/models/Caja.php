@@ -95,7 +95,7 @@ sql;
 
         $mysqli = Database::getInstance();
         $query = <<<sql
-        INSERT INTO transaccion_compra (id_registrado,referencia_transaccion,productos,total_pesos,tipo_pago,fecha_transaccion,descripcion,utilerias_administradores_id) VALUES(:id_registrado,:referencia_transaccion,:productos,:total_pesos,:tipo_pago,NOW(),:descripcion,:utilerias_administradores_id)                        
+        INSERT INTO transaccion_compra (id_registrado,referencia_transaccion,productos,total_pesos,tipo_pago,fecha_transaccion,descripcion,utilerias_administradores_id,num_operacion) VALUES(:id_registrado,:referencia_transaccion,:productos,:total_pesos,:tipo_pago,NOW(),:descripcion,:utilerias_administradores_id,:num_operacion)                        
 sql;
   
         $parametros = array(
@@ -106,6 +106,7 @@ sql;
             ':total_pesos' => $data->_total_pesos,
             ':tipo_pago' => $data->_tipo_pago,
             ':descripcion' => $data->_descripcion,
+            ':num_operacion' => $data->_num_operacion,
             ':utilerias_administradores_id' => $data->_utilerias_administradores_id 
         );
 

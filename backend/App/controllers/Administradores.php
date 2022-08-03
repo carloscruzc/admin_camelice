@@ -309,163 +309,163 @@ html;
                 
 html;
 
-      $s1 = explode("-", $value['seccion_principal']);
-      $s2 = explode("-", $value['seccion_asistentes']);
-      $s3 = explode("-", $value['seccion_bu']);
-      $s4 = explode("-", $value['seccion_lineas']);
-      $s5 = explode("-", $value['seccion_posiciones']);
-      $s6 = explode("-", $value['seccion_restaurantes']);
-      $s7 = explode("-", $value['seccion_gafete']);
-      $s8 = explode("-", $value['seccion_vuelos']);
-      $s9 = explode("-", $value['seccion_pickup']);
-      $s10 = explode("-", $value['seccion_habitaciones']);
-      $s11 = explode("-", $value['seccion_cenas']);
-      $s12 = explode("-", $value['seccion_vacunacion']);
-      $s13 = explode("-", $value['seccion_pruebas_covid']);
-      $s14 = explode("-", $value['seccion_sorteo_prueba_covid']);
-      $s15 = explode("-", $value['seccion_utilerias']);
-      $s16 = explode("-", $value['seccion_configuracion']);
-      //$s17 = explode("-",$value['seccion_prorrateo']);
+      // $s1 = explode("-", $value['seccion_principal']);
+      // $s2 = explode("-", $value['seccion_asistentes']);
+      // $s3 = explode("-", $value['seccion_bu']);
+      // $s4 = explode("-", $value['seccion_lineas']);
+      // $s5 = explode("-", $value['seccion_posiciones']);
+      // $s6 = explode("-", $value['seccion_restaurantes']);
+      // $s7 = explode("-", $value['seccion_gafete']);
+      // $s8 = explode("-", $value['seccion_vuelos']);
+      // $s9 = explode("-", $value['seccion_pickup']);
+      // $s10 = explode("-", $value['seccion_habitaciones']);
+      // $s11 = explode("-", $value['seccion_cenas']);
+      // $s12 = explode("-", $value['seccion_vacunacion']);
+      // $s13 = explode("-", $value['seccion_pruebas_covid']);
+      // $s14 = explode("-", $value['seccion_sorteo_prueba_covid']);
+      // $s15 = explode("-", $value['seccion_utilerias']);
+      // $s16 = explode("-", $value['seccion_configuracion']);
+      // //$s17 = explode("-",$value['seccion_prorrateo']);
 
-      $ver1 = ($s1['0'] == 1) ? "Principal" : "";
-      $pdf1 = ($s1['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel1 = ($s1['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar1 = ($s1['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar1 = ($s1['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar1 = ($s1['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver1 = ($s1['0'] == 1) ? "Principal" : "";
+      // $pdf1 = ($s1['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel1 = ($s1['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar1 = ($s1['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar1 = ($s1['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar1 = ($s1['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver2 = ($s2['0'] == 1) ? "Asistentes" : "";
-      $pdf2 = ($s2['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel2 = ($s2['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar2 = ($s2['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar2 = ($s2['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar2 = ($s2['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver2 = ($s2['0'] == 1) ? "Asistentes" : "";
+      // $pdf2 = ($s2['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel2 = ($s2['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar2 = ($s2['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar2 = ($s2['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar2 = ($s2['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver3 = ($s3['0'] == 1) ? "Bu" : "";
-      $pdf3 = ($s3['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel3 = ($s3['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar3 = ($s3['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar3 = ($s3['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar3 = ($s3['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver3 = ($s3['0'] == 1) ? "Bu" : "";
+      // $pdf3 = ($s3['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel3 = ($s3['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar3 = ($s3['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar3 = ($s3['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar3 = ($s3['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver4 = ($s4['0'] == 1) ? "Lineas" : "";
-      $pdf4 = ($s4['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel4 = ($s4['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar4 = ($s4['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar4 = ($s4['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar4 = ($s4['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver4 = ($s4['0'] == 1) ? "Lineas" : "";
+      // $pdf4 = ($s4['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel4 = ($s4['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar4 = ($s4['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar4 = ($s4['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar4 = ($s4['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver5 = ($s5['0'] == 1) ? "Posiciones" : "";
-      $pdf5 = ($s5['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel5 = ($s5['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar5 = ($s5['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar5 = ($s5['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar5 = ($s5['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver5 = ($s5['0'] == 1) ? "Posiciones" : "";
+      // $pdf5 = ($s5['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel5 = ($s5['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar5 = ($s5['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar5 = ($s5['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar5 = ($s5['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver6 = ($s6['0'] == 1) ? "Restaurantes" : "";
-      $pdf6 = ($s6['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel6 = ($s6['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar6 = ($s6['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar6 = ($s6['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar6 = ($s6['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver6 = ($s6['0'] == 1) ? "Restaurantes" : "";
+      // $pdf6 = ($s6['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel6 = ($s6['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar6 = ($s6['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar6 = ($s6['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar6 = ($s6['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver7 = ($s7['0'] == 1) ? "Gafete" : "";
-      $pdf7 = ($s7['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel7 = ($s7['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar7 = ($s7['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar7 = ($s7['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar7 = ($s7['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver7 = ($s7['0'] == 1) ? "Gafete" : "";
+      // $pdf7 = ($s7['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel7 = ($s7['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar7 = ($s7['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar7 = ($s7['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar7 = ($s7['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver8 = ($s8['0'] == 1) ? "Vuelos" : "";
-      $pdf8 = ($s8['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel8 = ($s8['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar8 = ($s8['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar8 = ($s8['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar8 = ($s8['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver8 = ($s8['0'] == 1) ? "Vuelos" : "";
+      // $pdf8 = ($s8['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel8 = ($s8['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar8 = ($s8['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar8 = ($s8['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar8 = ($s8['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver9 = ($s9['0'] == 1) ? "PickUp" : "";
-      $pdf9 = ($s9['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel9 = ($s9['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar9 = ($s9['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar9 = ($s9['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar9 = ($s9['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver9 = ($s9['0'] == 1) ? "PickUp" : "";
+      // $pdf9 = ($s9['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel9 = ($s9['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar9 = ($s9['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar9 = ($s9['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar9 = ($s9['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver10 = ($s10['0'] == 1) ? "Habitaciones" : "";
-      $pdf10 = ($s10['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel10 = ($s10['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar10 = ($s10['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar10 = ($s10['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar10 = ($s10['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver10 = ($s10['0'] == 1) ? "Habitaciones" : "";
+      // $pdf10 = ($s10['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel10 = ($s10['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar10 = ($s10['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar10 = ($s10['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar10 = ($s10['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver11 = ($s11['0'] == 1) ? "Cenas" : "";
-      $pdf11 = ($s11['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel11 = ($s11['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar11 = ($s11['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar11 = ($s11['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar11 = ($s11['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver11 = ($s11['0'] == 1) ? "Cenas" : "";
+      // $pdf11 = ($s11['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel11 = ($s11['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar11 = ($s11['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar11 = ($s11['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar11 = ($s11['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver12 = ($s12['0'] == 1) ? "Vacunación" : "";
-      $pdf12 = ($s12['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel12 = ($s12['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar12 = ($s12['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar12 = ($s12['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar12 = ($s12['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver12 = ($s12['0'] == 1) ? "Vacunación" : "";
+      // $pdf12 = ($s12['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel12 = ($s12['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar12 = ($s12['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar12 = ($s12['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar12 = ($s12['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver13 = ($s13['0'] == 1) ? "Pruebas Covid" : "";
-      $pdf13 = ($s13['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel13 = ($s13['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar13 = ($s13['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar13 = ($s13['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar13 = ($s13['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver13 = ($s13['0'] == 1) ? "Pruebas Covid" : "";
+      // $pdf13 = ($s13['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel13 = ($s13['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar13 = ($s13['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar13 = ($s13['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar13 = ($s13['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver14 = ($s14['0'] == 1) ? "Sorteo Prueba Covid" : "";
-      $pdf14 = ($s14['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel14 = ($s14['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar14 = ($s14['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar14 = ($s14['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar14 = ($s14['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver14 = ($s14['0'] == 1) ? "Sorteo Prueba Covid" : "";
+      // $pdf14 = ($s14['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel14 = ($s14['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar14 = ($s14['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar14 = ($s14['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar14 = ($s14['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver15 = ($s15['0'] == 1) ? "Utilerias" : "";
-      $pdf15 = ($s15['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel15 = ($s15['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar15 = ($s15['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar15 = ($s15['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar15 = ($s15['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver15 = ($s15['0'] == 1) ? "Utilerias" : "";
+      // $pdf15 = ($s15['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel15 = ($s15['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar15 = ($s15['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar15 = ($s15['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar15 = ($s15['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      $ver16 = ($s16['0'] == 1) ? "Configuración" : "";
-      $pdf16 = ($s16['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
-      $excel16 = ($s16['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
-      $agregar16 = ($s16['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
-      $editar16 = ($s16['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
-      $eliminar16 = ($s16['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
+      // $ver16 = ($s16['0'] == 1) ? "Configuración" : "";
+      // $pdf16 = ($s16['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      // $excel16 = ($s16['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      // $agregar16 = ($s16['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      // $editar16 = ($s16['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      // $eliminar16 = ($s16['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-      // $ver17 = ($s17['0'] == 1) ? "Prorrateo":"";
-      // $pdf17 = ($s17['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-      // $excel17 = ($s17['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-      // $agregar17 = ($s17['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-      // $editar17 = ($s17['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-      // $eliminar17 = ($s17['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      // // $ver17 = ($s17['0'] == 1) ? "Prorrateo":"";
+      // // $pdf17 = ($s17['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
+      // // $excel17 = ($s17['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
+      // // $agregar17 = ($s17['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
+      // // $editar17 = ($s17['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
+      // // $eliminar17 = ($s17['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
 
-      $varSeccion1 = ($ver1 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver1}<br></span> {$pdf1} {$excel1} {$agregar1} {$editar1} {$eliminar1}</div>" : "";
-      $varSeccion2 = ($ver2 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver2}<br></span> {$pdf2} {$excel2} {$agregar2} {$editar2} {$eliminar2}</div>" : "";
-      $varSeccion3 = ($ver3 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver3}<br></span> {$pdf3} {$excel3} {$agregar3} {$editar3} {$eliminar3}</div>" : "";
-      $varSeccion4 = ($ver4 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver4}<br></span> {$pdf4} {$excel4} {$agregar4} {$editar4} {$eliminar4}</div>" : "";
-      $varSeccion5 = ($ver5 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver5}<br></span> {$pdf5} {$excel5} {$agregar5} {$editar5} {$eliminar5}</div>" : "";
-      $varSeccion6 = ($ver6 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver6}<br></span> {$pdf6} {$excel6} {$agregar6} {$editar6} {$eliminar6}</div>" : "";
-      $varSeccion7 = ($ver7 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver7}<br></span> {$pdf7} {$excel7} {$agregar7} {$editar7} {$eliminar7}</div>" : "";
-      $varSeccion8 = ($ver8 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver8}<br></span> {$pdf8} {$excel8} {$agregar8} {$editar8} {$eliminar8}</div>" : "";
-      $varSeccion9 = ($ver9 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver9}<br></span> {$pdf9} {$excel9} {$agregar9} {$editar9} {$eliminar9}</div>" : "";
-      $varSeccion10 = ($ver10 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver10}<br></span> {$pdf10} {$excel10} {$agregar10} {$editar10} {$eliminar10}</div>" : "";
-      $varSeccion11 = ($ver11 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver11}<br></span> {$pdf11} {$excel11} {$agregar11} {$editar11} {$eliminar11}</div>" : "";
-      $varSeccion12 = ($ver12 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver12}<br></span> {$pdf12} {$excel12} {$agregar12} {$editar12} {$eliminar12}</div>" : "";
-      $varSeccion13 = ($ver13 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver13}<br></span> {$pdf13} {$excel13} {$agregar13} {$editar13} {$eliminar13}</div>" : "";
-      $varSeccion14 = ($ver14 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver14}<br></span> {$pdf14} {$excel14} {$agregar14} {$editar14} {$eliminar14}</div>" : "";
-      $varSeccion15 = ($ver15 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver15}<br></span> {$pdf15} {$excel15} {$agregar15} {$editar15} {$eliminar15}</div>" : "";
-      $varSeccion16 = ($ver16 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver16}<br></span> {$pdf16} {$excel16} {$agregar16} {$editar16} {$eliminar16}</div>" : "";
-      //$varSeccion17 = ($ver17!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver17}<br></span> {$pdf17} {$excel17} {$agregar17} {$editar17} {$elimina17}</div>": "";
+      // $varSeccion1 = ($ver1 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver1}<br></span> {$pdf1} {$excel1} {$agregar1} {$editar1} {$eliminar1}</div>" : "";
+      // $varSeccion2 = ($ver2 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver2}<br></span> {$pdf2} {$excel2} {$agregar2} {$editar2} {$eliminar2}</div>" : "";
+      // $varSeccion3 = ($ver3 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver3}<br></span> {$pdf3} {$excel3} {$agregar3} {$editar3} {$eliminar3}</div>" : "";
+      // $varSeccion4 = ($ver4 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver4}<br></span> {$pdf4} {$excel4} {$agregar4} {$editar4} {$eliminar4}</div>" : "";
+      // $varSeccion5 = ($ver5 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver5}<br></span> {$pdf5} {$excel5} {$agregar5} {$editar5} {$eliminar5}</div>" : "";
+      // $varSeccion6 = ($ver6 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver6}<br></span> {$pdf6} {$excel6} {$agregar6} {$editar6} {$eliminar6}</div>" : "";
+      // $varSeccion7 = ($ver7 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver7}<br></span> {$pdf7} {$excel7} {$agregar7} {$editar7} {$eliminar7}</div>" : "";
+      // $varSeccion8 = ($ver8 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver8}<br></span> {$pdf8} {$excel8} {$agregar8} {$editar8} {$eliminar8}</div>" : "";
+      // $varSeccion9 = ($ver9 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver9}<br></span> {$pdf9} {$excel9} {$agregar9} {$editar9} {$eliminar9}</div>" : "";
+      // $varSeccion10 = ($ver10 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver10}<br></span> {$pdf10} {$excel10} {$agregar10} {$editar10} {$eliminar10}</div>" : "";
+      // $varSeccion11 = ($ver11 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver11}<br></span> {$pdf11} {$excel11} {$agregar11} {$editar11} {$eliminar11}</div>" : "";
+      // $varSeccion12 = ($ver12 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver12}<br></span> {$pdf12} {$excel12} {$agregar12} {$editar12} {$eliminar12}</div>" : "";
+      // $varSeccion13 = ($ver13 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver13}<br></span> {$pdf13} {$excel13} {$agregar13} {$editar13} {$eliminar13}</div>" : "";
+      // $varSeccion14 = ($ver14 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver14}<br></span> {$pdf14} {$excel14} {$agregar14} {$editar14} {$eliminar14}</div>" : "";
+      // $varSeccion15 = ($ver15 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver15}<br></span> {$pdf15} {$excel15} {$agregar15} {$editar15} {$eliminar15}</div>" : "";
+      // $varSeccion16 = ($ver16 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver16}<br></span> {$pdf16} {$excel16} {$agregar16} {$editar16} {$eliminar16}</div>" : "";
+      // //$varSeccion17 = ($ver17!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver17}<br></span> {$pdf17} {$excel17} {$agregar17} {$editar17} {$elimina17}</div>": "";
 
-      $tabla .= "<div class=\"row text-center\">" . $varSeccion1 . $varSeccion2 . $varSeccion3 . $varSeccion4 . $varSeccion5 . $varSeccion6 . $varSeccion7 . $varSeccion8 . $varSeccion9 . $varSeccion10 . $varSeccion11 . $varSeccion12 . $varSeccion13 . $varSeccion14 . $varSeccion15 . $varSeccion16 . "</div></td>";
-      //$HaySeccion = AdministradoresDao::getDepartamentosAdministrador($value['administrador_id']);
+      // $tabla .= "<div class=\"row text-center\">" . $varSeccion1 . $varSeccion2 . $varSeccion3 . $varSeccion4 . $varSeccion5 . $varSeccion6 . $varSeccion7 . $varSeccion8 . $varSeccion9 . $varSeccion10 . $varSeccion11 . $varSeccion12 . $varSeccion13 . $varSeccion14 . $varSeccion15 . $varSeccion16 . "</div></td>";
+      // //$HaySeccion = AdministradoresDao::getDepartamentosAdministrador($value['administrador_id']);
 
 
       $tabla .= <<<html
@@ -491,7 +491,7 @@ html;
 html;
     }
 
-    $permisos = (Controller::getPermisoUser($this->__usuario)['perfil_id']) != 1 ? "style=\"display:none;\"" : "";
+    // $permisos = (Controller::getPermisoUser($this->__usuario)['perfil_id']) != 1 ? "style=\"display:none;\"" : "";
     // var_dump(Controller::getPermisoUser($this->__usuario)[0]['perfil_id']);
     // var_dump(Controller::getPermisoUser($this->__usuario)['perfil_id']);
     // var_dump($permisos);
@@ -503,30 +503,30 @@ html;
 html;
     }
 
-    $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
-    $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
-    $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
-    $pickUpHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pickup", 1) == 0) ? "style=\"display:none;\"" : "";
-    $habitacionesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_habitaciones", 1) == 0) ? "style=\"display:none;\"" : "";
-    $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
-    $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
-    $aistenciasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistencias", 1) == 0) ? "style=\"display:none;\"" : "";
-    $vacunacionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 1) == 0) ? "style=\"display:none;\"" : "";
-    $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
-    $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
-    $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
+    // $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $pickUpHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pickup", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $habitacionesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_habitaciones", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $aistenciasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistencias", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $vacunacionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
+    // $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
 
-    View::set('permisoGlobalHidden', $permisoGlobalHidden);
-    View::set('asistentesHidden', $asistentesHidden);
-    View::set('vuelosHidden', $vuelosHidden);
-    View::set('pickUpHidden', $pickUpHidden);
-    View::set('habitacionesHidden', $habitacionesHidden);
-    View::set('cenasHidden', $cenasHidden);
-    View::set('aistenciasHidden', $aistenciasHidden);
-    View::set('vacunacionHidden', $vacunacionHidden);
-    View::set('pruebasHidden', $pruebasHidden);
-    View::set('configuracionHidden', $configuracionHidden);
-    View::set('utileriasHidden', $permisos);
+    // View::set('permisoGlobalHidden', $permisoGlobalHidden);
+    // View::set('asistentesHidden', $asistentesHidden);
+    // View::set('vuelosHidden', $vuelosHidden);
+    // View::set('pickUpHidden', $pickUpHidden);
+    // View::set('habitacionesHidden', $habitacionesHidden);
+    // View::set('cenasHidden', $cenasHidden);
+    // View::set('aistenciasHidden', $aistenciasHidden);
+    // View::set('vacunacionHidden', $vacunacionHidden);
+    // View::set('pruebasHidden', $pruebasHidden);
+    // View::set('configuracionHidden', $configuracionHidden);
+    // View::set('utileriasHidden', $permisos);
 
     View::set('tabla', $tabla);
     View::set('perfiles', $perfiles);
@@ -1697,15 +1697,15 @@ html;
 html;
     }
 
-    $perfiles = "";
-    foreach (AdministradoresDao::getPerfil() as $key => $value) {
-      $selected = ($administrador['perfil_id'] == $value['perfil_id']) ? 'selected' : '';
-      $perfiles .= <<<html
-        <option {$selected} id="perfil{$value['perfil_id']}" data-id="{$value['nombre']}" value="{$value['perfil_id']}">{$value['nombre']}</option>
-html;
-    }
+//     $perfiles = "";
+//     foreach (AdministradoresDao::getPerfil() as $key => $value) {
+//       $selected = ($administrador['perfil_id'] == $value['perfil_id']) ? 'selected' : '';
+//       $perfiles .= <<<html
+//         <option {$selected} id="perfil{$value['perfil_id']}" data-id="{$value['nombre']}" value="{$value['perfil_id']}">{$value['nombre']}</option>
+// html;
+//     }
 
-    $permisos_usuario = AdministradoresDao::getPermisosByUser($administrador['usuario']);
+    // $permisos_usuario = AdministradoresDao::getPermisosByUser($administrador['usuario']);
 
     // print_r($permisos_usuario);
     // exit;
@@ -1713,33 +1713,33 @@ html;
     // $r = AdministradoresDao::getSeccionesMenu();
     // print_r($r);
     // exit;
-    foreach (AdministradoresDao::getSeccionesMenu() as $key => $value) {
+    // foreach (AdministradoresDao::getSeccionesMenu() as $key => $value) {
 
       // echo $value['nombre_seccion'];
       // echo "<br>";
 
-      if ($permisos_usuario['permisos_globales'] == 0) {
-        $seccion = 'seccion_' . strtolower($value['nombre_seccion']);
-        $seccion = str_replace(' de ', '_', $seccion);
-        $seccion = str_replace(' ', '_', $seccion);
+      // if ($permisos_usuario['permisos_globales'] == 0) {
+      //   $seccion = 'seccion_' . strtolower($value['nombre_seccion']);
+      //   $seccion = str_replace(' de ', '_', $seccion);
+      //   $seccion = str_replace(' ', '_', $seccion);
 
-        $permisos = $permisos_usuario[$seccion];
+      //   $permisos = $permisos_usuario[$seccion];
 
  
-        $permisos = preg_replace('/1/', 'checked', $permisos, 1);
-        $permisos = preg_replace('/2/', 'checked', $permisos, 1);
-        $permisos = preg_replace('/3/', 'checked', $permisos, 1);
-        $permisos = preg_replace('/4/', 'checked', $permisos, 1);
-        $permisos = preg_replace('/5/', 'checked', $permisos, 1);
-        $permisos = preg_replace('/6/', 'checked', $permisos, 1);
-        $permisos = preg_replace('/0/', '', $permisos);
-        $permisos = explode('-', $permisos);
+      //   $permisos = preg_replace('/1/', 'checked', $permisos, 1);
+      //   $permisos = preg_replace('/2/', 'checked', $permisos, 1);
+      //   $permisos = preg_replace('/3/', 'checked', $permisos, 1);
+      //   $permisos = preg_replace('/4/', 'checked', $permisos, 1);
+      //   $permisos = preg_replace('/5/', 'checked', $permisos, 1);
+      //   $permisos = preg_replace('/6/', 'checked', $permisos, 1);
+      //   $permisos = preg_replace('/0/', '', $permisos);
+      //   $permisos = explode('-', $permisos);
 
-        $permisos = ($permisos[0] == '') ? array('', '', '', '', '', '') : $permisos; /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
-        $check_habilitado = ($permisos[0] == '') ? array('', 'disabled', 'disabled', 'disabled', 'disabled') : array('', '', '', '', '', ''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
-      } else {
-        $permisos = array('checked', 'checked', 'checked', 'checked', 'checked', 'checked');
-      }
+      //   $permisos = ($permisos[0] == '') ? array('', '', '', '', '', '') : $permisos; /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
+      //   $check_habilitado = ($permisos[0] == '') ? array('', 'disabled', 'disabled', 'disabled', 'disabled') : array('', '', '', '', '', ''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
+      // } else {
+      //   $permisos = array('checked', 'checked', 'checked', 'checked', 'checked', 'checked');
+      // }
 
      /* $tabla1 .= <<<html
           <tr>
@@ -1765,11 +1765,11 @@ html;
             </td>
         </tr>
 html;*/
-    }
+    // }
 
     
     
-    View::set('lineas', $lineas);
+    // View::set('lineas', $lineas);
     View::set('perfiles', $perfiles);
     View::set('status', $status);
     View::set('permisos', $tabla1);

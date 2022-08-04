@@ -159,13 +159,15 @@ html;
     
     
     foreach ($datos as $key => $value) {
+      $tipo_pago = str_replace("_"," ",$value['tipo_pago']);
 
       $tabla.=<<<html
       <tr>
         <td>{$value['id_transaccion_compra']}</td>
         <td>{$value['nombre_user']}</td>
         <td id="descripcion_asistencia" width="20">{$value['productos']}</td>
-        <td class="text-center">{$value['total_pesos']}</td>        
+        <td class="text-center">{$value['total_pesos']}</td>
+        <td class="text-center">{$tipo_pago}</td>         
         <td class="text-center">{$value['fecha_transaccion']}</td> 
         <td class="text-center">{$value['nombre_caja']}</td>
         <td class="text-center">
@@ -316,12 +318,15 @@ html;
     
     foreach ($datos as $key => $value) {
 
+      $tipo_pago = str_replace("_"," ",$value['tipo_pago']);
+
       $tabla.=<<<html
       <tr>
         <td>{$value['id_transaccion_compra']}</td>
         <td>{$value['nombre_user']}</td>
         <td id="descripcion_asistencia" width="20">{$value['productos']}</td>
-        <td class="text-center">{$value['total_pesos']}</td>        
+        <td class="text-center">{$value['total_pesos']}</td> 
+        <td class="text-center">$tipo_pago</td>         
         <td class="text-center">{$value['fecha_transaccion']}</td> 
         <td class="text-center">{$value['nombre_caja']}</td>
         <td class="text-center">
@@ -383,6 +388,7 @@ html;
         }
         
         $nombre_completo = $datos_user['nombre'] . " " . $datos_user['apellidop'] . "\n " . $datos_user['apellidom'];
+       
 
 
         $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
@@ -521,6 +527,32 @@ html;
         $pdf->SetFont('Arial', 'B', 13);  
         $pdf->SetTextColor(94, 94, 94);
         $pdf->Multicell(100, 10, $total_en_letras, 0, 'C');
+
+        if($tipo_pago == "Tarjeta_Credito"){
+
+          //tipo pago
+          $pdf->SetXY(22, 215);
+          $pdf->SetFont('Arial', 'B', 9);  
+          $pdf->SetTextColor(0, 0, 0);
+          $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+
+
+        }else if($tipo_pago == "Tarjeta_Debito"){
+
+          //tipo pago
+          $pdf->SetXY(26, 218.5);
+          $pdf->SetFont('Arial', 'B', 9);  
+          $pdf->SetTextColor(0, 0, 0);
+          $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+
+        }else if($tipo_pago == "Efectivo"){
+
+          //tipo pago
+          $pdf->SetXY(12, 208);
+          $pdf->SetFont('Arial', 'B', 9);  
+          $pdf->SetTextColor(0, 0, 0);
+          $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+        }
 
         //tipo pago
         // $pdf->SetXY(125, 265);

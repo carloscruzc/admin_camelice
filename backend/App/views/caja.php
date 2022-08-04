@@ -189,7 +189,7 @@
                                                                                 <span class="font-totales" style="display: none;">Total pesos mexicanos: $ <span id="total_pesos"></span></span>
                                                                             </div>
                                                                             <br>
-                                                                            <div>
+                                                                            <div class="cont-cambio">
 
                                                                                 <span class="font-totales">Cambio pesos mexicanos: $ <span id="total_cambio_formato"></span></span>
                                                                                 <span class="font-totales" style="display: none;">Cambio pesos mexicanos: $ <span id="total_cambio"></span></span>
@@ -211,7 +211,7 @@
 
                                                         </div>
 
-                                                        <div class="col-md-4 cont-totales" >
+                                                        <div class="col-md-4 " >
                                                             <div style="display:flex; justify-content: space-evenly;">
                                                                 
 
@@ -221,8 +221,8 @@
                                                                         <select class="form-control" id="metodo_pago" name="metodo_pago">
                                                                             <option value="">Seleccione una opción</option>
                                                                             <option value="Efectivo">Efectivo</option>
-                                                                            <option value="Tarjeta">Tarjeta Credito / Debito</option>
-
+                                                                            <option value="Tarjeta_Credito">Tarjeta Crédito</option>
+                                                                            <option value="Tarjeta_Debito">Tarjeta Débito</option>
                                                                         </select>
                                                                     </div>
 
@@ -356,8 +356,6 @@
         function focus_input() {
             $("#codigo_qr_venta").focus();
         }
-
-
 
         function borrarRegister(dato) {
             // alert(dato);
@@ -517,6 +515,18 @@
 
 
 
+            });
+
+            $("#metodo_pago").on("change",function(){
+                var metodo_pago = $(this).val();
+
+                if(metodo_pago != 'Efectivo'){
+                    $(".cont-cambio").hide();
+                    
+                }else{
+                    
+                    $(".cont-cambio").show();
+                }
             });
 
             

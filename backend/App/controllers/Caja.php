@@ -803,6 +803,32 @@ html;
         $pdf->SetTextColor(94, 94, 94);
         $pdf->Multicell(100, 10, $total_en_letras, 0, 'C');
 
+        if($tipo_pago == "Tarjeta_Credito"){
+
+            //tipo pago
+            $pdf->SetXY(22, 215);
+            $pdf->SetFont('Arial', 'B', 9);  
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+  
+  
+          }else if($tipo_pago == "Tarjeta_Debito"){
+  
+            //tipo pago
+            $pdf->SetXY(26, 218.5);
+            $pdf->SetFont('Arial', 'B', 9);  
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+  
+          }else if($tipo_pago == "Efectivo"){
+  
+            //tipo pago
+            $pdf->SetXY(12, 208);
+            $pdf->SetFont('Arial', 'B', 9);  
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+          }
+
         //tipo pago
         // $pdf->SetXY(125, 265);
         // $pdf->SetFont('Arial', 'B', 13);  

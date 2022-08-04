@@ -171,9 +171,12 @@ html;
         $usuario->_usuario = MasterDom::getData("usuario");
         $usuario->_password = MD5(MasterDom::getData("password"));
         $user = LoginDao::getById($usuario);
+        $perfil = LoginDao::getPerfil($user['perfil_id'])['nombre'];
+
         session_start();
         $_SESSION['usuario'] = $user['usuario'];
         $_SESSION['nombre'] = $user['nombre'];
+        $_SESSION['perfil'] = $perfil;
         $_SESSION['utilerias_administradores_id'] = $user['utilerias_administradores_id'];
 
         header("location: /Principal/");

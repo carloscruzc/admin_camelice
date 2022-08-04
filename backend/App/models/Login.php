@@ -25,6 +25,16 @@ sql;
         return $mysqli->queryOne($query,$params);
     }
 
+    public static function getPerfil($id_perfil){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM utilerias_perfiles WHERE perfil_id = $id_perfil 
+sql;
+        
+
+        return $mysqli->queryOne($query);
+    }
+
     public static function getUser($usuario){
         $mysqli = Database::getInstance(true);
         $query =<<<sql

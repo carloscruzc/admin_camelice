@@ -61,10 +61,15 @@ html;
     //   View::set('configuracionHidden',$configuracionHidden);
     //   View::set('utileriasHidden',$utileriasHidden);
 
-      View::set('asideMenu',$this->_contenedor->asideMenu());
-      View::set('header',$this->_contenedor->header($extraHeader));
-      View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("principal_all");
+    if($_SESSION['perfil'] == "Caja"){
+        header("location: /Caja/");
+    }else{
+        View::set('asideMenu',$this->_contenedor->asideMenu());
+        View::set('header',$this->_contenedor->header($extraHeader));
+        View::set('footer',$this->_contenedor->footer($extraFooter));
+        View::render("principal_all");
+    }
+     
     }
 
     

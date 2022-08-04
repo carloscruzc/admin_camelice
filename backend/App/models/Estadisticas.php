@@ -46,7 +46,7 @@ sql;
     public static function getDataCaja(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ua.nombre,ua.apellidop,ua.apellidom,tc.productos,tc.total_pesos,tc.fecha_transaccion
+      SELECT ua.nombre,ua.apellidop,ua.apellidom,tc.productos,tc.total_pesos,tc.fecha_transaccion,tc.tipo_pago
       FROM registrados ua
       INNER JOIN transaccion_compra tc ON (ua.id_registrado = tc.id_registrado);
 sql;
@@ -57,10 +57,23 @@ sql;
     public static function getDataCajaByFecha($date){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT tc.id_transaccion_compra,ua.nombre,ua.apellidop,ua.apellidom,tc.productos,tc.total_pesos,tc.fecha_transaccion
+      SELECT tc.id_transaccion_compra,ua.nombre,ua.apellidop,ua.apellidom,tc.productos,tc.total_pesos,tc.fecha_transaccion,tc.tipo_pago,uaa.nombre as nombre_caja
       FROM registrados ua
       INNER JOIN transaccion_compra tc ON (ua.id_registrado = tc.id_registrado)
+      INNER JOIN utilerias_administradores uaa ON (tc.utilerias_administradores_id = uaa.utilerias_administradores_id)
       WHERE fecha_transaccion LIKE '%$date%';
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
+    public static function getDataCajaAll(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT tc.id_transaccion_compra,ua.nombre,ua.apellidop,ua.apellidom,tc.productos,tc.total_pesos,tc.fecha_transaccion,tc.tipo_pago,uaa.nombre as nombre_caja
+      FROM registrados ua
+      INNER JOIN transaccion_compra tc ON (ua.id_registrado = tc.id_registrado)
+      INNER JOIN utilerias_administradores uaa ON (tc.utilerias_administradores_id = uaa.utilerias_administradores_id)
 sql;
       return $mysqli->queryAll($query);
         

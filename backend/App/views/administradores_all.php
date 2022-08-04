@@ -283,7 +283,7 @@
                                     <div class="form-group col-12 col-md-6 ">
                                         <label class="form-label">Nombre del Administrador *</label>
                                         <div class="input-group">
-                                            <input id="nombre" name="nombre" id="nombre" class="form-control" type="text" placeholder="Ej. Jonathan Valdez Martinez" required="required" onfocus="focused(this)" onfocusout="defocused(this)">
+                                            <input id="nombre" name="nombre" id="nombre" class="form-control" type="text" placeholder="Ej. Gerson Velasco" required="required" onfocus="focused(this)" onfocusout="defocused(this)">
                                         </div>
                                     </div>
                                     <div class="form-group  col-12 col-md-6">

@@ -156,6 +156,7 @@ $extraFooter =<<<html
 html;
     $tabla = '';
     $datos = ComprobantesCajaDao::getAll();
+    $total_pesos = 0;
     
     
     foreach ($datos as $key => $value) {
@@ -176,6 +177,8 @@ html;
       </tr>
  
 html;
+
+      $total_pesos += $value['total_pesos'];
     }
 
     $num_asistencias = AsistenciasDao::getNumAsistencias()['total'];
@@ -190,6 +193,7 @@ html;
 
 
       // View::set('lineas',$lineas);
+      View::set('total_pesos',$total_pesos);
       View::set('tabla',$tabla);
       View::set('num_asistencias',$num_asistencias);
       View::set('asideMenu',$this->_contenedor->asideMenu());
@@ -314,6 +318,7 @@ $extraFooter =<<<html
 html;
     $tabla = '';
     $datos = ComprobantesCajaDao::getAll();
+    $total_pesos = 0;
     
     
     foreach ($datos as $key => $value) {
@@ -335,6 +340,8 @@ html;
       </tr>
  
 html;
+
+      $total_pesos += $value['total_pesos'];
     }
 
     $num_asistencias = AsistenciasDao::getNumAsistencias()['total'];
@@ -348,9 +355,10 @@ html;
       }
 
 
-      // View::set('lineas',$lineas);
+      View::set('total_pesos',$total_pesos);
       View::set('tabla',$tabla);
       View::set('num_asistencias',$num_asistencias);
+      View::set('ventas_totales',count($datos));
       // View::set('asideMenu',$this->_contenedor->asideMenu());
       View::set('header',$this->_contenedor->header($extraHeader));
       View::set('footer',$this->_contenedor->footer($extraFooter));

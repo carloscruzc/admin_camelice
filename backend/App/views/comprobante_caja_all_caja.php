@@ -2,8 +2,9 @@
 <title>
     Conceptos - CAMELICE - GRUPO LAHE
 </title>
+
 <body class="g-sidenav-show  bg-gray-100">
-    <?php echo $asideMenu;?>
+    <?php echo $asideMenu; ?>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
@@ -84,7 +85,7 @@
                             <div class="h-100">
                                 <h5 class="mb-1">
                                     Listas de Comprobantes
-                                  
+
                                 </h5>
                                 <p class="mb-0 font-weight-bold text-sm">
                                 </p>
@@ -104,12 +105,21 @@
                         </div> -->
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label>Buscar por Fecha:</label>
+                        <input type="date" id="fecha_ini" name="fecha_ini" class="form-control" />
+
+                        <br>
+                        <button class="btn btn-primary" id="btn_todas">Todas</button>
+                    </div>
+                </div>
             </div>
 
             <div class="card-body p-1 mt-1">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
-                        <div class="d-flex m-1">
+                        <!-- <div class="d-flex m-1">
                             <div class="ms-auto d-flex">
                                 <div class="pe-4 mt-1 position-relative">
                                     <hr class="vertical dark mt-0">
@@ -123,12 +133,12 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row mt-4">
                             <div class="col-12">
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
-                                        
+
                                         <!-- <p style="font-size: 12px">
                                         <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
                                         <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)
@@ -137,18 +147,18 @@
                                     </div>
                                     <div class="card-body px-0 pt-0 pb-2">
                                         <div class="table-responsive p-0">
-                                            <table class="table align-items-center mb-0 table table-striped table-bordered" id="asistencia-list">
+                                            <table class="table align-items-center mb-0 table table-striped table-bordered" id="table_caja">
                                                 <thead>
                                                     <tr>
                                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Folio</th>
                                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Conceptos</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Método Pago</th>                                   
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Método Pago</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vendió</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                                     
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -156,6 +166,14 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                    </div>
+
+                                    <div class="cont_total" style="padding: 20px;">
+                                        <span style="font-size: 25px; color:green;">Total: $ <span id="total_pesos"><?= number_format($total_pesos, 2) ?></span> MXN</span>
+                                    </div>
+
+                                    <div class="cont_total_ventas" style="padding: 20px;">
+                                        <span style="font-size: 25px; color:green;">Número de Ventas: <span id="total_ventas"><?= number_format($ventas_totales) ?></span></span>
                                     </div>
                                 </div>
                             </div>
@@ -167,8 +185,8 @@
 
         </div>
 
-       
-        
+
+
 
     </main>
 </body>
@@ -176,15 +194,146 @@
 <script>
     $(document).ready(function() {
 
-        
+        $("#btn_todas").on("click",function(){
 
+            $("input[type=date]").val("");
+            $.ajax({
+                url: "/Estadisticas/getCajaAll",
+                type: "POST",
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+                   
+                    $("#table_caja tbody").empty();
+                },
+                success: function(respuesta) {
+                    
+                    console.log(respuesta);
+                    var total_pesos = 0;
+
+                    if (respuesta.count > 0) {
+
+
+                        $.each(respuesta.data, function(index, el) {
+
+
+                            $("#table_caja tbody").append(
+                                `<tr>
+                                <td>${el.id_transaccion_compra}</td>
+                                <td>${el.nombre}  ${el.apellidop}  ${el.apellidom}  </td>
+                                <td id="descripcion_asistencia" width="20">${el.productos}</td>
+                                <td class="text-center">$ ${el.total_pesos}</td> 
+                                <td class="text-center"> ${el.tipo_pago}</td>  
+                                <td class="text-center"> ${el.nombre_caja}</td>
+                                <td class="text-center"> ${el.fecha_transaccion}</td>
+                                <td class="text-center">
+                                    <a href='/ComprobantesCaja/print/${el.id_transaccion_compra}' style='' class='btn btn-icon-only btn-info' value='${el.id_registrado}' data-bs-toggle="tooltip" target="_blank" data-bs-placement="left" data-bs-original-title="ver comprobante"><i class="fa fal fa-file"></i></a>
+                                </td>
+                                
+                                </tr>`
+                            );
+
+
+                        });
+
+                        $("#total_pesos").text(respuesta.total);
+                        $("#total_ventas").text(respuesta.count);
+                    } else {
+                        
+                        // $('#table_caja').DataTable();
+                        $("#table_caja tbody").append(
+                            `<tr><td colspan="8" class="text-center"> No hay Registros para esta fecha</td></tr>`
+                        );
+                        $("#total_pesos").text(0);
+                        $("#total_ventas").text(0);
+                    }
+
+                    console.log(total_pesos);
+
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+
+        
         //Pintar el boton de asistencias
         $('#comprobantes a').addClass('active');
         $('#comprobantes .fa-file').addClass('text-white');
 
 
+        $("#fecha_ini").on("change", function() {
+            // alert($(this).val());
+            var fecha = $(this).val();
+            $.ajax({
+                url: "/Estadisticas/getCaja",
+                type: "POST",
+                data: {
+                    fecha
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+                   
+                    $("#table_caja tbody").empty();
+                },
+                success: function(respuesta) {
+                    
+                    console.log(respuesta);
+                    var total_pesos = 0;
 
-        
+                    if (respuesta.count > 0) {
+
+
+                        $.each(respuesta.data, function(index, el) {
+
+
+                            $("#table_caja tbody").append(
+                                `<tr>
+                                <td>${el.id_transaccion_compra}</td>
+                                <td>${el.nombre}  ${el.apellidop}  ${el.apellidom}  </td>
+                                <td id="descripcion_asistencia" width="20">${el.productos}</td>
+                                <td class="text-center">$ ${el.total_pesos}</td> 
+                                <td class="text-center"> ${el.tipo_pago}</td>  
+                                <td class="text-center"> ${el.nombre_caja}</td>
+                                <td class="text-center"> ${el.fecha_transaccion}</td>
+                                <td class="text-center">
+                                    <a href='/ComprobantesCaja/print/${el.id_transaccion_compra}' style='' class='btn btn-icon-only btn-info' value='${el.id_registrado}' data-bs-toggle="tooltip" target="_blank" data-bs-placement="left" data-bs-original-title="ver comprobante"><i class="fa fal fa-file"></i></a>
+                                </td>
+                                
+                                </tr>`
+                            );
+
+
+                        });
+
+                        $("#total_pesos").text(respuesta.total);
+                        $("#total_ventas").text(respuesta.count);
+                    } else {
+                        
+                        // $('#table_caja').DataTable();
+                        $("#table_caja tbody").append(
+                            `<tr><td colspan="8" class="text-center"> No hay Registros para esta fecha</td></tr>`
+                        );
+                        $("#total_pesos").text(0);
+                        $("#total_ventas").text(0);
+                    }
+
+                    console.log(total_pesos);
+
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        })
+
+
     })
 </script>
 

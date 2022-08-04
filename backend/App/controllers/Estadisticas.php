@@ -334,7 +334,8 @@ html;
         <td>{$value['nombre']}  {$value['apellidop']}  {$value['apellidom']}  </td>
         <td id="descripcion_asistencia" width="20">{$value['productos']}</td>
         <td class="text-center">$ {$value['total_pesos']}</td>  
-        <td class="text-center">$ {$value['fecha_transaccion']}</td>        
+        <td class="text-center">{$value['tipo_pago']}</td> 
+        <td class="text-center">{$value['fecha_transaccion']}</td>        
         
       </tr>
  
@@ -419,9 +420,27 @@ html;
         $total = 0;
       }
 
+      $data  = [
+        'data' => $getData,
+        'count' => count($getData),
+        'total' => number_format($total,2)
+      ];
+
+      echo json_encode($data);
+    }
+
+    public function getCajaAll(){
       
+      $total = 0;
+      $getData = EstadisticasDao::getDataCajaAll();
 
-
+      if(count($getData) > 0){
+        foreach($getData as $key => $value){
+          $total += $value['total_pesos'];
+        }
+      }else{
+        $total = 0;
+      }
 
       $data  = [
         'data' => $getData,

@@ -278,6 +278,7 @@
                                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Productos</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto</th>  
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Método Pago</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha</th>                                 
                                                     </tr>
                                                 </thead>

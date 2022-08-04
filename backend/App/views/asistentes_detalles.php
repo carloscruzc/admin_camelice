@@ -173,6 +173,14 @@
                                     </p>
                                 </div>
                                 <!-- <a href="javascript:;" class="btn bg-gradient-secondary ms-auto mb-0">Invoice</a> -->
+                                <div class="col" align="right">
+                                    <div class="bg-gradient-pink avatar avatar-xl">
+                                        <!-- <img src="../../assets/img/apmn.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                                        <a href="#" onclick="setTimeout(function(){var ww = window.open(window.location, '_self'); ww.close(); }, 50);">
+                                            <span class="fas fa-arrow-left" style="font-size: xx-large; color:white;"></span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body p-3 pt-0">
@@ -333,14 +341,21 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-12">
+                                    <div class="col-lg-4 col-12">
                                         <label class="form-label mt-4" for="pais">País <span class="required">*</span></label>
                                         <select class="multisteps-form__select form-control all_input_select" name="pais" id="pais" required>
                                             <option value="" selected>Selecciona una Opción</option>
                                             <?= $optionPais2 ?>
                                         </select>
                                     </div>
-                                    <div class="col-lg-6 col-12">
+                                    <div class="col-lg-4 col-12">
+                                        <label class="form-label mt-4" for="estado">Estado <span class="required">*</span></label>
+                                        <select class="multisteps-form__select form-control all_input_select" name="estado" id="estado" required>
+                                            <option value="" disabled>Selecciona una Opción</option>
+                                            <?= $optionEstado ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-12">
                                         <label class="form-label mt-4" for="pais">Modalidad <span class="required">*</span></label>
                                         <select class="multisteps-form__select form-control all_input_select" name="modalidad" id="modalidad" required>
                                             <?= $optionModalidad ?>
@@ -601,6 +616,52 @@
                         $("#msg_email").html('');
                     }
                 }
+            });
+        });
+
+        $("#pais").on("change", function() {
+            var pais = $(this).val();
+            $.ajax({
+                url: "/Asistentes/getEstadoPais",
+                type: "POST",
+                data: {
+                    pais
+                },
+                dataType: "json",
+                beforeSend: function() {
+                    console.log("Procesando....");
+                    $('#estado')
+                        .find('option')
+                        .remove()
+                        .end();
+
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+
+                    $('#estado').removeAttr('disabled');
+
+                    $('#estado')
+                        .append($('<option>', {
+                                value: ''
+                            })
+                            .text('Selecciona una opción'));
+
+                    $.each(respuesta, function(key, value) {
+                        //console.log(key);
+                        console.log(value);
+                        $('#estado')
+                            .append($('<option>', {
+                                    value: value.id_estado
+                                })
+                                .text(value.estado));
+                    });
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
             });
         });
 

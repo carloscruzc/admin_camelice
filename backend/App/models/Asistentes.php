@@ -307,6 +307,14 @@ sql;
       return $mysqli->queryAll($query);
     }
 
+    public static function getEstado($id){       
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM estados WHERE id_pais = '$id';
+  sql;
+      return $mysqli->queryAll($query);
+    }
+
     public static function getStateByCountry($id_pais){
       $mysqli = Database::getInstance(true);
       $query =<<<sql
@@ -331,7 +339,7 @@ sql;
       UPDATE registrados SET 
       nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, 
       telefono = :telefono, email = :email, id_categoria = :id_categoria, monto_congreso = :monto_congreso,
-      id_pais = :pais, modalidad = :modalidad
+      id_pais = :pais, id_estado = :estado,modalidad = :modalidad
       WHERE email = :email;
 sql;
       $parametros = array(
@@ -344,6 +352,7 @@ sql;
         ':id_categoria'=>$data->_id_categoria,
         ':monto_congreso'=>$data->_monto_congreso,
         ':pais'=>$data->_pais,
+        ':estado'=>$data->_estado,
         ':modalidad'=>$data->_modalidad
       );
 

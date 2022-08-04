@@ -346,7 +346,14 @@
 
 <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
 <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
-
+<style>
+    table.dataTable tbody tr.odd {
+    background-color: #E2EDFF !important;
+}
+    table.dataTable tbody tr.even {
+    background-color: #FFF !important;
+}
+</style>
 <script>
     $(document).ready(function() {
 

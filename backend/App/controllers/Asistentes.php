@@ -542,6 +542,7 @@ html;
 
         $usuario = AsistentesDao::getIdUsuarios($id);
         $pais = AsistentesDao::getPais($id);
+        $estado = AsistentesDao::getEstado($usuario['id_pais']);
         $cate = AsistentesDao::getCategoriaMas();
         $optionCate = '';
         foreach($cate as $key => $value){
@@ -559,10 +560,20 @@ html;
 html;
         }
 
+        $optionEstado = '';
+        foreach($estado as $key => $value){
+            $selectedestado = ($value['id_estado'] == $usuario['id_estado']) ? 'selected' : '';
+            $optionEstado .= <<<html
+                    <option value="{$value['id_estado']}" $selectedestado>{$value['estado']}</option>
+html;
+        }
+
         $optionModalidad = '';
         $optionModalidad .= <<<html
                     <option value="{$usuario['modalidad']}" selected>Actual: {$usuario['modalidad']}</option>
 html;
+        
+
         $optionSeleccione = '';
         if($usuario['id_categoria'] == 0){
             $optionSeleccione .= <<<html
@@ -615,6 +626,7 @@ html;
         View::set('optionPais2', $optionPais2);
         View::set('optionModalidad',$optionModalidad);
         View::set('optionSeleccione',$optionSeleccione);
+        View::set('optionEstado',$optionEstado);
         View::set('id_asistente', $id);
         View::set('detalles', $detalles[0]);
         View::set('img_asistente', $img_asistente);
@@ -711,7 +723,7 @@ html;
             $documento->_id_categoria = $id_categoria;
             $documento->_monto_congreso = $monto_congreso;
             $documento->_pais = $pais;
-            // $documento->_estado = $estado;
+            $documento->_estado = $estado;
             $documento->_modalidad = $modalidad;
 
             // var_dump($documento);

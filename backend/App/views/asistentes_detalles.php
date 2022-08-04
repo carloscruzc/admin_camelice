@@ -173,6 +173,14 @@
                                     </p>
                                 </div>
                                 <!-- <a href="javascript:;" class="btn bg-gradient-secondary ms-auto mb-0">Invoice</a> -->
+                                <div class="col" align="right">
+                                    <div class="bg-gradient-pink avatar avatar-xl">
+                                        <!-- <img src="../../assets/img/apmn.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                                        <a href="#" onclick="setTimeout(function(){var ww = window.open(window.location, '_self'); ww.close(); }, 50);">
+                                            <span class="fas fa-arrow-left" style="font-size: xx-large; color:white;"></span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body p-3 pt-0">

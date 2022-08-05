@@ -1071,6 +1071,7 @@ html;
             $clave_socio = '';
             $permiso_impresion = '';
             $socio = GeneralDao::getAdeudosUser($value['id_registrado']);
+            $liberado = GeneralDao::getCongresoLiberado($value['id_registrado']);
             foreach (GeneralDao::getBecaUser($value['id_registrado']) as $key => $value_beca) {
 
                 $clave_beca .= <<<html
@@ -1092,6 +1093,17 @@ html;
                     $clave_socio .= <<<html
                     <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>TOTAL ANUALIDADES ADEUDADAS: {$socio['adeudos']}</strong></span> 
 html;        
+            }else{
+                    $clave_socio .= <<<html
+                    <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>SOCIO ACTIVO</strong></span> 
+html;          
+            }
+            if($liberado){
+                $permiso_impresion .= <<<html
+                     <div>
+                         <span class="badge badge-success" style="background-color: #033901; color:white "><strong>OK - HABILITADO PARA IMPRESIÓN DE GAFETE </strong></span> 
+                     </div>
+html;
             }
             
 

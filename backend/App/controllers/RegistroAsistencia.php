@@ -389,27 +389,27 @@ html;
         $this->generaterQr($id_registrado);
         $datos_user = AsistentesDao::getRegistradoById($id_registrado)[0];
 
-        $nombre_completo = mb_strtoupper($datos_user['nombre']) . "\n\n" . mb_strtoupper($datos_user['apellidop']);
+        $nombre_completo = trim(mb_strtoupper($datos_user['nombre'])) . " " . trim(mb_strtoupper($datos_user['apellidop'])) . " " . trim(mb_strtoupper($datos_user['apellidom']));
 
         $insertImpresionGafete = RegistroAsistenciaDao::insertImpGafete($id_registrado,$_SESSION['utilerias_administradores_id']);
         
         $pdf = new \FPDF($orientation = 'P', $unit = 'mm', array(390, 152));
         $pdf->AddPage();
-        $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
-        $pdf->setY(1);
-        $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('qrs/gafetes/'.$id_registrado.'.png', 50, 85, 50, 50);
-        $pdf->SetFont('Arial', 'B', 25);       
+        // $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+        // $pdf->setY(1);
+        // $pdf->SetFont('Arial', 'B', 16);
+        // $pdf->Image('qrs/gafetes/'.$id_registrado.'.png', 50, 85, 50, 50);
+        // $pdf->SetFont('Arial', 'B', 25);       
 
-        //$pdf->Image('1.png', 1, 0, 190, 190);
-        $pdf->SetFont('Arial', 'B', 5);    //Letra Arial, negrita (Bold), tam. 20
+        // //$pdf->Image('1.png', 1, 0, 190, 190);
+        // $pdf->SetFont('Arial', 'B', 5);    //Letra Arial, negrita (Bold), tam. 20
         
 
-        $pdf->SetXY(10, 250);
+        $pdf->SetXY(10, 260);
         $pdf->SetFont('Arial', 'B', 30);
         #4D9A9B
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(95, 10, utf8_decode($nombre_completo), 0, 'C');
+        $pdf->Multicell(110, 10, utf8_decode($nombre_completo), 0, 'C');
         $pdf->output();
     }
 

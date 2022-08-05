@@ -24,6 +24,17 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function getAdeudosUser($id){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT *,COUNT(*) as adeudos FROM pendiente_pago pp
+    INNER JOIN registrados ua ON ua.id_registrado = pp.id_registrado
+    WHERE ua.status = 1 AND (pp.status = 0 AND pp.id_registrado = '$id') GROUP BY pp.id_registrado;
+sql;
+
+    return $mysqli->queryOne($query);
+}
+
   public static function getBecaUser($id){
     $mysqli = Database::getInstance();
     $query =<<<sql

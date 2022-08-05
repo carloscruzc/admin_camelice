@@ -1068,7 +1068,9 @@ html;
             // }
             $clave_beca = '';
             $clave_beca_2 = '';
+            $clave_socio = '';
             $permiso_impresion = '';
+            $socio = GeneralDao::getAdeudosUser($value['id_registrado']);
             foreach (GeneralDao::getBecaUser($value['id_registrado']) as $key => $value_beca) {
 
                 $clave_beca .= <<<html
@@ -1085,6 +1087,12 @@ html;
                      </div>
 html;
                 }
+
+            if($socio['adeudos'] != 0){
+                    $clave_socio .= <<<html
+                    <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>TOTAL ANUALIDADES ADEUDADAS: {$socio['adeudos']}</strong></span> 
+html;        
+            }
             
 
             $html .= <<<html
@@ -1098,7 +1106,7 @@ html;
                     
                             <a href="/Asistentes/Detalles/{$value['id_registrado']}" target="_blank">
                                 <h6 class="mb-0 text-sm text-move text-black">
-                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$nombre_completo} {$clave_beca}
+                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$nombre_completo} {$clave_beca} {$clave_socio}
                                     </h6>
                                 </a>
                             <div class="d-flex flex-column justify-content-center">

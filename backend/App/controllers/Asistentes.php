@@ -1184,7 +1184,7 @@ html;
                 $socio = GeneralDao::getAdeudosUser($value['id_registrado']);
                 $sociote = GeneralDao::getSocioUser($value['id_registrado']);
                 $liberado = GeneralDao::getCongresoLiberado($value['id_registrado']);
-                $becado = GeneralDao::getBecaUser($value['id_registrado']);
+                $becado = GeneralDao::getBecaUser($value['id_registrado'])[0];
         
 
                 if($value_beca['codigo_beca'] != ''){

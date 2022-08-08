@@ -85,7 +85,7 @@ sql;
     SELECT CONCAT (ra.nombre," ",ra.apellidop," ",apellidom) as nombre_completo, 
     ra.id_registrado,ra.telefono, ra.nombre, ra.apellidop, ra.apellidom,ra.email as usuario,ra.status,ra.telefono
     FROM registrados ra
-    WHERE CONCAT_WS(' ',ra.email,ra.nombre) LIKE '%$search%';
+    WHERE CONCAT_WS(' ',ra.email,ra.nombre) LIKE '%$search%' AND ra.status = 1;
 sql;
 
 // $query =<<<sql

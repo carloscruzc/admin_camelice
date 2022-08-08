@@ -10396,7 +10396,7 @@ fieldset:disabled .btn {
   background-image: linear-gradient(310deg, rgb(102 168 156), rgb(102 168 156) 100%);
 }
 .bg-pink-two{
-  background-image: linear-gradient(310deg, rgb(221 222 229), rgb(221 222 229) 100%);
+  background-color: #FFF;
 }
 
 .bg-turquoise{

@@ -1181,9 +1181,28 @@ html;
             $socio = GeneralDao::getAdeudosUser($value['id_registrado']);
             $sociote = GeneralDao::getSocioUser($value['id_registrado']);
             $liberado = GeneralDao::getCongresoLiberado($value['id_registrado']);
-            echo $sociote['codigo_beca'];
-            
-            if($sociote['pendientes'] < 7 AND $sociote['codigo_beca']  != ''){
+            $becado = GeneralDao::getBecaUser($value['id_registrado']);
+
+
+            foreach (GeneralDao::getAllUsers($value['id_registrado']) as $key => $value_beca) {
+
+                if($value_beca['codigo_beca'] != ''){
+                    $clave_beca .= <<<html
+                <span class="badge badge-success" style="background-color: #239187; color:white "><strong>BECA #{$value_beca['codigo_beca']} </strong></span>
+html;
+                $clave_beca_2 .= <<<html
+                <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm text-black"><span class="fa fa-calendar" style="font-size: 13px"></span>Becado por: {$becado['nombrecompleto']}</h6> 
+                </div>
+html;
+                $permiso_impresion .= <<<html
+                     <div>
+                         <span class="badge badge-success" style="background-color: #033901; color:white "><strong>OK - HABILITADO PARA IMPRESIÓN DE GAFETE </strong></span> 
+                     </div>
+html;
+                }
+
+                if($sociote['pendientes'] < 7 AND $sociote['codigo_beca']  != ''){
                 $clave_socio .= <<<html
                 <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>NO ES SOCIO ACTIVO</strong></span> 
 html;          
@@ -1216,11 +1235,17 @@ html;
                          <span class="badge badge-success" style="background-image: radial-gradient(200px circle at 50% 70%, rgba(234, 6, 6, 0.3) 0, #ea0606 100%); color:white "><strong>MANDAR A CAJA A PAGAR</strong></span> 
                      </div>
 html;
-            } else{
+            } else if(!$socio AND $sociote['pendientes'] >= 7){
                     $clave_socio .= <<<html
                     <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>SOCIO ACTIVO</strong></span> 
 html;          
             }
+            else{
+                    $clave_socio .= <<<html
+                    <span class="badge badge-success" style="background-image: radial-gradient(200px circle at 50% 70%, rgba(234, 6, 6, 0.3) 0, #ea0606 100%); color:white "><strong>RECIÉN REGISTRADO</strong></span> 
+html;          
+            }
+            
             if($liberado){
                 $permiso_impresion_2 .= <<<html
                      <div>
@@ -1229,24 +1254,7 @@ html;
 html;
                 $permiso_impresion = '';
             }
-
-
-            foreach (GeneralDao::getBecaUser($value['id_registrado']) as $key => $value_beca) {
-
-                $clave_beca .= <<<html
-                <span class="badge badge-success" style="background-color: #239187; color:white "><strong>BECA #{$value_beca['codigo_beca']} </strong></span>
-html;
-                $clave_beca_2 .= <<<html
-                <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm text-black"><span class="fa fa-calendar" style="font-size: 13px"></span>Becado por: {$value_beca['nombrecompleto']}</h6> 
-                </div>
-html;
-                $permiso_impresion .= <<<html
-                     <div>
-                         <span class="badge badge-success" style="background-color: #033901; color:white "><strong>OK - HABILITADO PARA IMPRESIÓN DE GAFETE </strong></span> 
-                     </div>
-html;
-                }
+        }
             
 
             $html .= <<<html
@@ -1261,10 +1269,10 @@ html;
                             <a href="/Asistentes/Detalles/{$value['id_registrado']}" target="_blank">
                                 <h6 class="mb-0 text-sm text-move text-black">
                                     <span class="fa fa-user-md" style="font-size: 13px"></span> {$nombre_completo} {$clave_beca} {$clave_socio}
-                                    </h6>
-                                </a>
+                                </h6>
+                            </a>
                             <div class="d-flex flex-column justify-content-center">
-                                <u><a  href="mailto:{$value['email']}"><h6 class="mb-0 text-sm text-black"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['usuario']}</h6></a></u>
+                                <u><h6 class="mb-0 text-sm text-black"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['usuario']}</h6></u>
                             <!--<u><a target="_blank" href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm text-morado-musa font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>-->
                             </div>
                             {$clave_beca_2}

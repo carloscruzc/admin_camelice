@@ -348,7 +348,7 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 <style>
     table.dataTable tbody tr.odd {
-    background-color: #E2EDFF !important;
+    background-color: #D9DCE3 !important;
 }
     table.dataTable tbody tr.even {
     background-color: #FFF !important;

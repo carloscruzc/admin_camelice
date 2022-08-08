@@ -271,7 +271,7 @@ sql;
     {
         $mysqli = Database::getInstance();
         $query = <<<sql
-      SELECT * FROM categorias WHERE id_categoria != 1;
+      SELECT * FROM categorias WHERE id_categoria NOT IN (1,5,6);
 sql;
 
         return $mysqli->queryAll($query);

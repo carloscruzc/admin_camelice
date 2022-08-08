@@ -52,7 +52,7 @@ sql;
     $query =<<<sql
     SELECT * FROM pendiente_pago pp
     INNER JOIN registrados ua ON ua.id_registrado = pp.id_registrado
-    WHERE pp.id_producto = 1 AND ua.id_categoria != 1 AND ua.status = 1
+    WHERE pp.id_producto = 1 AND ua.status = 1
     AND (pp.status = 1 AND pp.id_registrado = '$id');
 sql;
 
@@ -65,6 +65,15 @@ sql;
     SELECT ra.codigo_beca, lab.nombrecompleto FROM registrados ra
     INNER JOIN becas be ON be.usadopor = ra.id_registrado
     INNER JOIN laboratorios lab ON lab.id_laboratorio = be.id_laboratorio
+    WHERE id_registrado = $id;
+sql;
+    return $mysqli->queryAll($query);
+  }
+
+  public static function getAllUsers($id){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT ra.codigo_beca, ra.* FROM registrados ra
     WHERE id_registrado = $id;
 sql;
     return $mysqli->queryAll($query);

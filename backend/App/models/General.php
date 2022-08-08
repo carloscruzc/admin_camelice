@@ -62,7 +62,7 @@ sql;
   public static function getBecaUser($id){
     $mysqli = Database::getInstance();
     $query =<<<sql
-    SELECT ra.codigo_beca, lab.nombrecompleto FROM registrados ra
+    SELECT ra.codigo_beca, lab.nombrecompleto as nombre_laboratorio FROM registrados ra
     INNER JOIN becas be ON be.usadopor = ra.id_registrado
     INNER JOIN laboratorios lab ON lab.id_laboratorio = be.id_laboratorio
     WHERE id_registrado = $id;

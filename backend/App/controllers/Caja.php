@@ -798,7 +798,7 @@ html;
         $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
 
         //total pesos letra
-        $pdf->SetXY(1, 247);
+        $pdf->SetXY(5, 247);
         $pdf->SetFont('Arial', 'B', 13);  
         $pdf->SetTextColor(94, 94, 94);
         $pdf->Multicell(120, 5, $total_en_letras, 0, 'C');

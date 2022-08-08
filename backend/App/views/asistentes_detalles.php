@@ -1,12 +1,13 @@
 <?php echo $header; ?>
 <title>
     Asistentes Detalles - <?php echo $detalles_registro['nombre'] . ' ';
-                                                                                                        echo $detalles_registro['segundo_nombre'] . ' ';
-                                                                                                        echo $detalles_registro['apellido_paterno'] . ' ';
-                                                                                                        echo $detalles_registro['apellido_materno']; ?> - CAMELICE - GRUPO LAHE
+                            echo $detalles_registro['segundo_nombre'] . ' ';
+                            echo $detalles_registro['apellido_paterno'] . ' ';
+                            echo $detalles_registro['apellido_materno']; ?> - CAMELICE - GRUPO LAHE
 </title>
+
 <body class="g-sidenav-show  bg-gray-100">
-    <?php echo $asideMenu;?>
+    <?php echo $asideMenu; ?>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
@@ -185,59 +186,7 @@
                         </div>
                         <div class="card-body p-3 pt-0">
                             <div class="row d-flex justify-content-center">
-                                <!-- <div class="col-lg-3 col-md-3 col-12">
-                                    <h6 class="mb-3">Log</h6>
-                                    <div class="timeline timeline-one-side scroll-log">
-                                        <div class="timeline-block mb-4">
-                                            <label for="chk-0" class="timeline-step m-0">
-                                                <i class="fa fa-bell text-warning  text-gradient text-secondary"></i>
-                                            </label>
-                                            <input class="chk" type="checkbox" id="chk-0">
-                                            <label for="chk-0" class="timeline-content">
-                                                <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente received</h6>
-                                            </label><br>
-                                            <label for="chk-0" id="divss" class="timeline-content">
-                                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 AM</p>
-                                            </label>
-                                        </div>
-                                        <div class="timeline-block mb-4">
-                                            <label for="chk-1" class="timeline-step m-0">
-                                                <i class="fa fa-pills text-danger text-gradient text-secondary"></i>
-                                            </label>
-                                            <input class="chk" type="checkbox" id="chk-1">
-                                            <label for="chk-1" class="timeline-content">
-                                                <h6 class="text-dark text-sm font-weight-bold mb-0">Generate Asistente id #1832412</h6>
-                                            </label><br>
-                                            <label for="chk-1" id="divss" class="timeline-content">
-                                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:21 AM</p>
-                                            </label>
-                                        </div>
-                                        <div class="timeline-block mb-4">
-                                            <label for="chk-2" class="timeline-step m-0">
-                                                <i class="fa fa-check text-info text-gradient text-secondary"></i>
-                                            </label>
-                                            <input class="chk" type="checkbox" id="chk-2">
-                                            <label for="chk-2" class="timeline-content">
-                                                <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente transmited to courier</h6>
-                                            </label><br>
-                                            <label for="chk-2" id="divss" class="timeline-content">
-                                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 8:10 AM</p>
-                                            </label>
-                                        </div>
-                                        <div class="timeline-block mb-3">
-                                            <label for="chk-3" class="timeline-step m-0">
-                                                <i class="fa fa-virus text-success text-gradient"></i>
-                                            </label>
-                                            <input class="chk" type="checkbox" id="chk-3">
-                                            <label for="chk-3" class="timeline-content">
-                                                <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente delivered</h6>
-                                            </label><br>
-                                            <label for="chk-3" id="divss" class="timeline-content">
-                                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 4:54 PM</p>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div> -->
+                               
                                 <div class="col-md-9 col-12">
                                     <hr class="horizontal dark mt-0 mb-4">
                                     <div class="row">
@@ -267,6 +216,7 @@
                                         </div>
                                     </div>
                                     <hr class="horizontal dark mt-4 mb-4">
+
                                     <!-- SECCION DETALLES -->
                                 </div>
                             </div>
@@ -275,9 +225,48 @@
                     </div>
                 </div>
             </div>
+
+            <input type="hidden" id="user_id" name="user_id" value="<?= $id_asistente ?>">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="card mb-4">
+                        <div class="card-header p-3 pb-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6>Asignar Productos</h6>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-3 pt-0">
+                            <div class="row d-flex justify-content-center">
+
+                                <div class="col-md-9 col-12">
+                                    <div class="table-responsive p-0">
+                                        <table id="table_admin" class="table align-items-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                        Nombre
+                                                    </th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Asignar</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php echo $tabla_pendientes; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
+
 
         <!-- Modal -->
         <div class="modal fade" id="editar-asistente" tabindex="-1" role="dialog" aria-labelledby="editar-asistenteLabel" aria-hidden="true">
@@ -363,7 +352,7 @@
                                             <option value="Virtual">Virtual</option>
                                         </select>
                                     </div>
-                                </div>   
+                                </div>
 
                                 <div class="row">
 
@@ -411,6 +400,46 @@
 
         $('#asistentes a').addClass('active');
         $('#asistentes .fa-users').addClass('text-white');
+
+
+        $(".btn-asignar-producto").on("click",function(){
+            // alert($(this).val());
+            var id_producto = $(this).val();
+            var user_id = $("#user_id").val();
+            var id_pendiente_pago = $(this).attr('data-id-pendiente-pago');
+            // alert(id_pendiente_pago);
+
+            $.ajax({
+                url: "/Asistentes/AsignarCurso",
+                type: "POST",
+                data: {
+                    id_producto,user_id,id_pendiente_pago
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+                },
+                success: function(respuesta) {
+                    console.log(respuesta)
+                    if (respuesta.status == 'success') {
+                       Swal.fire('Se asigno Correctamente','','success');
+                       setTimeout(function(){
+                            location.reload();
+                       },1500);
+                    } else {
+                        Swal.fire('Error al asignar el curso contacte a soprte','','error');
+                        // console.log(respuesta);
+                       setTimeout(function(){
+                            location.reload();
+                       },1500);
+                    }
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
 
         $("#form_etiquetas").on("submit", function(event) {
             event.preventDefault();
@@ -462,7 +491,7 @@
         //         imgCodeQr.onload = function() {
         //             context.drawImage(imgTicketFondo, 0, 0);
         //             context.drawImage(imgCodeQr, 870, 90);
-                
+
 
         //             var centerX = canvas.width/2;
         //             var centerY = canvas.height/2;

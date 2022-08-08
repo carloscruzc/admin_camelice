@@ -17,6 +17,7 @@ use \App\models\Pases as PasesDao;
 use \App\models\PruebasCovidUsuarios as PruebasCovidUsuariosDao;
 use \App\models\ComprobantesVacunacion as ComprobantesVacunacionDao;
 use \App\models\Asistentes as AsistentesDao;
+use \App\models\Caja as CajaDao;
 
 use Generator;
 
@@ -597,31 +598,47 @@ html;
         // $btn_etiquetas = "<a href='/RegistroAsistencia/abrirpdf/{$clave_user['clave']}' target='_blank' id='a_abrir_etiqueta' class='btn btn-info'>Imprimir etiquetas</a>";
         $this->generaterQr($id);
 
+        $tabla_pendientes = '';
 
-        // $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
-        // $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $pickUpHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pickup", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $habitacionesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_habitaciones", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $aistenciasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistencias", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $vacunacionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
-        // $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
+        $productos_pendientes_pago = AsistentesDao::getPendienesPagoUser($id);
 
-        // View::set('permisoGlobalHidden', $permisoGlobalHidden);
-        // View::set('asistentesHidden', $asistentesHidden);
-        // View::set('vuelosHidden', $vuelosHidden);
-        // View::set('pickUpHidden', $pickUpHidden);
-        // View::set('habitacionesHidden', $habitacionesHidden);
-        // View::set('cenasHidden', $cenasHidden);
-        // View::set('aistenciasHidden', $aistenciasHidden);
-        // View::set('vacunacionHidden', $vacunacionHidden);
-        // View::set('pruebasHidden', $pruebasHidden);
-        // View::set('configuracionHidden', $configuracionHidden);
-        // View::set('utileriasHidden', $utileriasHidden);
+
+
+        $productos_notin_pendientes_pago = AsistentesDao::getProductosNotInPendientesPagoAsignaProducto($id);
+
+        foreach ($productos_pendientes_pago as $key => $value) {
+
+            $tabla_pendientes .= <<<html
+            <tr>
+                <td id="descripcion_asistencia">
+                    {$value['nombre_producto']}
+                </td>
+                <td>
+                    <button class="btn btn-info btn-asignar-producto" id="btn_producto{$value['id_producto']}" value="{$value['id_producto']}" data-id-pendiente-pago="{$value['id_pendiente_pago']}">Asignar</button>
+                </td>
+            </tr>
+html;
+            
+
+        }
+
+        foreach ($productos_notin_pendientes_pago as $key => $value) {
+
+            $tabla_pendientes .= <<<html
+            <tr>
+                <td id="descripcion_asistencia">
+                    {$value['nombre_producto']}
+                </td>
+                <td>
+                <button class="btn btn-info btn-asignar-producto" id="btn_producto{$value['id_producto']}" value="{$value['id_producto']}" data-id-pendiente-pago="">Asignar</button>
+                </td>
+            </tr>
+html;
+            
+        }
+
+
+        
         View::set('optionCate', $optionCate);
         View::set('optionPais2', $optionPais2);
         View::set('optionModalidad',$optionModalidad);
@@ -630,16 +647,11 @@ html;
         View::set('id_asistente', $id);
         View::set('detalles', $detalles[0]);
         View::set('img_asistente', $img_asistente);
-        View::set('email', $email);
-        View::set('nombre', $nombre);
-        View::set('apellidos', $apellidos);
-        View::set('clave_user', $clave_user['clave_ticket']);
-        View::set('msg_clave', $msg_clave);
+    
         View::set('btn_gafete', $btn_gafete);
         View::set('clave_ra', $id);
         View::set('asideMenu',$this->_contenedor->asideMenu());
-        View::set('btn_clave', $btn_clave);
-        View::set('btn_genQr', $btn_genQr);
+        
         // View::set('alergias_a', $alergias_a);
         View::set('res_alimenticias', $res_alimenticias);
         // View::set('alergia_medicamento_cual', $alergia_medicamento_cual);
@@ -648,7 +660,102 @@ html;
         View::set('footer', $this->_contenedor->footer($extraFooter));
         // View::set('tabla_vacunacion', $this->getComprobanteVacunacionById($id));
         // View::set('tabla_prueba_covid', $this->getPruebasCovidById($id));
+        View::set('tabla_pendientes',$tabla_pendientes);
         View::render("asistentes_detalles");
+    }
+
+    public function AsignarCurso(){
+        $user_id = $_POST['user_id'];
+        $id_producto = $_POST['id_producto'];
+        $id_pendiente_pago = $_POST['id_pendiente_pago'];
+
+
+
+        if($id_pendiente_pago != "" ){
+            
+            $existe = CajaDao::getPendientePagoById($id_pendiente_pago);
+            
+            if($existe){
+
+                $reference = $existe['reference']; 
+            
+
+                $updateStatus = CajaDao::updateStatusPendientePago($id_pendiente_pago,'socio');
+
+                if($updateStatus){
+                    $data = new \stdClass();
+                    $data->_id_registrado = $user_id;
+                    $data->_id_producto = $id_producto;           
+
+                    $insertAsiganProducto = CajaDao::insertAsignaProducto($data);
+
+                    if($insertAsiganProducto){
+                        $data = [
+                            "status" => "success",
+                            "msg" => "Se actualizo pendiente pago y se asigno"
+                        ];
+                    }else{
+                        $data = [
+                            "status" => "fail",
+                            "msg" => "No se actualizo pendiente pago y no se asigno"
+                        ];
+                    }
+                }
+                //acualizar el asigna pendiete pago
+               // insertar en saigna producto
+                // echo "existe";
+            }
+            
+            
+        }else{
+           
+            //  insertar en saigna producto
+            $user_data = AsistentesDao::getByClaveRA($user_id)[0];
+
+
+            $data = new \stdClass();
+            $data->_id_producto = $id_producto;
+            $data->_id_registrado = $user_id;
+            $data->_reference = $user_data['referencia'];
+            $data->_clave = $user_id.'as0';
+            $data->_monto = 0;
+            $data->_tipo_pago = 'socio';
+
+
+            $inserPendientesPago = CajaDao::insertPendientePago($data);
+            
+            if($inserPendientesPago){
+                // insertar en pendientes pago
+                $datos = new \stdClass();
+                $datos->_id_registrado = $user_id;
+                $datos->_id_producto = $id_producto;              
+                
+
+                $insertAsiganProducto = CajaDao::insertAsignaProducto($datos);
+
+                if($insertAsiganProducto){
+                    $data = [
+                        "status" => "success",
+                        "msg" => "Se inserto pendiente pago y se asigno"
+                    ];
+                }else{
+                    $data = [
+                        "status" => "fail",
+                        "msg" => "No se insertp pendiente pago y no se asigno"
+                    ];
+                }
+            }else{
+                $data = [
+                    "status" => "fail",
+                    "msg" => "No se inserto pendiente pago y no se asigno"
+                ];
+            }
+            
+           
+        }
+
+        echo json_encode($data);
+
     }
 
     public function generaterQr($clave_ticket)

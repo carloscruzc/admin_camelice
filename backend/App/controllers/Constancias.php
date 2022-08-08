@@ -537,14 +537,14 @@ html;
         
         $pdf->SetXY(15, 66);
         
-        $pdf->SetFont('Arial', 'B', 30);
+        $pdf->SetFont('Arial', 'B', 35);
         #4D9A9B
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(275, 45, utf8_decode($nombre_completo), 0, 'C');
 
         //leyenda 1
         $pdf->SetXY(15, 82);
-        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->SetFont('Arial', 'B', 16);
         #4D9A9B
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(275, 45, utf8_decode('Por su participación como Asistente durante la :'), 0, 'C');

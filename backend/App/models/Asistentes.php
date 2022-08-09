@@ -271,9 +271,9 @@ sql;
     {
         $mysqli = Database::getInstance();
         $query = <<<sql
-      SELECT * FROM categorias WHERE id_categoria NOT IN (1,5,6);
+      SELECT * FROM categorias WHERE costo != 0;
 sql;
-
+      // SELECT * FROM categorias WHERE id_categoria NOT IN (1,5,6);
         return $mysqli->queryAll($query);
         //$mysqli -> set_charset("utf8");
     }

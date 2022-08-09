@@ -79,6 +79,16 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function getGafetesUsers($id){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT ig.* FROM impresion_gafete ig
+    INNER JOIN registrados re ON re.id_registrado = ig.id_registrado
+    WHERE ig.id_registrado = '$id';
+sql;
+    return $mysqli->queryAll($query);
+  }
+
   public static function getAllColaboradoresByName($search){
     $mysqli = Database::getInstance();
     $query =<<<sql

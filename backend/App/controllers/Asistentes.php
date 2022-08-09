@@ -1183,13 +1183,15 @@ html;
             $clave_socio = '';
             $permiso_impresion = '';
             $permiso_impresion_2 = '';
-
+            $gafetes = '';
+            $status = '';
 
             foreach (GeneralDao::getAllUsers($value['id_registrado']) as $key => $value_beca) {
                 $socio = GeneralDao::getAdeudosUser($value['id_registrado']);
                 $sociote = GeneralDao::getSocioUser($value['id_registrado']);
                 $liberado = GeneralDao::getCongresoLiberado($value['id_registrado']);
                 $becado = GeneralDao::getBecaUser($value['id_registrado'])[0];
+                $gafete = GeneralDao::getGafetesUsers($value['id_registrado'])[0];
         
 
                 if($value_beca['codigo_beca'] != ''){
@@ -1260,6 +1262,20 @@ html;
 html;
                 $permiso_impresion = '';
             }
+
+            if($gafete){
+                $gafetes .= <<<html
+                <a href="/RegistroAsistencia/abrirpdfGafete/{$value['id_registrado']}" class="btn bg-pink-two btn-icon-only morado-musa-text" title="Imprimir Gafetes" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Gafetes" target="_blank"><i style="font-size: 1.3rem;" class="fas fa-clipboard-check"> </i></a>
+html;
+                $status .=<<<html
+                <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>GAFETE IMPRESO</strong></span><br>
+                <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>{$gafete['fecha_hora']}</strong></span>
+html;
+            }else{
+                $gafetes .= <<<html
+                <a href="/RegistroAsistencia/abrirpdfGafete/{$value['id_registrado']}" class="btn bg-pink-two btn-icon-only morado-musa-text" title="Imprimir Gafetes" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Gafetes" target="_blank"><i style="font-size: 1.3rem;" class="fas fa-id-badge"> </i></a>
+html;           
+            }
         }
             
 
@@ -1295,16 +1311,12 @@ html;
                
         
 
-          <td style="text-align:left; vertical-align:middle;"> 
-           <!-- {$pase_ida}
-            {$pase_regreso}
-            {$ticket_v}
-            {$pru_covid}
-            {$compro_covid}-->
+          <td style="text-align:center; vertical-align:middle;"> 
+           {$status}
           </td>
           
           <td style="text-align:center; vertical-align:middle;">
-            <a href="/RegistroAsistencia/abrirpdfGafete/{$value['id_registrado']}" class="btn bg-pink-two btn-icon-only morado-musa-text" title="Imprimir Gafetes" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Gafetes" target="_blank"><i style="font-size: 1.3rem;" class="fas fa-id-badge"> </i></a>     
+            {$gafetes}  
 
             <a href="/Constancias/abrirConstancia/{$value['id_registrado']}" class="btn bg-pink btn-icon-only text-white" title="Imprimir Constancia" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Constancia" target="_blank"><i class="fas fa-file"> </i></a>
 

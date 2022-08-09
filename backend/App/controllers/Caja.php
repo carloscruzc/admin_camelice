@@ -129,7 +129,7 @@ html;
 
             if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
 
-                if($value['id_categoria'] == 12 && $value['id_producto'] == 1 ){
+                if($value['id_categoria'] == 8 && $value['id_producto'] == 1 ){
                     $precio = 0;
                 }else{
                     $precio = $value['amout_due'];
@@ -140,7 +140,7 @@ html;
             }
 
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == "" ){
-                if($value['id_categoria'] == 12 &&  $value['id_producto'] == 2){
+                if($value['id_categoria'] == 8 &&  $value['id_producto'] == 2){
                     $precio = 0;
                 }else{
                     $precio = $value['precio_publico'];

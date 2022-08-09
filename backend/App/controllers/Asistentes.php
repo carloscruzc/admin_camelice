@@ -147,8 +147,8 @@ html;
         $id = AsistentesDao::insert($data);
         if ($id >= 1) {
 
-            //id nuevo socio 12
-            if(MasterDom::getData('categoria') == 12){
+            //id nuevo socio 8
+            if(MasterDom::getData('categoria') == 8){
 
                 $search_user = AsistentesDao::searchUserByName($nombre,$apellidop,$apellidom,12)[0];
 

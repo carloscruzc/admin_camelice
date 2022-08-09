@@ -126,11 +126,13 @@ html;
             $disabled = '';
             $checked = '';
             $pend_validar ='';
+            $ocultar = '';
 
             if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
 
                 if($value['id_categoria'] == 8 && $value['id_producto'] == 1 ){
                     $precio = 0;
+                    $ocultar = 'd-none';
                 }else{
                     $precio = $value['amout_due'];
                 }
@@ -142,6 +144,7 @@ html;
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == "" ){
                 if($value['id_categoria'] == 8 &&  $value['id_producto'] == 2){
                     $precio = 0;
+                    $ocultar = 'd-none';
                 }else{
                     $precio = $value['precio_publico'];
                 }
@@ -193,7 +196,7 @@ html;
     
                 $checks .= <<<html
     
-                <div class="row">
+                <div class="row {$ocultar}">
                     <div class="col-md-8">
                         <div class="form-check">
                             <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-nombre-producto="{$value['nombre_producto']}">
@@ -215,7 +218,7 @@ html;
                     </div>
                 </div>
     
-                <hr>
+                <hr class='{$ocultar}'>
 html;
                 $numero_productos = '';
             }

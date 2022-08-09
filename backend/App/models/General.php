@@ -93,9 +93,11 @@ sql;
     $mysqli = Database::getInstance();
     $query =<<<sql
     SELECT CONCAT (ra.nombre," ",ra.apellidop," ",apellidom) as nombre_completo, 
-    ra.id_registrado,ra.telefono, ra.nombre, ra.apellidop, ra.apellidom,ra.email as usuario,ra.status,ra.telefono
+    ra.id_registrado,ra.telefono, ra.nombre, ra.apellidop, ra.apellidom,
+    ra.email as usuario,ra.status,ra.telefono, ra.clave_socio, ra.clave 
     FROM registrados ra
-    WHERE CONCAT_WS(' ',ra.email,ra.nombre) LIKE '%$search%' AND ra.status = 1;
+    WHERE CONCAT_WS(' ',ra.id_registrado, ra.email,ra.nombre,ra.apellidop,ra.apellidom,ra.clave_socio, ra.clave) 
+    LIKE '%$search%' AND ra.status = 1;
 sql;
 
 // $query =<<<sql

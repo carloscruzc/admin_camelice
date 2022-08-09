@@ -1326,7 +1326,8 @@ html;
                 <td>
                     <div class="d-flex px-3 py-1">
                         <div>
-                            <img src="{$img_user}" class="avatar me-3" alt="image">
+                            <img src="{$img_user}" class="avatar me-3" alt="image"><br>
+                            <span class="badge badge-success" style="font-size: 11px; background-color: transparent; color:#000 "><strong>{$value['id_registrado']}</strong></span>
                         </div>
                         <div class="d-flex flex-column justify-content-center text-black">
                     

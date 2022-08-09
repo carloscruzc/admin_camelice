@@ -545,6 +545,7 @@ html;
         $pais = AsistentesDao::getPais($id);
         $estado = AsistentesDao::getEstado($usuario['id_pais']);
         $cate = AsistentesDao::getCategoriaMas();
+        $fullcate = AsistentesDao::getCategoria($id)[0];
         $optionCate = '';
         foreach($cate as $key => $value){
             $selectedStatus = ($value['id_categoria'] == $usuario['id_categoria']) ? 'selected' : '';
@@ -584,6 +585,10 @@ html;
             $optionCate = '';
             $optionSeleccione .= <<<html
                     <option value="1" selected>USUARIO BECADO</option>
+html;
+        }else if($fullcate['costo'] == 0){
+            $optionSeleccione .= <<<html
+            <option value="{$fullcate['id_categoria']}" $selectedStatus>{$fullcate['categoria']}</option>
 html;
         }
         else{

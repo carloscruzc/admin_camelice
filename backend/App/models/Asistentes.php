@@ -244,11 +244,13 @@ sql;
       
   }
 
-  public static function getCategoria()
+  public static function getCategoria($id)
     {
         $mysqli = Database::getInstance();
         $query = <<<sql
-      SELECT * FROM categorias WHERE id_categoria;
+      SELECT * FROM categorias cate
+      INNER JOIN registrados ra ON ra.id_categoria = cate.id_categoria
+      WHERE ra.id_registrado = '$id';
 sql;
 
         return $mysqli->queryAll($query);

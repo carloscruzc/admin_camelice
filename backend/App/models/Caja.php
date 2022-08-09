@@ -91,6 +91,7 @@ sql;
       }
 
 
+
       public static function insertTransaccion($data){
 
         $mysqli = Database::getInstance();
@@ -592,7 +593,7 @@ sql;
 public static function getProductosPendComprados($id){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT pp.id_producto,pp.clave, pp.comprado_en,pp.status,ua.nombre,ua.clave_socio,aspro.status as estatus_compra,ua.monto_congreso as amout_due,pro.nombre as nombre_producto, pro.precio_publico, pro.tipo_moneda, pro.max_compra, pro.es_congreso, pro.es_servicio, pro.es_curso
+        SELECT pp.id_producto,pp.clave, pp.comprado_en,pp.status,ua.nombre,ua.clave_socio,aspro.status as estatus_compra,ua.monto_congreso as amout_due, ua.id_categoria, pro.nombre as nombre_producto, pro.precio_publico, pro.tipo_moneda, pro.max_compra, pro.es_congreso, pro.es_servicio, pro.es_curso
         FROM pendiente_pago pp
         INNER JOIN registrados ua ON(ua.id_registrado = pp.id_registrado)
         INNER JOIN productos pro ON (pp.id_producto = pro.id_producto)

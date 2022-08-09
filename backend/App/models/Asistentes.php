@@ -468,5 +468,14 @@ sql;
     return $mysqli->queryAll($query);
 }
 
+  public static function searchUserByName($nombre,$apellidop,$apellidom,$categoria){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT * FROM registrados WHERE nombre = '$nombre' and apellidop = '$apellidop' and apellidom = '$apellidom' 
+sql;
+
+    return $mysqli->queryAll($query);
+  }
+
 
 }

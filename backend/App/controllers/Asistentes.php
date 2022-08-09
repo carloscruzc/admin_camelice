@@ -123,6 +123,7 @@ html;
         $nombre = $_POST['nombre'];
         $apellidop = $_POST['apellidop'];
         $apellidom = $_POST['apellidom'];
+        $categoria = MasterDom::getData('categoria');
         $nombre_constancia = $_POST['nombre']." ". $_POST['apellidop'] . " ". $_POST['apellidom'];
 
         $monto_congreso = AsistentesDao::getCostoCategoria(MasterDom::getData('categoria'))['costo'];
@@ -145,6 +146,47 @@ html;
 
         $id = AsistentesDao::insert($data);
         if ($id >= 1) {
+
+            //id nuevo socio 8
+            if(MasterDom::getData('categoria') == 8){
+
+                $search_user = AsistentesDao::searchUserByName($nombre,$apellidop,$apellidom,12)[0];
+
+                $data = new \stdClass();
+                $data->_id_producto = 9;
+                $data->_id_registrado = $search_user['id_registrado'];
+                $data->_reference = $search_user['referencia'];
+                $data->_clave = $search_user['id_registrado'].'ns';
+                $data->_monto = 3000;
+                $data->_tipo_pago = 'nuevo_socio';
+
+
+                $inserPendientesPago = CajaDao::insertPendientePago($data);
+
+                //Congreso
+                $data = new \stdClass();
+                $data->_id_producto = 1;
+                $data->_id_registrado = $search_user['id_registrado'];
+                $data->_reference = $search_user['referencia'];
+                $data->_clave = $search_user['id_registrado'].'ns';
+                $data->_monto = 0;
+                $data->_tipo_pago = 'nuevo_socio';
+
+
+                $inserPendientesPago = CajaDao::insertPendientePago($data);
+                //ultima anualidad
+                $data = new \stdClass();
+                $data->_id_producto = 2;
+                $data->_id_registrado = $search_user['id_registrado'];
+                $data->_reference = $search_user['referencia'];
+                $data->_clave = $search_user['id_registrado'].'ns';
+                $data->_monto = 0;
+                $data->_tipo_pago = 'nuevo_socio';
+
+
+                $inserPendientesPago = CajaDao::insertPendientePago($data);
+
+            }
             echo "success";
             // $this->alerta($id,'add');
             //header('Location: /PickUp');

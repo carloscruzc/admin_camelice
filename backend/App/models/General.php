@@ -89,6 +89,17 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function getPaisEstado($id){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT pa.*, es.* FROM registrados re
+    INNER JOIN paises pa ON pa.id_pais = re.id_pais
+    INNER JOIN estados es ON es.id_estado = re.id_estado
+    WHERE re.id_registrado = '$id';
+sql;
+    return $mysqli->queryAll($query);
+  }
+
   public static function getAllColaboradoresByName($search){
     $mysqli = Database::getInstance();
     $query =<<<sql

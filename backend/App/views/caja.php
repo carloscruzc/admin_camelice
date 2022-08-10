@@ -223,6 +223,7 @@
                                                                             <option value="Efectivo">Efectivo</option>
                                                                             <option value="Tarjeta_Credito">Tarjeta Crédito</option>
                                                                             <option value="Tarjeta_Debito">Tarjeta Débito</option>
+                                                                            <option value="Transferencia">Transferencia</option>
                                                                         </select>
                                                                     </div>
 

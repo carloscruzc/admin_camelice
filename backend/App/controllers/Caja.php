@@ -842,6 +842,13 @@ html;
             $pdf->SetFont('Arial', 'B', 9);  
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
+          }else if($tipo_pago == "Transferencia"){
+
+            //tipo pago
+            $pdf->SetXY(19.5, 211.75);
+            $pdf->SetFont('Arial', 'B', 9);  
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Multicell(100, 10, '$ '.number_format($productos['total_pesos'],2).'', 0, 'C');
           }
 
         //tipo pago

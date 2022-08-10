@@ -638,6 +638,18 @@ html;
                     <option value="0">Ninguna</option>
 html;
         }
+
+        if($usuario['prefijo'] == ''){
+            $optionPrefijo = '';
+            $optionPrefijo .= <<<html
+                <option value="{$usuario['prefijo']}" disabled selected>ACTUAL: (VACIO)</option>
+html;
+        }else{
+            $optionPrefijo = '';
+            $optionPrefijo .= <<<html
+                <option value="{$usuario['prefijo']}" disabled selected>ACTUAL: {$usuario['prefijo']}</option>
+html;
+        }
         
         
 
@@ -690,6 +702,7 @@ html;
         View::set('optionPais2', $optionPais2);
         View::set('optionModalidad',$optionModalidad);
         View::set('optionSeleccione',$optionSeleccione);
+        View::set('optionPrefijo',$optionPrefijo);
         View::set('optionEstado',$optionEstado);
         View::set('id_asistente', $id);
         View::set('detalles', $detalles[0]);
@@ -857,6 +870,7 @@ html;
             $pais = $_POST['pais'];
             $estado = $_POST['estado'];
             $modalidad = $_POST['modalidad'];
+            $prefijo = $_POST['prefijo'];
 
             if($id_categoria != 0){
                 $monto_congreso = AsistentesDao::getCostoCategoria($id_categoria)['costo'];
@@ -879,6 +893,7 @@ html;
             $documento->_pais = $pais;
             $documento->_estado = $estado;
             $documento->_modalidad = $modalidad;
+            $documento->_prefijo = $prefijo;
 
             // var_dump($documento);
             $id = AsistentesDao::update($documento);

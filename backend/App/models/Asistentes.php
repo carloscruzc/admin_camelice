@@ -339,7 +339,7 @@ sql;
       $mysqli = Database::getInstance(true);
       $query=<<<sql
       UPDATE registrados SET 
-      nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, 
+      nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, prefijo = :prefijo, 
       telefono = :telefono, email = :email, id_categoria = :id_categoria, monto_congreso = :monto_congreso,
       id_pais = :pais, id_estado = :estado,modalidad = :modalidad
       WHERE email = :email;
@@ -355,7 +355,8 @@ sql;
         ':monto_congreso'=>$data->_monto_congreso,
         ':pais'=>$data->_pais,
         ':estado'=>$data->_estado,
-        ':modalidad'=>$data->_modalidad
+        ':modalidad'=>$data->_modalidad,
+        ':prefijo'=>$data->_prefijo
       );
 
       $accion = new \stdClass();

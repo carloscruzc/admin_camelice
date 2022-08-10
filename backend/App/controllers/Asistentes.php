@@ -642,11 +642,11 @@ html;
         $optionPrefijo = '';
         if($usuario['prefijo'] == ''){
             $optionPrefijo .= <<<html
-                <option value="{$usuario['prefijo']}" disabled selected>ACTUAL: (VACIO)</option>
+                <option value="{$usuario['prefijo']}" selected>ACTUAL: (VACIO)</option>
 html;
         }else{
             $optionPrefijo .= <<<html
-                <option value="{$usuario['prefijo']}" disabled selected>ACTUAL: {$usuario['prefijo']}</option>
+                <option value="{$usuario['prefijo']}" selected>ACTUAL: {$usuario['prefijo']}</option>
 html;
         }
         

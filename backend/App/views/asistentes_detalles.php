@@ -280,6 +280,7 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal" id="update_detalles" action="" method="POST">
+                                <!-- <input hidden id="id_registrado" name="id_registrado" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['id_registrado'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"> -->
                             <div class="card-body pt-0">
                                 <div class="row">
                                     <div class="col-12 col-lg-4">
@@ -304,16 +305,16 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-8 col-12">
+                                    <div class="col-lg-12 col-12">
                                         <label class="form-label mt-4">Email Registrado y Verificado *</label>
                                         <div class="input-group">
                                             <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['email'] ?>">
                                         </div>
                                         <span id="msg_email" style="font-size: 0.75rem; font-weight: 700;margin-bottom: 0.5rem;"></span>
                                     </div>
-                                    <div class="col-lg-4 col-12">
-                                        <label class="control-label col-md-12 col-sm-1 col-xs-12 mt-4" for="prefijo">Prefijo <span class="required">*</span></label>
-                                        <select class="multisteps-form__select form-control all_input_select" name="prefijo" id="prefijo" required>
+                                    <!-- <div class="col-lg-4 col-12">
+                                        <label class="form-label mt-4" for="prefijo">Prefijo <span class="required">*</span></label>
+                                        <select class="multisteps-form__select form-control all_input_select" name="prefijo" id="prefijo">
                                             <?= $optionPrefijo ?>
                                             <option value="DR.">DR.</option>
                                             <option value="DRA.">DRA.</option>
@@ -324,7 +325,7 @@
                                             <option value="SRA.">SRA.</option>
                                             <option value="">(VACÍO)</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="row">

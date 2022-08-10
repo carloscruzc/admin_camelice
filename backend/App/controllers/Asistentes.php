@@ -864,13 +864,13 @@ html;
             $apellido_paterno = $_POST['apellido_paterno'];
             $apellido_materno = $_POST['apellido_materno'];
             $email = $_POST['email'];
+            $prefijo = $_POST['prefijo'];
             $telefono = $_POST['telefono'];
             // $clave_socio = $_POST['clave_socio'];
             $id_categoria = $_POST['id_categoria'];
             $pais = $_POST['pais'];
             $estado = $_POST['estado'];
             $modalidad = $_POST['modalidad'];
-            $prefijo = $_POST['prefijo'];
 
             if($id_categoria != 0){
                 $monto_congreso = AsistentesDao::getCostoCategoria($id_categoria)['costo'];
@@ -881,11 +881,12 @@ html;
             }
            
 
-            $documento->_id = $id_registrado;
+            $documento->_id_registrado = $id_registrado;
             $documento->_nombre = $nombre;
             $documento->_apellido_paterno = $apellido_paterno;
             $documento->_apellido_materno = $apellido_materno;
             $documento->_email = $email;
+            $documento->_prefijo = $prefijo;
             $documento->_telefono = $telefono;
             // $documento->_clave_socio = $clave_socio;
             $documento->_id_categoria = $id_categoria;
@@ -893,7 +894,6 @@ html;
             $documento->_pais = $pais;
             $documento->_estado = $estado;
             $documento->_modalidad = $modalidad;
-            $documento->_prefijo = $prefijo;
 
             // var_dump($documento);
             $id = AsistentesDao::update($documento);

@@ -340,7 +340,7 @@ sql;
       $query=<<<sql
       UPDATE registrados SET 
       email = :email, nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, 
-      telefono = :telefono, id_categoria = :id_categoria, 
+      prefijo = :prefijo, telefono = :telefono, id_categoria = :id_categoria, 
       monto_congreso = :monto_congreso, id_pais = :pais, id_estado = :estado, modalidad = :modalidad
       WHERE id_registrado = :id_registrado;
 sql;
@@ -349,7 +349,7 @@ sql;
         ':nombre'=>$data->_nombre,
         ':apellido_paterno'=>$data->_apellido_paterno,
         ':apellido_materno'=>$data->_apellido_materno,
-        // ':prefijo'=>$data->_prefijo,
+        ':prefijo'=>$data->_prefijo,
         ':telefono'=>$data->_telefono,
         ':email'=>$data->_email,
         ':id_categoria'=>$data->_id_categoria,

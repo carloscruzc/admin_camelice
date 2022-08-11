@@ -329,18 +329,25 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-12">
+                                    <div class="col-lg-4 col-12">
                                         <label class="form-label mt-4">Número de Telefono *</label>
                                         <div class="input-group">
                                             <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-12">
+                                    <div class="col-lg-4 col-12">
                                         <label class="form-label mt-4" for="id_categoria">Categoría <span class="required"></span></label>
                                         <select class="multisteps-form__select form-control all_input_select" name="id_categoria" id="id_categoria">
                                             <?= $optionSeleccione ?>
                                             <?= $optionCate ?>
                                         </select>
+                                    </div>
+                                    <div class="col-lg-4 col-12">
+                                        <label class="form-label mt-4">Número de socio</label>
+                                        <div class="input-group">
+                                            <input id="clave_socio" name="clave_socio" maxlength="49" class="form-control" type="text" placeholder="Clave de socio" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['clave_socio'] ?>">
+                                        </div>
+                                        <span id="msg_email" style="font-size: 0.75rem; font-weight: 700;margin-bottom: 0.5rem;"></span>
                                     </div>
                                 </div>
 

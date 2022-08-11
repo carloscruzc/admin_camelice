@@ -870,6 +870,7 @@ html;
             $pais = $_POST['pais'];
             $estado = $_POST['estado'];
             $modalidad = $_POST['modalidad'];
+            $clave_socio = $_POST['clave_socio'];
 
             if($id_categoria != 0){
                 $monto_congreso = AsistentesDao::getCostoCategoria($id_categoria)['costo'];
@@ -893,6 +894,7 @@ html;
             $documento->_pais = $pais;
             $documento->_estado = $estado;
             $documento->_modalidad = $modalidad;
+            $documento->_clave_socio = $clave_socio;
 
             // var_dump($documento);
             $id = AsistentesDao::update($documento);

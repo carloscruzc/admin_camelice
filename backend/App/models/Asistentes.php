@@ -340,8 +340,8 @@ sql;
       $query=<<<sql
       UPDATE registrados SET 
       email = :email, nombre = :nombre, apellidop = :apellido_paterno, apellidom = :apellido_materno, 
-      prefijo = :prefijo, telefono = :telefono, id_categoria = :id_categoria, 
-      monto_congreso = :monto_congreso, id_pais = :pais, id_estado = :estado, modalidad = :modalidad
+      prefijo = :prefijo, telefono = :telefono, id_categoria = :id_categoria, monto_congreso = :monto_congreso,
+      id_pais = :pais, id_estado = :estado, modalidad = :modalidad, clave_socio = :clave_socio
       WHERE id_registrado = :id_registrado;
 sql;
       $parametros = array(
@@ -357,6 +357,7 @@ sql;
         ':pais'=>$data->_pais,
         ':estado'=>$data->_estado,
         ':modalidad'=>$data->_modalidad,
+        ':clave_socio'=>$data->_clave_socio
       );
 
       $accion = new \stdClass();

@@ -1269,10 +1269,8 @@ html;
 html;
                 }
 
-                if($sociote['pendientes'] < 7 AND $sociote['codigo_beca']  != ''){
-                $clave_socio .= <<<html
-                <span class="badge badge-success" style="background-image: linear-gradient(310deg, #5aaa75b3 0%, #48e544ed 100%); color:white "><strong>NO ES SOCIO ACTIVO</strong></span> 
-html;          
+            if($sociote['pendientes'] < 7 AND $sociote['codigo_beca']  != ''){
+                $clave_socio = '';
 //                 $permiso_impresion_2 .= <<<html
 //                      <div>
 //                          <span class="badge badge-success" style="background-image: radial-gradient(200px circle at 50% 70%, rgba(234, 6, 6, 0.3) 0, #ea0606 100%); color:white "><strong>MANDAR A CAJA A PAGAR</strong></span> 
